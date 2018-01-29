@@ -10,12 +10,11 @@
 |comment    |text   |                                      |
 
 ### Association
-- has_many : Reviews
-- has_many : likes
-- has_many : comments
-- has_many : Relationships through:?
-- has_many : Movies through: Reviews
-- has_many : Movies through: clip
+- has_many :Reviews
+- has_many :likes
+- has_many :comments
+- has_many :Movies, through: :Reviews
+- has_many :Movies, through: :clip
 - has_many :active_relationships, class_name:  "Relationship", foreign_key: "follower_id", dependent: :destroy
 - has_many :active_relationships, class_name:  "Relationship", foreign_key: "following_id", dependent: :destroy
 
@@ -33,8 +32,8 @@
 
 ### Association
 - has_many :Reviews
-- has_many :Users through: Reviews
-- has_many :Users through: clip
+- has_many :Users, through: :Reviews
+- has_many :Users, through: :clip
 - has_many :clip
 - has_many :casts, through: :Movies_Casts
 - has_many :Movies_Casts
@@ -64,11 +63,11 @@
 |status     |integer |null: false, index: true|
 
 ### Association
-- has_many : tag
-- has_many : comment
-- has_many : likes
-- belongs_to : User
-- belongs_to : Movie
+- has_many :tag
+- has_many :comment
+- has_many :likes
+- belongs_to :User
+- belongs_to :Movie
 
 ***
 ## 4 Commentsテーブル
@@ -81,8 +80,8 @@
 |status       |integer |null: false|
 
 ### Association
-- belongs_to : User
-- belongs_to : Review
+- belongs_to :User
+- belongs_to :Review
 ***
 
 ## 5 Tagsテーブル
@@ -92,7 +91,7 @@
 |name|string|null: false, unique: true, index: true|
 
 ### Association
-- has_many :Reviews through: Movies_Tags
+- has_many :Reviews, through: :Movies_Tags
 - has_many :Movies_Tags
 ***
 
@@ -118,8 +117,8 @@
 
 
 ### Association
-- belongs_to : User
-- belongs_to : Review
+- belongs_to :User
+- belongs_to :Review
 
 ***
 
@@ -130,7 +129,7 @@
 |name|string|null: false, unique: true|
 
 ### Association
-- has_many :Movies through: Movies_Casts
+- has_many :Movies, through: :Movies_Casts
 - has_many :Movies_Cast
 
 ***
@@ -141,7 +140,7 @@
 |name|string|null: false, unique: true|
 
 ### Association
-- has_many :Movies through: Movies_Countries
+- has_many :Movies, through: :Movies_Countries
 - has_many :Movies_Countries
 
 ***
@@ -153,7 +152,7 @@
 |name|string|null: false, unique: true|
 
 ### Association
-- has_many :Movies through: Movies_Genres
+- has_many :Movies, through: :Movies_Genres
 - has_many :Movies_Genres
 
 ***
@@ -165,8 +164,8 @@
 |name|string|null: false, unique: true|
 
 ### Association
-- has_many : Movies through: Movies_Awards
-- has_many : Movies_Awards
+- has_many :Movies, through: :Movies_Awards
+- has_many :Movies_Awards
 
 ***
 
@@ -186,12 +185,12 @@
 ## ?? Scriptwritesテーブル
 |Column|Type|Options|
 |------|----|-------|
-|Movie_id    |references  |null: false, foreign_key: true|
-|Director_id |references  |null: false, foreign_key: true|
+|Movie_id    |references |null: false, foreign_key: true|
+|Director_id |references |null: false, foreign_key: true|
 
 ### Association
-- has_many : Movies through: Movies_Scriptwrites
-- has_many : Movies_Scriptwrites
+- has_many :Movies, through: :Movies_Scriptwrites
+- has_many :Movies_Scriptwrites
 
 ## ?? Directorsテーブル
 |Column|Type|Options|
@@ -199,20 +198,20 @@
 |director |string |null: false, index: true|
 
 ### Association
-- has_many : Movies through: Movies_Directors
-- has_many : Movies_Directors
+- has_many :Movies, through: :Movies_Directors
+- has_many :Movies_Directors
 
 
 ## 14 Movies_Castsテーブル
 
 |Column|Type|Options|
 |------|----|-------|
-|Movie_id |references  |null: false ,foreign_key: true|
-|Cast_id  |references  |null: false ,foreign_key: true|
+|Movie_id |references |null: false ,foreign_key: true|
+|Cast_id  |references |null: false ,foreign_key: true|
 
 ### Association
-- belongs_to : Movie
-- belongs_to : Cast
+- belongs_to :Movie
+- belongs_to :Cast
 
 ***
 
@@ -224,8 +223,8 @@
 |Country_id  |references |null: false, foreign_key: true|
 
 ### Association
-- belongs_to : Movie
-- belongs_to : Country
+- belongs_to :Movie
+- belongs_to :Country
 
 ***
 
@@ -233,51 +232,51 @@
 
 |Column|Type|Options|
 |------|----|-------|
-|Movie_id    |references  |null: false, foreign_key: true|
-|Genre_id    |references  |null: false, foreign_key: true|
+|Movie_id    |references |null: false, foreign_key: true|
+|Genre_id    |references |null: false, foreign_key: true|
 
 
 ### Association
-- belongs_to : Movie
-- belongs_to : Genre
+- belongs_to :Movie
+- belongs_to :Genre
 
 ***
 ## 17 Movies_Awardsテーブル
 
 |Column|Type|Options|
 |------|----|-------|
-|Movie_id    |references  |null: false, foreign_key: true|
-|Award_id    |references  |null: false, foreign_key: true|
+|Movie_id    |references |null: false, foreign_key: true|
+|Award_id    |references |null: false, foreign_key: true|
 
 ### Association
-- belongs_to : Movie
-- belongs_to : Award
+- belongs_to :Movie
+- belongs_to :Award
 
 ## ?? Movies_Scriptwritersテーブル
 |Column|Type|Options|
 |------|----|-------|
-|Movie_id    |references  |null: false, foreign_key: true|
-|Director_id |references  |null: false, foreign_key: true|
+|Movie_id    |references |null: false, foreign_key: true|
+|Director_id |references |null: false, foreign_key: true|
 
 ### Association
-- belongs_to : Movie
-- belongs_to : Scriptwriter
+- belongs_to :Movie
+- belongs_to :Scriptwriter
 
 ## ?? Movies - Directorsテーブル
 |Column|Type|Options|
 |------|----|-------|
-|Movie_id    |references   |null: false, foreign_key: true|
-|Director_id |references  |null: false, foreign_key: true|
+|Movie_id    |references |null: false, foreign_key: true|
+|Director_id |references |null: false, foreign_key: true|
 
 ### Association
-- belongs_to : Movie
-- belongs_to : Director
+- belongs_to :Movie
+- belongs_to :Director
 
 ## ?? Reviews - Tagsテーブル
 |Column|Type|Options|
-|Movie_id    |references  |null: false, index: true, foreign_key: true|
-|Tag_id      |references  |null: false, index: true, foreign_key: true|
+|Movie_id    |references |null: false, index: true, foreign_key: true|
+|Tag_id      |references |null: false, index: true, foreign_key: true|
 
 ### Association
-- belongs_to : Reviews
-- belongs_to : Tag
+- belongs_to :Reviews
+- belongs_to :Tag
