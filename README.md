@@ -35,12 +35,9 @@
 - has_many : Users through: Reviews
 - has_many : Users through: clip
 - has_many : clip
-- has_many : casts through: Movies_Casts
+- has_many :casts, through: :Movies_Casts
+- has_many : tag
 - has_many : *** through:
-- has_many : *** through:
-
-
-- belongs_to :xxx
 
 ***
 
@@ -56,7 +53,9 @@
 statusは、ネタバレ用
 
 ### Association
-- has_many :xxx
+- has_many : tag
+- has_many : comment
+- has_many : likes
 - belongs_to : User
 - belongs_to : Movie
 
@@ -71,9 +70,8 @@ statusは、ネタバレ用
 |status       |integer |null: false|
 
 ### Association
-- has_many :xxx
-- belongs_to :xxx
-
+- belongs_to : User
+- belongs_to : Review
 ***
 
 ## 5 Tagsテーブル
@@ -83,9 +81,8 @@ statusは、ネタバレ用
 |name|string|null: false, unique: true, index: true|
 
 ### Association
-- has_many :xxx
-- belongs_to :xxx
-
+- has_many :Reviews through: Movies_Tags
+- has_many :Movies_Tags
 ***
 
 ## 6 Clipsテーブル
@@ -96,8 +93,8 @@ statusは、ネタバレ用
 |User_id  |string|null: false, unique: true|
 
 ### Association
-- belongs_to :Users
-- belongs_to :Movies
+- belongs_to :User
+- belongs_to :Movie
 
 ***
 
@@ -110,8 +107,8 @@ statusは、ネタバレ用
 
 
 ### Association
-- has_many :xxx
-- belongs_to :xxx
+- belongs_to : User
+- belongs_to : Review
 
 ***
 
@@ -122,11 +119,10 @@ statusは、ネタバレ用
 |name|string|null: false, unique: true|
 
 ### Association
-- has_many : Movies through: Movies_Cast
-- belongs_to :xxx
+- has_many : Movies through: Movies_Casts
+- has_many : Movies_Cast
 
 ***
-
 ## 9 Countriesテーブル
 
 |Column|Type|Options|
@@ -134,8 +130,8 @@ statusは、ネタバレ用
 |name|string|null: false, unique: true|
 
 ### Association
-- has_many :xxx
-- belongs_to :xxx
+- has_many : Movies through: Movies_Countries
+- has_many : Movies_Countries
 
 ***
 
@@ -146,8 +142,8 @@ statusは、ネタバレ用
 |name|string|null: false, unique: true|
 
 ### Association
-- has_many :xxx
-- belongs_to :xxx
+- has_many : Movies through: Movies_Genres
+- has_many : Movies_Genres
 
 ***
 
@@ -158,8 +154,8 @@ statusは、ネタバレ用
 |name|string|null: false, unique: true|
 
 ### Association
-- has_many :xxx
-- belongs_to :xxx
+- has_many : Movies through: Movies_Awards
+- has_many : Movies_Awards
 
 ***
 
@@ -182,8 +178,8 @@ statusは、ネタバレ用
 |Director_id |integer  |null: false|
 
 ### Association
-- has_many :xxx
-- belongs_to :xxx
+- has_many : Movies through: Movies_Scriptwrites
+- has_many : Movies_Scriptwrites
 
 ## ?? Directorsテーブル
 |Column|Type|Options|
@@ -191,23 +187,9 @@ statusは、ネタバレ用
 |director |string |null: false, index: true|
 
 ### Association
-- has_many :xxx
-- belongs_to :xxx
+- has_many : Movies through: Movies_Directors
+- has_many : Movies_Directors
 
-<!-- _ 以下、中間テーブル _ -->
-* * *
-<!--
-## 13 Users_Castsテーブル
-
-|Column|Type|Options|
-|------|----|-------|
-|name|string|null: false, unique: true|
-
-### Association
-- has_many :xxx
-- belongs_to :xxx
- -->
-<!-- *** -->
 
 ## 14 Movies_Castsテーブル
 
@@ -217,8 +199,8 @@ statusは、ネタバレ用
 |Cast_id  |integer  |null: false|
 
 ### Association
-- has_many :xxx
-- belongs_to :xxx
+- belongs_to : Movie
+- belongs_to : Cast
 
 ***
 
@@ -230,8 +212,8 @@ statusは、ネタバレ用
 |Country_id  |integer  |null: false|
 
 ### Association
-- has_many :xxx
-- belongs_to :xxx
+- belongs_to : Movie
+- belongs_to : Country
 
 ***
 
@@ -244,8 +226,8 @@ statusは、ネタバレ用
 
 
 ### Association
-- has_many :xxx
-- belongs_to :xxx
+- belongs_to : Movie
+- belongs_to : Genre
 
 ***
 ## 17 Movies_Awardsテーブル
@@ -256,8 +238,8 @@ statusは、ネタバレ用
 |Award_id    |integer  |null: false|
 
 ### Association
-- has_many :xxx
-- belongs_to :xxx
+- belongs_to : Movie
+- belongs_to : Award
 
 ## ?? Movies_Scriptwritersテーブル
 |Column|Type|Options|
@@ -266,8 +248,8 @@ statusは、ネタバレ用
 |Director_id |integer  |null: false|
 
 ### Association
-- has_many :xxx
-- belongs_to :xxx
+- belongs_to : Movie
+- belongs_to : Scriptwriter
 
 ## ?? Movies - Directorsテーブル
 |Column|Type|Options|
@@ -276,14 +258,14 @@ statusは、ネタバレ用
 |Director_id |integer  |null: false|
 
 ### Association
-- has_many :xxx
-- belongs_to :xxx
+- belongs_to : Movie
+- belongs_to : Director
 
-## ?? Movies - Tagsテーブル
+## ?? Reviews - Tagsテーブル
 |Column|Type|Options|
 |Movie_id    |integer |null: false, index: true|
 |Tag_id      |integer |null: false, index: true|
 
 ### Association
-- has_many :xxx
-- belongs_to :xxx
+- belongs_to : Reviews
+- belongs_to : Tag
