@@ -16,7 +16,8 @@
 - has_many : Relationships through:?
 - has_many : Movies through: Reviews
 - has_many : Movies through: clip
-
+- has_many :active_relationships, class_name:  "Relationship", foreign_key: "follower_id", dependent: :destroy
+- has_many :active_relationships, class_name:  "Relationship", foreign_key: "following_id", dependent: :destroy
 
 ## 2 Moviesテーブル
 
@@ -25,19 +26,30 @@
 |title     |string  |null: false, index: true|
 |subtitle  |string  |             |
 |image     |text    |             |
-|上映時間   |string? |             |
+|上映時間   |string  |             |
 |あらすじ   |text    |             |
 |製作年     |string  |             |
 |上映日     |string  |             |
 
 ### Association
-- has_many : Reviews
-- has_many : Users through: Reviews
-- has_many : Users through: clip
-- has_many : clip
+- has_many :Reviews
+- has_many :Users through: Reviews
+- has_many :Users through: clip
+- has_many :clip
 - has_many :casts, through: :Movies_Casts
-- has_many : tag
-- has_many : *** through:
+- has_many :Movies_Casts
+- has_many :tag, through: :Reviews - Tags
+- has_many :Reviews - Tags
+- has_many :countries, through: :Movies_Countries
+- has_many :Movies_Countries
+- has_many :Genres, through: :Movies_Genres
+- has_many :Movies_Genres
+- has_many :Awards, through: :Movies_Awards
+- has_many :Movies_Awards
+- has_many :Scriptwrites, through: :Movies_Scriptwrites
+- has_many :Movies_Scriptwrites
+- has_many :Directors, through: :Movies_Directors
+- has_many :Movies_Directors
 
 ***
 
@@ -47,10 +59,9 @@
 |------|----|-------|
 |comment    |text    |null: false, index: true|
 |score      |float   |index: true             |
-|User_id    |integer |null: false, index: true|
-|Movie_id   |integer |null: false, index: true|
+|User_id    |references |null: false, index: true, foreign_key: true|
+|Movie_id   |references |null: false, index: true, foreign_key: true|
 |status     |integer |null: false, index: true|
-statusは、ネタバレ用
 
 ### Association
 - has_many : tag
@@ -64,8 +75,8 @@ statusは、ネタバレ用
 
 |Column|Type|Options|
 |------|----|-------|
-|Review_id    |integer |null: false|
-|User_id      |integer |null: false|
+|Review_id    |references |null: false, foreign_key: true|
+|User_id      |references |null: false, foreign_key: true|
 |comment      |string  |null: false|
 |status       |integer |null: false|
 
@@ -89,8 +100,8 @@ statusは、ネタバレ用
 
 |Column|Type|Options|
 |------|----|-------|
-|Movie_id |string|null: false, unique: true|
-|User_id  |string|null: false, unique: true|
+|Movie_id |references|null: false, unique: true, foreign_key: true|
+|User_id  |references|null: false, unique: true, foreign_key: true|
 
 ### Association
 - belongs_to :User
@@ -102,8 +113,8 @@ statusは、ネタバレ用
 
 |Column|Type|Options|
 |------|----|-------|
-|Review_id|string|null: false|
-|User_id|string|null: false|
+|Review_id |references|null: false, foreign_key: true|
+|User_id |references|null: false, foreign_key: true|
 
 
 ### Association
@@ -119,8 +130,8 @@ statusは、ネタバレ用
 |name|string|null: false, unique: true|
 
 ### Association
-- has_many : Movies through: Movies_Casts
-- has_many : Movies_Cast
+- has_many :Movies through: Movies_Casts
+- has_many :Movies_Cast
 
 ***
 ## 9 Countriesテーブル
@@ -130,8 +141,8 @@ statusは、ネタバレ用
 |name|string|null: false, unique: true|
 
 ### Association
-- has_many : Movies through: Movies_Countries
-- has_many : Movies_Countries
+- has_many :Movies through: Movies_Countries
+- has_many :Movies_Countries
 
 ***
 
@@ -142,8 +153,8 @@ statusは、ネタバレ用
 |name|string|null: false, unique: true|
 
 ### Association
-- has_many : Movies through: Movies_Genres
-- has_many : Movies_Genres
+- has_many :Movies through: Movies_Genres
+- has_many :Movies_Genres
 
 ***
 
@@ -163,19 +174,20 @@ statusは、ネタバレ用
 
 |Column|Type|Options|
 |------|----|-------|
-|following  |integer|null: false, index: true|
-|follower   |integer|null: false, index: true|
+|following_id  |integer|null: false, index: true, unique: true|
+|follower_id   |integer|null: false, index: true, unique: true|
+
 
 ### Association
-- has_many :xxx
-- belongs_to :xxx
+- belongs_to :follower, class_name: "User"
+- belongs_to :following, class_name: "User
 
 * * *
 ## ?? Scriptwritesテーブル
 |Column|Type|Options|
 |------|----|-------|
-|Movie_id    |integer  |null: false|
-|Director_id |integer  |null: false|
+|Movie_id    |references  |null: false, foreign_key: true|
+|Director_id |references  |null: false, foreign_key: true|
 
 ### Association
 - has_many : Movies through: Movies_Scriptwrites
@@ -195,8 +207,8 @@ statusは、ネタバレ用
 
 |Column|Type|Options|
 |------|----|-------|
-|Movie_id |integer  |null: false|
-|Cast_id  |integer  |null: false|
+|Movie_id |references  |null: false ,foreign_key: true|
+|Cast_id  |references  |null: false ,foreign_key: true|
 
 ### Association
 - belongs_to : Movie
@@ -208,8 +220,8 @@ statusは、ネタバレ用
 
 |Column|Type|Options|
 |------|----|-------|
-|Movie_id    |integer  |null: false|
-|Country_id  |integer  |null: false|
+|Movie_id    |references |null: false, foreign_key: true|
+|Country_id  |references |null: false, foreign_key: true|
 
 ### Association
 - belongs_to : Movie
@@ -221,8 +233,8 @@ statusは、ネタバレ用
 
 |Column|Type|Options|
 |------|----|-------|
-|Movie_id    |integer  |null: false|
-|Genre_id    |integer  |null: false|
+|Movie_id    |references  |null: false, foreign_key: true|
+|Genre_id    |references  |null: false, foreign_key: true|
 
 
 ### Association
@@ -234,8 +246,8 @@ statusは、ネタバレ用
 
 |Column|Type|Options|
 |------|----|-------|
-|Movie_id    |integer  |null: false|
-|Award_id    |integer  |null: false|
+|Movie_id    |references  |null: false, foreign_key: true|
+|Award_id    |references  |null: false, foreign_key: true|
 
 ### Association
 - belongs_to : Movie
@@ -244,8 +256,8 @@ statusは、ネタバレ用
 ## ?? Movies_Scriptwritersテーブル
 |Column|Type|Options|
 |------|----|-------|
-|Movie_id    |integer  |null: false|
-|Director_id |integer  |null: false|
+|Movie_id    |references  |null: false, foreign_key: true|
+|Director_id |references  |null: false, foreign_key: true|
 
 ### Association
 - belongs_to : Movie
@@ -254,8 +266,8 @@ statusは、ネタバレ用
 ## ?? Movies - Directorsテーブル
 |Column|Type|Options|
 |------|----|-------|
-|Movie_id    |integer  |null: false|
-|Director_id |integer  |null: false|
+|Movie_id    |references   |null: false, foreign_key: true|
+|Director_id |references  |null: false, foreign_key: true|
 
 ### Association
 - belongs_to : Movie
@@ -263,8 +275,8 @@ statusは、ネタバレ用
 
 ## ?? Reviews - Tagsテーブル
 |Column|Type|Options|
-|Movie_id    |integer |null: false, index: true|
-|Tag_id      |integer |null: false, index: true|
+|Movie_id    |references  |null: false, index: true, foreign_key: true|
+|Tag_id      |references  |null: false, index: true, foreign_key: true|
 
 ### Association
 - belongs_to : Reviews
