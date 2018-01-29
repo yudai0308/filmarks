@@ -195,9 +195,9 @@ statusは、ネタバレ用
 - has_many :xxx
 - belongs_to :xxx
 
-_ 以下、中間テーブル _
+<!-- _ 以下、中間テーブル _ -->
 * * *
-
+<!--
 ## 13 Users_Castsテーブル
 
 |Column|Type|Options|
@@ -207,7 +207,7 @@ _ 以下、中間テーブル _
 ### Association
 - has_many :xxx
 - belongs_to :xxx
-
+ -->
 ***
 
 ## 14 Movies_Castsテーブル
