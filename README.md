@@ -5,8 +5,6 @@
 |Column|Type|Options|
 |------|----|-------|
 |ID         |integer|null: false, unique: true, index: true|
-|E-mail     |string |null: false                           |
-|password   |string |null: false                           |
 |nickname   |string |null: false, index: true              |
 |image      |text   |                                      |
 |comment    |text   |                                      |
@@ -16,6 +14,7 @@
 - has_many : likes
 - has_many : comments
 - has_many : Relationships through:?
+- has_many : Movies through: Reviews
 - has_many : Movies through: clip
 
 
@@ -30,11 +29,10 @@
 |あらすじ   |text    |             |
 |製作年     |string  |             |
 |上映日     |string  |             |
-|映画情報   |text    |             |
-|予告編検索 |text    |             |
 
 ### Association
 - has_many : Reviews
+- has_many : Users through: Reviews
 - has_many : Users through: clip
 - has_many : clip
 - has_many : casts through: Movies_Casts
@@ -51,7 +49,7 @@
 |Column|Type|Options|
 |------|----|-------|
 |comment    |text    |null: false, index: true|
-|score      |integer |index: true             |
+|score      |float   |index: true             |
 |User_id    |integer |null: false, index: true|
 |Movie_id   |integer |null: false, index: true|
 |status     |integer |null: false, index: true|
@@ -59,7 +57,8 @@ statusは、ネタバレ用
 
 ### Association
 - has_many :xxx
-- belongs_to :xxx
+- belongs_to : User
+- belongs_to : Movie
 
 ***
 ## 4 Commentsテーブル
@@ -69,7 +68,7 @@ statusは、ネタバレ用
 |Review_id    |integer |null: false|
 |User_id      |integer |null: false|
 |comment      |string  |null: false|
-|status       |integer |           |
+|status       |integer |null: false|
 
 ### Association
 - has_many :xxx
@@ -81,7 +80,7 @@ statusは、ネタバレ用
 
 |Column|Type|Options|
 |------|----|-------|
-|name|string|null: false, unique: true|
+|name|string|null: false, unique: true, index: true|
 
 ### Association
 - has_many :xxx
@@ -208,7 +207,7 @@ statusは、ネタバレ用
 - has_many :xxx
 - belongs_to :xxx
  -->
-***
+<!-- *** -->
 
 ## 14 Movies_Castsテーブル
 
