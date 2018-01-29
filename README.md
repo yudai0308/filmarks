@@ -1,24 +1,206 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## 1 Usersテーブル
 
-Things you may want to cover:
+|Column|Type|Options|
+|------|----|-------|
+|name|string|null: false, unique: true|
+|email|string|null: false, unique: true|
 
-* Ruby version
+### Association
+- has_many :xxx
+- belongs_to :xxx
 
-* System dependencies
+***
 
-* Configuration
+## 2 Moviesテーブル
 
-* Database creation
+|Column|Type|Options|
+|------|----|-------|
+|name|string|null: false, uniqu:true|
 
-* Database initialization
+### Association
+- has_many :xxx
+- belongs_to :xxx
 
-* How to run the test suite
+***
 
-* Services (job queues, cache servers, search engines, etc.)
+## 3 Reviewsテーブル
 
-* Deployment instructions
+|Column|Type|Options|
+|------|----|-------|
+|name|string|null: false, unique: true|
 
-* ...
+### Association
+- has_many :xxx
+- belongs_to :xxx
+
+***
+
+## 4 Commentsテーブル
+
+|Column|Type|Options|
+|------|----|-------|
+|name|string|null: false, unique: true|
+
+### Association
+- has_many :xxx
+- belongs_to :xxx
+
+***
+
+## 5 Tagsテーブル
+
+|Column|Type|Options|
+|------|----|-------|
+|name|string|null: false, unique: true|
+
+### Association
+- has_many :xxx
+- belongs_to :xxx
+
+***
+
+## 6 Clipsテーブル
+
+|Column|Type|Options|
+|------|----|-------|
+|name|string|null: false, unique: true|
+
+### Association
+- has_many :xxx
+- belongs_to :xxx
+
+***
+
+## 7 Likesテーブル
+
+|Column|Type|Options|
+|------|----|-------|
+|name|string|null: false, unique: true|
+
+### Association
+- has_many :xxx
+- belongs_to :xxx
+
+***
+
+## 8 Castsテーブル
+
+|Column|Type|Options|
+|------|----|-------|
+|name|string|null: false, unique: true|
+
+### Association
+- has_many :xxx
+- belongs_to :xxx
+
+***
+
+## 9 Countriesテーブル
+
+|Column|Type|Options|
+|------|----|-------|
+|name|string|null: false, unique: true|
+
+### Association
+- has_many :xxx
+- belongs_to :xxx
+
+***
+
+## 10 Genresテーブル
+
+|Column|Type|Options|
+|------|----|-------|
+|name|string|null: false, unique: true|
+
+### Association
+- has_many :xxx
+- belongs_to :xxx
+
+***
+
+## 11 Awardsテーブル
+
+|Column|Type|Options|
+|------|----|-------|
+|name|string|null: false, unique: true|
+
+### Association
+- has_many :xxx
+- belongs_to :xxx
+
+***
+
+## 12 Relationshipsテーブル
+
+|Column|Type|Options|
+|------|----|-------|
+|name|string|null: false, unique: true|
+
+### Association
+- has_many :xxx
+- belongs_to :xxx
+
+* * *
+_ 以下、中間テーブル _
+* * *
+
+## 13 Users_Castsテーブル
+
+|Column|Type|Options|
+|------|----|-------|
+|name|string|null: false, unique: true|
+
+### Association
+- has_many :xxx
+- belongs_to :xxx
+
+***
+
+## 14 Movies_Castsテーブル
+
+|Column|Type|Options|
+|------|----|-------|
+|name|string|null: false, unique: true|
+
+### Association
+- has_many :xxx
+- belongs_to :xxx
+
+***
+
+## 15 Movies_Countriesテーブル
+
+|Column|Type|Options|
+|------|----|-------|
+|name|string|null: false, unique: true|
+
+### Association
+- has_many :xxx
+- belongs_to :xxx
+
+***
+
+## 16 Movies_Genresテーブル
+
+|Column|Type|Options|
+|------|----|-------|
+|name|string|null: false, unique: true|
+
+### Association
+- has_many :xxx
+- belongs_to :xxx
+
+***
+
+## 17 Movies_Awardsテーブル
+
+|Column|Type|Options|
+|------|----|-------|
+|name|string|null: false, unique: true|
+
+### Association
+- has_many :xxx
+- belongs_to :xxx
