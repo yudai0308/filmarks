@@ -53,26 +53,26 @@
 
 |Column|Type|Options|
 |------|----|-------|
-|comment    |text    |null: false, index: true|
-|score      |float   |index: true             |
-|User_id    |references |null: false, index: true, foreign_key: true|
-|Movie_id   |references |null: false, index: true, foreign_key: true|
-|status     |integer |null: false, index: true|
+|comment    |text    |null: false             |
+|score      |intege  |index: true,null: false |
+|user_id    |references |null: false, index: true, foreign_key: true|
+|movie_id   |references |null: false, index: true, foreign_key: true|
+|status     |integer |null: false|
 
 ### Association
-- has_many :tag
-- has_many :comment
+- has_many :tags
+- has_many :comments
 - has_many :likes
-- belongs_to :User
-- belongs_to :Movie
+- belongs_to :user
+- belongs_to :movie
 
 ***
 ## 4 Commentsテーブル
 
 |Column|Type|Options|
 |------|----|-------|
-|Review_id    |references |null: false, foreign_key: true|
-|User_id      |references |null: false, foreign_key: true|
+|review_id    |references |null: false, foreign_key: true|
+|user_id      |references |null: false, foreign_key: true|
 |comment      |string  |null: false|
 |status       |integer |null: false|
 
