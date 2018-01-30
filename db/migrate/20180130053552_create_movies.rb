@@ -8,7 +8,6 @@ class CreateMovies < ActiveRecord::Migration[5.0]
       t.text :story
       t.string :production
       t.string :release
-
       t.timestamps
     end
   end
