@@ -40,8 +40,8 @@
 - has_many :clips
 - has_many :members, through: :movies_members
 - has_many :movies_members
-- has_many :countries, through: :movies_countries
-- has_many :movies_countries
+- has_many :countrys, through: :movies_countrys
+- has_many :movies_countrys
 - has_many :genres, through: :movies_genres
 - has_many :movies_genres
 - has_many :awards, through: :movies_awards
@@ -133,15 +133,15 @@
 
 
 ***
-## 9 Countriesテーブル
+## 9 Countrysテーブル
 
 |Column|Type|Options|
 |------|----|-------|
 |name|string|null: false, unique: true|
 
 ### Association
-- has_many :movies, through: :movies_countries
-- has_many :movies_countries
+- has_many :movies, through: :movies_countrys
+- has_many :movies_countrys
 
 ***
 
@@ -201,15 +201,15 @@ has_many :members
 
 |Column|Type|Options|
 |------|----|-------|
-|Movie_id |references |null: false ,foreign_key: true|
+|movie_id |references |null: false ,foreign_key: true|
 |member_id  |references |null: false ,foreign_key: true|
 
 ### Association
-- belongs_to :Movie
-- belongs_to :Cast
+- belongs_to :movie
+- belongs_to :cast
 
 ***
-## 15 Movies_Countriesテーブル
+## 15 Movies_Countrysテーブル
 
 |Column|Type|Options|
 |------|----|-------|
