@@ -48,7 +48,6 @@
 - has_many :movies_awards
 
 ***
-
 ## 3 Reviewsテーブル
 
 |Column|Type|Options|
@@ -88,8 +87,8 @@
 |name|string|null: false, unique: true, index: true|
 
 ### Association
-- has_many :Reviews, through: :Movies_Tags
-- has_many :Movies_Tags
+- has_many :reviews, through: :reviews_tags
+- has_many :reviews_tags
 ***
 
 ## 6 Clipsテーブル
@@ -180,25 +179,6 @@
 - belongs_to :following, class_name: "User
 
 * * *
-## ?? Scriptwritesテーブル
-|Column|Type|Options|
-|------|----|-------|
-|Movie_id    |references |null: false, foreign_key: true|
-|Director_id |references |null: false, foreign_key: true|
-
-### Association
-- has_many :Movies, through: :Movies_Scriptwrites
-- has_many :Movies_Scriptwrites
-
-## ?? Directorsテーブル
-|Column|Type|Options|
-|------|----|-------|
-|director |string |null: false, index: true|
-
-### Association
-- has_many :Movies, through: :Movies_Directors
-- has_many :Movies_Directors
-
 ## 13 Users_membersテーブル
 
 |Column|Type|Options|
