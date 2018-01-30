@@ -251,9 +251,9 @@ has_many :members
 
 |Column|Type|Options|
 |------|----|-------|
-|review_id   |references |null: false, index: true, foreign_key: true|
-|tag_id      |references |null: false, index: true, foreign_key: true|
+|review_id   |references |null: false, foreign_key: true|
+|tag_id      |references |null: false, foreign_key: true|
 
 ### Association
-- belongs_to :reviews
+- belongs_to :review
 - belongs_to :tag
