@@ -9,6 +9,6 @@ class Review < ApplicationRecord
             :score ,
             :user_id ,
             :movie_id,
-            :tatus
+            :status
             presence: true
 end
