@@ -173,7 +173,7 @@
 
 |Column|Type|Options|
 |------|----|-------|
-|following_id  |integer|null: false, index: true, unique: true| 
+|following_id  |integer|null: false, index: true, unique: true|
 |follower_id   |integer|null: false, index: true, unique: true|
 
 ### Option
