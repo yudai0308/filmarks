@@ -10,7 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 20180130083855) do
+
 
   create_table "awards", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name",       null: false
@@ -97,6 +99,15 @@ ActiveRecord::Schema.define(version: 20180130083855) do
     t.index ["movie_id"], name: "index_movies_countries_on_movie_id", using: :btree
   end
 
+  create_table "movies_members", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "movie_id",   null: false
+    t.integer  "member_id",  null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["member_id"], name: "index_movies_members_on_member_id", using: :btree
+    t.index ["movie_id"], name: "index_movies_members_on_movie_id", using: :btree
+  end
+
   create_table "relationships", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "follower_id", null: false
     t.integer  "followed_id", null: false
@@ -117,6 +128,15 @@ ActiveRecord::Schema.define(version: 20180130083855) do
     t.datetime "updated_at",               null: false
     t.index ["movie_id"], name: "index_reviews_on_movie_id", using: :btree
     t.index ["user_id"], name: "index_reviews_on_user_id", using: :btree
+  end
+
+  create_table "reviews_tags", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "review_id",  null: false
+    t.integer  "tag_id",     null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["review_id"], name: "index_reviews_tags_on_review_id", using: :btree
+    t.index ["tag_id"], name: "index_reviews_tags_on_tag_id", using: :btree
   end
 
   create_table "tags", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -166,8 +186,12 @@ ActiveRecord::Schema.define(version: 20180130083855) do
   add_foreign_key "movies_awards", "movies"
   add_foreign_key "movies_countries", "countries"
   add_foreign_key "movies_countries", "movies"
+  add_foreign_key "movies_members", "members"
+  add_foreign_key "movies_members", "movies"
   add_foreign_key "reviews", "movies"
   add_foreign_key "reviews", "users"
+  add_foreign_key "reviews_tags", "reviews"
+  add_foreign_key "reviews_tags", "tags"
   add_foreign_key "users_members", "members"
   add_foreign_key "users_members", "users"
 end

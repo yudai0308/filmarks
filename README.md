@@ -206,7 +206,7 @@ has_many :members
 
 ### Association
 - belongs_to :movie
-- belongs_to :cast
+- belongs_to :member
 
 ***
 ## 15 Movies_Countrysテーブル
