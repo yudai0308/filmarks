@@ -256,26 +256,6 @@
 - belongs_to :Movie
 - belongs_to :Award
 
-## ?? Movies_Scriptwritersテーブル
-|Column|Type|Options|
-|------|----|-------|
-|Movie_id    |references |null: false, foreign_key: true|
-|Director_id |references |null: false, foreign_key: true|
-
-### Association
-- belongs_to :Movie
-- belongs_to :Scriptwriter
-
-## ?? Movies - Directorsテーブル
-|Column|Type|Options|
-|------|----|-------|
-|Movie_id    |references |null: false, foreign_key: true|
-|Director_id |references |null: false, foreign_key: true|
-
-### Association
-- belongs_to :Movie
-- belongs_to :Director
-
 ## ?? Reviews - Tagsテーブル
 |Column|Type|Options|
 |Movie_id    |references |null: false, index: true, foreign_key: true|
