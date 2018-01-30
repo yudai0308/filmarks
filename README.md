@@ -245,12 +245,14 @@ has_many :members
 ### Association
 - belongs_to :movie
 - belongs_to :award
+***
 
 ## 18 Reviews_Tagsテーブル
+
 |Column|Type|Options|
 |review_id   |references |null: false, index: true, foreign_key: true|
 |tag_id      |references |null: false, index: true, foreign_key: true|
 
 ### Association
-- belongs_to :Reviews
-- belongs_to :Tag
+- belongs_to :reviews
+- belongs_to :tag
