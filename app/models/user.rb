@@ -8,11 +8,11 @@ class User < ApplicationRecord
   validates :nickname, presence: true
         
 
-  has_many :reviews
-  has_many :likes
+  has_many :reviews, dependent: :destroy
+  has_many :likes, dependent: :destroy
   has_many :comments
   has_many :movies, through: :clips
-  has_many :clips
+  has_many :clips dependent: :destroy
   has_many :members, through: :users_members
   has_many :users_members
   has_many :active_relationships, class_name:  "relationship", foreign_key: "follower_id", dependent: :destroy
