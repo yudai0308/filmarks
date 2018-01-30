@@ -118,15 +118,18 @@
 
 ***
 
-## 8 membersテーブル
+## 8 Membersテーブル
 
 |Column|Type|Options|
 |------|----|-------|
 |name|string|null: false, unique: true|
+|status|integer|null: false|
 
 ### Association
 - has_many :movies, through: :movies_members
 - has_many :movies_members
+- has_many :users, through: :users_members
+- has_many :users_members
 
 
 ***
@@ -184,14 +187,14 @@
 |Column|Type|Options|
 |------|----|-------|
 |user_id |references |null: false ,foreign_key: true|
-|Cast_id |references |null: false ,foreign_key: true|
+|members_id |references |null: false ,foreign_key: true|
 
 ## 14 Movies_membersテーブル
 
 |Column|Type|Options|
 |------|----|-------|
 |Movie_id |references |null: false ,foreign_key: true|
-|Cast_id  |references |null: false ,foreign_key: true|
+|members_id  |references |null: false ,foreign_key: true|
 
 ### Association
 - belongs_to :Movie
