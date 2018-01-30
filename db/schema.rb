@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 20180130074214) do
+ActiveRecord::Schema.define(version: 20180130082334) do
 
   create_table "clips", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "movie_id",   null: false
@@ -124,6 +123,15 @@ ActiveRecord::Schema.define(version: 20180130074214) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  create_table "users_members", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "user_id",    null: false
+    t.integer  "member_id",  null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["member_id"], name: "index_users_members_on_member_id", using: :btree
+    t.index ["user_id"], name: "index_users_members_on_user_id", using: :btree
+  end
+
   add_foreign_key "clips", "movies"
   add_foreign_key "clips", "users"
   add_foreign_key "comments", "reviews"
@@ -132,4 +140,6 @@ ActiveRecord::Schema.define(version: 20180130074214) do
   add_foreign_key "likes", "users"
   add_foreign_key "reviews", "movies"
   add_foreign_key "reviews", "users"
+  add_foreign_key "users_members", "members"
+  add_foreign_key "users_members", "users"
 end
