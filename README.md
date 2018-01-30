@@ -140,8 +140,8 @@
 |name|string|null: false, unique: true|
 
 ### Association
-- has_many :Movies, through: :Movies_Countries
-- has_many :Movies_Countries
+- has_many :movies, through: :movies_countries
+- has_many :movies_countries
 
 ***
 
@@ -152,8 +152,8 @@
 |name|string|null: false, unique: true|
 
 ### Association
-- has_many :Movies, through: :Movies_Genres
-- has_many :Movies_Genres
+- has_many :movies, through: :movies_genres
+- has_many :movies_genres
 
 ***
 
@@ -164,8 +164,8 @@
 |name|string|null: false, unique: true|
 
 ### Association
-- has_many :Movies, through: :Movies_Awards
-- has_many :Movies_Awards
+- has_many :movies, through: :movies_awards
+- has_many :movies_awards
 
 ***
 
