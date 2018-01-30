@@ -12,6 +12,7 @@
 
 ActiveRecord::Schema.define(version: 20180130065810) do
 
+
   create_table "comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "comment",    null: false
     t.integer  "status",     null: false
@@ -55,6 +56,13 @@ ActiveRecord::Schema.define(version: 20180130065810) do
     t.datetime "updated_at",               null: false
     t.index ["movie_id"], name: "index_reviews_on_movie_id", using: :btree
     t.index ["user_id"], name: "index_reviews_on_user_id", using: :btree
+  end
+
+  create_table "tags", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_tags_on_name", using: :btree
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
