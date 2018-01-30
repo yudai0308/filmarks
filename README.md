@@ -26,33 +26,33 @@
 
 |Column|Type|Options|
 |------|----|-------|
-|title     |string  |null: false, index: true|
-|subtitle  |string  |             |
-|image     |text    |             |
-|上映時間   |string  |             |
-|あらすじ   |text    |             |
-|製作年     |string  |             |
-|上映日     |string  |             |
+|title    |string  |null: false, index: true|
+|subtitle |string  |             |
+|image    |text    |             |
+|time     |string  |             |
+|story    |text    |             |
+|prodction|string  |             |
+|release  |string  |             |
 
 ### Association
 - has_many :reviews
 - has_many :users, through: :reviews
 - has_many :users, through: :clips
 - has_many :clips
-- has_many :casts, through: :movies_Casts
+- has_many :casts, through: :movies_casts
 - has_many :movies_casts
 - has_many :tag, through: :reviews - tags
-- has_many :reviews - Tags
-- has_many :countries, through: :movies_Countries
-- has_many :movies_Countries
-- has_many :genres, through: :Movies_Genres
-- has_many :movies_Genres
-- has_many :awards, through: :Movies_Awards
-- has_many :movies_Awards
-- has_many :Scriptwrites, through: :Movies_Scriptwrites
-- has_many :Movies_Scriptwrites
-- has_many :Directors, through: :Movies_Directors
-- has_many :Movies_Directors
+- has_many :reviews - tags
+- has_many :countries, through: :movies_countries
+- has_many :movies_countries
+- has_many :genres, through: :movies_genres
+- has_many :movies_genres
+- has_many :awards, through: :movies_awards
+- has_many :movies_awards
+- has_many :scriptwrites, through: :movies_scriptwrites
+- has_many :movies_scriptwrites
+- has_many :directors, through: :movies_directors
+- has_many :movies_directors
 
 ***
 
