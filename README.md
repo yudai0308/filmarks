@@ -15,8 +15,8 @@
 - has_many :comments
 - has_many :movies, through: :clips
 - has_many :clips
-- has_many :casts, through: :users_casts
-- has_many :users_casts
+- has_many :members, through: :users_members
+- has_many :users_members
 - has_many :active_relationships, class_name:  "relationship", foreign_key: "follower_id", dependent: :destroy
 - has_many :passive_relationships, class_name:  "relationship", foreign_key: "following_id", dependent: :destroy
 - has_many :following, through: :active_relationships,  source: :followed
@@ -36,23 +36,16 @@
 
 ### Association
 - has_many :reviews
-- has_many :users, through: :reviews
 - has_many :users, through: :clips
 - has_many :clips
-- has_many :casts, through: :movies_casts
-- has_many :movies_casts
-- has_many :tag, through: :reviews - tags
-- has_many :reviews - tags
+- has_many :members, through: :movies_members
+- has_many :movies_members
 - has_many :countries, through: :movies_countries
 - has_many :movies_countries
 - has_many :genres, through: :movies_genres
 - has_many :movies_genres
 - has_many :awards, through: :movies_awards
 - has_many :movies_awards
-- has_many :scriptwrites, through: :movies_scriptwrites
-- has_many :movies_scriptwrites
-- has_many :directors, through: :movies_directors
-- has_many :movies_directors
 
 ***
 
@@ -126,15 +119,15 @@
 
 ***
 
-## 8 Castsテーブル
+## 8 membersテーブル
 
 |Column|Type|Options|
 |------|----|-------|
 |name|string|null: false, unique: true|
 
 ### Association
-- has_many :movies, through: :movies_Casts
-- has_many :movies_Casts
+- has_many :movies, through: :movies_members
+- has_many :movies_members
 
 
 ***
@@ -206,14 +199,14 @@
 - has_many :Movies, through: :Movies_Directors
 - has_many :Movies_Directors
 
-## 13 Users_Castsテーブル
+## 13 Users_membersテーブル
 
 |Column|Type|Options|
 |------|----|-------|
 |user_id |references |null: false ,foreign_key: true|
 |Cast_id |references |null: false ,foreign_key: true|
 
-## 14 Movies_Castsテーブル
+## 14 Movies_membersテーブル
 
 |Column|Type|Options|
 |------|----|-------|
