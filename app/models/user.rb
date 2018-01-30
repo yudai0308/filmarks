@@ -12,7 +12,7 @@ class User < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :comments
   has_many :movies, through: :clips
-  has_many :clips dependent: :destroy
+  has_many :clips, dependent: :destroy
   has_many :members, through: :users_members
   has_many :users_members
   has_many :active_relationships, class_name:  "relationship", foreign_key: "follower_id", dependent: :destroy
