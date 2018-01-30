@@ -175,6 +175,7 @@
 |------|----|-------|
 |following_id  |integer|null: false, index: true, unique: true| 
 |follower_id   |integer|null: false, index: true, unique: true|
+
 ### Option
 add_index :relationships, [:follower_id, :followed_id], unique: true
 
@@ -188,13 +189,14 @@ add_index :relationships, [:follower_id, :followed_id], unique: true
 
 |Column|Type|Options|
 |------|----|-------|
-|user_id |references |null: false ,foreign_key: true|
+|user_id   |references |null: false ,foreign_key: true|
 |member_id |references |null: false ,foreign_key: true|
 
 ### Association
 has_many :users
 has_many :members
 
+***
 ## 14 Movies_membersテーブル
 
 |Column|Type|Options|
@@ -207,17 +209,16 @@ has_many :members
 - belongs_to :Cast
 
 ***
-
 ## 15 Movies_Countriesテーブル
 
 |Column|Type|Options|
 |------|----|-------|
-|Movie_id    |references |null: false, foreign_key: true|
-|Country_id  |references |null: false, foreign_key: true|
+|movie_id    |references |null: false, foreign_key: true|
+|country_id  |references |null: false, foreign_key: true|
 
 ### Association
-- belongs_to :Movie
-- belongs_to :Country
+- belongs_to :movie
+- belongs_to :country
 
 ***
 
@@ -225,13 +226,13 @@ has_many :members
 
 |Column|Type|Options|
 |------|----|-------|
-|Movie_id    |references |null: false, foreign_key: true|
-|Genre_id    |references |null: false, foreign_key: true|
+|Movie_id   |references |null: false, foreign_key: true|
+|Genre_id   |references |null: false, foreign_key: true|
 
 
 ### Association
-- belongs_to :Movie
-- belongs_to :Genre
+- belongs_to :movie
+- belongs_to :genre
 
 ***
 ## 17 Movies_Awardsテーブル
