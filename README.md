@@ -95,12 +95,12 @@
 
 |Column|Type|Options|
 |------|----|-------|
-|Movie_id |references|null: false, unique: true, foreign_key: true|
-|User_id  |references|null: false, unique: true, foreign_key: true|
+|movie_id |references|null: false, foreign_key: true|
+|user_id  |references|null: false, foreign_key: true|
 
 ### Association
-- belongs_to :User
-- belongs_to :Movie
+- belongs_to :user
+- belongs_to :movie
 
 ***
 
@@ -109,7 +109,7 @@
 |Column|Type|Options|
 |------|----|-------|
 |Review_id |references|null: false, foreign_key: true|
-|User_id |references|null: false, foreign_key: true|
+|User_id   |references|null: false, foreign_key: true|
 
 
 ### Association
