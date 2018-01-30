@@ -226,8 +226,8 @@ has_many :members
 
 |Column|Type|Options|
 |------|----|-------|
-|Movie_id   |references |null: false, foreign_key: true|
-|Genre_id   |references |null: false, foreign_key: true|
+|movie_id   |references |null: false, foreign_key: true|
+|genre_id   |references |null: false, foreign_key: true|
 
 
 ### Association
@@ -239,17 +239,17 @@ has_many :members
 
 |Column|Type|Options|
 |------|----|-------|
-|Movie_id    |references |null: false, foreign_key: true|
-|Award_id    |references |null: false, foreign_key: true|
+|movie_id    |references |null: false, foreign_key: true|
+|award_id    |references |null: false, foreign_key: true|
 
 ### Association
-- belongs_to :Movie
-- belongs_to :Award
+- belongs_to :movie
+- belongs_to :award
 
-## ?? Reviews - Tagsテーブル
+## 18 Reviews_Tagsテーブル
 |Column|Type|Options|
-|Movie_id    |references |null: false, index: true, foreign_key: true|
-|Tag_id      |references |null: false, index: true, foreign_key: true|
+|review_id   |references |null: false, index: true, foreign_key: true|
+|tag_id      |references |null: false, index: true, foreign_key: true|
 
 ### Association
 - belongs_to :Reviews
