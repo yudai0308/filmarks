@@ -108,13 +108,13 @@
 
 |Column|Type|Options|
 |------|----|-------|
-|Review_id |references|null: false, foreign_key: true|
-|User_id   |references|null: false, foreign_key: true|
+|review_id |references|null: false, foreign_key: true|
+|user_id   |references|null: false, foreign_key: true|
 
 
 ### Association
-- belongs_to :User
-- belongs_to :Review
+- belongs_to :user
+- belongs_to :review
 
 ***
 
