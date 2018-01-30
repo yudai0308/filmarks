@@ -14,13 +14,13 @@
 - has_many :likes
 - has_many :comments
 - has_many :movies, through: :clips
-  has_many :clips
-  has_many :casts, through: :users_casts
-  has_many :casts
+- has_many :clips
+- has_many :casts, through: :users_casts
+- has_many :casts
 - has_many :active_relationships, class_name:  "relationship", foreign_key: "follower_id", dependent: :destroy
 - has_many :passive_relationships, class_name:  "relationship", foreign_key: "following_id", dependent: :destroy
-  has_many :following, through: :active_relationships,  source: :followed
-  has_many :followers, through: :passive_relationships, source: :follower
+- has_many :following, through: :active_relationships,  source: :followed
+- has_many :followers, through: :passive_relationships, source: :follower
 
 ## 2 Moviesテーブル
 
@@ -211,7 +211,7 @@
 |Column|Type|Options|
 |------|----|-------|
 |user_id |references |null: false ,foreign_key: true|
-|Cast_id  |references |null: false ,foreign_key: true|
+|Cast_id |references |null: false ,foreign_key: true|
 
 ## 14 Movies_Castsテーブル
 
