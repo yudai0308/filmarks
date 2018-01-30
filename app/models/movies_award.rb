@@ -1,4 +1,4 @@
 class MoviesAward < ApplicationRecord
-  has_many :users
-  has_many :members
+  belongs_to :movie
+  belongs_to :award
 end
