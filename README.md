@@ -16,7 +16,7 @@
 - has_many :movies, through: :clips
 - has_many :clips
 - has_many :casts, through: :users_casts
-- has_many :casts
+- has_many :user_casts
 - has_many :active_relationships, class_name:  "relationship", foreign_key: "follower_id", dependent: :destroy
 - has_many :passive_relationships, class_name:  "relationship", foreign_key: "following_id", dependent: :destroy
 - has_many :following, through: :active_relationships,  source: :followed
