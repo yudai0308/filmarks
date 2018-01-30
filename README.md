@@ -173,13 +173,15 @@
 
 |Column|Type|Options|
 |------|----|-------|
-|following_id  |integer|null: false, index: true, unique: true|
+|following_id  |integer|null: false, index: true, unique: true| 
 |follower_id   |integer|null: false, index: true, unique: true|
+### Option
+add_index :relationships, [:follower_id, :followed_id], unique: true
 
 
 ### Association
 - belongs_to :follower, class_name: "User"
-- belongs_to :following, class_name: "User
+- belongs_to :following, class_name: "User"
 
 * * *
 ## 13 Users_membersテーブル
@@ -187,14 +189,18 @@
 |Column|Type|Options|
 |------|----|-------|
 |user_id |references |null: false ,foreign_key: true|
-|members_id |references |null: false ,foreign_key: true|
+|member_id |references |null: false ,foreign_key: true|
+
+### Association
+has_many :users
+has_many :members
 
 ## 14 Movies_membersテーブル
 
 |Column|Type|Options|
 |------|----|-------|
 |Movie_id |references |null: false ,foreign_key: true|
-|members_id  |references |null: false ,foreign_key: true|
+|member_id  |references |null: false ,foreign_key: true|
 
 ### Association
 - belongs_to :Movie
