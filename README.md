@@ -4,19 +4,23 @@
 
 |Column|Type|Options|
 |------|----|-------|
-|ID         |integer|null: false, unique: true, index: true|
-|nickname   |string |null: false, index: true              |
+|Filmarks_ID|string |null: false, unique: true, index: true|
+|nickname   |string |null: false, index: true, index: true |
 |image      |text   |                                      |
 |comment    |text   |                                      |
 
 ### Association
-- has_many :Reviews
+- has_many :reviews
 - has_many :likes
 - has_many :comments
-- has_many :Movies, through: :Reviews
-- has_many :Movies, through: :clip
-- has_many :active_relationships, class_name:  "Relationship", foreign_key: "follower_id", dependent: :destroy
-- has_many :active_relationships, class_name:  "Relationship", foreign_key: "following_id", dependent: :destroy
+- has_many :movies, through: :clips
+  has_many :clips
+  has_many :casts, through: :users_casts
+  has_many :casts
+- has_many :active_relationships, class_name:  "relationship", foreign_key: "follower_id", dependent: :destroy
+- has_many :passive_relationships, class_name:  "relationship", foreign_key: "following_id", dependent: :destroy
+  has_many :following, through: :active_relationships,  source: :followed
+  has_many :followers, through: :passive_relationships, source: :follower
 
 ## 2 Moviesテーブル
 
@@ -31,20 +35,20 @@
 |上映日     |string  |             |
 
 ### Association
-- has_many :Reviews
-- has_many :Users, through: :Reviews
-- has_many :Users, through: :clip
+- has_many :reviews
+- has_many :users, through: :Reviews
+- has_many :users, through: :clip
 - has_many :clip
 - has_many :casts, through: :Movies_Casts
-- has_many :Movies_Casts
-- has_many :tag, through: :Reviews - Tags
-- has_many :Reviews - Tags
-- has_many :countries, through: :Movies_Countries
-- has_many :Movies_Countries
-- has_many :Genres, through: :Movies_Genres
-- has_many :Movies_Genres
-- has_many :Awards, through: :Movies_Awards
-- has_many :Movies_Awards
+- has_many :movies_Casts
+- has_many :tag, through: :reviews - tags
+- has_many :reviews - Tags
+- has_many :countries, through: :movies_Countries
+- has_many :movies_Countries
+- has_many :genres, through: :Movies_Genres
+- has_many :movies_Genres
+- has_many :awards, through: :Movies_Awards
+- has_many :movies_Awards
 - has_many :Scriptwrites, through: :Movies_Scriptwrites
 - has_many :Movies_Scriptwrites
 - has_many :Directors, through: :Movies_Directors
@@ -129,8 +133,9 @@
 |name|string|null: false, unique: true|
 
 ### Association
-- has_many :Movies, through: :Movies_Casts
-- has_many :Movies_Cast
+- has_many :movies, through: :movies_Casts
+- has_many :movies_Casts
+
 
 ***
 ## 9 Countriesテーブル
@@ -201,6 +206,12 @@
 - has_many :Movies, through: :Movies_Directors
 - has_many :Movies_Directors
 
+## 13 Users_Castsテーブル
+
+|Column|Type|Options|
+|------|----|-------|
+|user_id |references |null: false ,foreign_key: true|
+|Cast_id  |references |null: false ,foreign_key: true|
 
 ## 14 Movies_Castsテーブル
 
