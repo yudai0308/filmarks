@@ -11,8 +11,6 @@
 # It's strongly recommended that you check this file into your version control system.
 
 
-ActiveRecord::Schema.define(version: 20180130080812) do
-
 ActiveRecord::Schema.define(version: 20180130082616) do
  
   create_table "awards", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -83,6 +81,14 @@ ActiveRecord::Schema.define(version: 20180130082616) do
     t.index ["title"], name: "index_movies_on_title", using: :btree
   end
 
+  create_table "movies_members", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "movie_id",   null: false
+    t.integer  "member_id",  null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["member_id"], name: "index_movies_members_on_member_id", using: :btree
+    t.index ["movie_id"], name: "index_movies_members_on_movie_id", using: :btree
+  end
   create_table "movies_countries", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "movie_id",   null: false
     t.integer  "country_id", null: false
@@ -157,6 +163,8 @@ ActiveRecord::Schema.define(version: 20180130082616) do
   add_foreign_key "comments", "users"
   add_foreign_key "likes", "movies"
   add_foreign_key "likes", "users"
+  add_foreign_key "movies_members", "members"
+  add_foreign_key "movies_members", "movies"
   add_foreign_key "movies_countries", "countries"
   add_foreign_key "movies_countries", "movies"
   add_foreign_key "reviews", "movies"
