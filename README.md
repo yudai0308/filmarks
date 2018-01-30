@@ -71,14 +71,14 @@
 
 |Column|Type|Options|
 |------|----|-------|
-|review_id    |references |null: false, foreign_key: true|
-|user_id      |references |null: false, foreign_key: true|
 |comment      |string  |null: false|
 |status       |integer |null: false|
+|review_id    |references |null: false, foreign_key: true|
+|user_id      |references |null: false, foreign_key: true|
 
 ### Association
-- belongs_to :User
-- belongs_to :Review
+- belongs_to :user
+- belongs_to :review
 ***
 
 ## 5 Tagsテーブル
