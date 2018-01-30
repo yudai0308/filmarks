@@ -250,6 +250,7 @@ has_many :members
 ## 18 Reviews_Tagsテーブル
 
 |Column|Type|Options|
+|------|----|-------|
 |review_id   |references |null: false, index: true, foreign_key: true|
 |tag_id      |references |null: false, index: true, foreign_key: true|
 
