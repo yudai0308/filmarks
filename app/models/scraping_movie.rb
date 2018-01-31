@@ -1,5 +1,6 @@
 class Scraping_movie
   def self.select_year
+    # 年代の選択
     while true do
       puts "どの年代の映画、キャスト情報を取得しますか？（それぞれ20件ずつ）"
       puts "[1] 1970年代\n[2] 1980年代\n[3] 1990年代\n[4] 2000年代\n[5] 2010年代\n [6]終了する"
@@ -28,12 +29,12 @@ class Scraping_movie
     agent = Mechanize.new
     current_page = agent.get("https://filmarks.com/list/year/#{year}s?page=1")
     elements = current_page.search(".p-movie-cassette__readmore")
-
+    # 各映画のURLを取得
     elements.each do |ele|
       links << ele.get_attribute("href")
     end
 
-    # movie情報のクレイピング
+    # movie情報のスクレイピング
     links.each do |link|
       get_movie_info("https://filmarks.com" + link)
     end
@@ -44,26 +45,55 @@ class Scraping_movie
     end
   end
 
+  # movie情報の取得と保存
   def self.get_movie_info(link)
     agent = Mechanize.new
     page = agent.get(link)
+
+    image = page.at(".c-movie__jacket img")[:src] if page.at(".c-movie__jacket img")[:src]
     title = page.at(".p-movie-detail__title span").inner_text if page.at(".p-movie-detail__title span")
     subtitle = page.at(".p-movie-detail__original").inner_text if page.at(".p-movie-detail__original")
-    image = page.at(".c-movie__jacket img")[:src] if page.at(".c-movie__jacket img")[:src]
-    time = page.search(".p-movie-detail__other-info-title").text.match(/時間：.+/).to_s if page.at(".p-movie-detail__other-info-title")
-    story = page.at(".p-movie-detail__synopsis-desc").inner_text if page.at(".p-movie-detail__synopsis-desc")
     production = page.at(".p-movie-detail__title small a").inner_text if page.at(".p-movie-detail__title small a")
-    release = page.search(".p-movie-detail__other-info-title").text.match(/上映日：.+日/).to_s if page.at(".p-movie-detail__other-info-title")
-    movie = Movie.where(title: title, subtitle: subtitle, image: image, time: time, story: story, production: production, release: release).first_or_initialize
+    release = get_release_or_time(link)
+    time = get_release_or_time(link)
+    story = page.at(".p-movie-detail__synopsis-desc").inner_text if page.at(".p-movie-detail__synopsis-desc")
+
+    movie = Movie.where(title:      title,
+                        subtitle:   subtitle,
+                        image:      image,
+                        time:       time,
+                        story:      story,
+                        production: production,
+                        release:    release).first_or_initialize
     movie.save
   end
 
+  # release と time の情報所得と編集
+  def self.get_release_or_time(link)
+    agent = Mechanize.new
+    page = agent.get(link)
+    class_name = "p-movie-detail__other-info-title"
+    more_infos = page.search(".#{class_name}")
+    more_infos.each do |info|
+      if info.at(".#{class_name}").inner_text.include?("上映日")
+        release = info.at(".#{class_name}").inner_text
+        edited_release = release.gsub(/上映日：|年|月|日/, "上映日：" => "", "年" => "-", "月" => "-", "日" => "")
+        return edited_release
+      end
+      if info.at(".#{class_name}").inner_text.include?("上映時間")
+        time = info.at(".#{class_name}").inner_text
+        edited_time = time.gsub(/上映時間：|分/, "上映時間：" => "", "分" => "")
+        return edited_time
+      end
+    end
+  end
+
+  # 監督、脚本のスクレイピング
   def self.get_movie_members(link)
     agent = Mechanize.new
     page = agent.get(link)
     member_first = page.search(".p-movie-detail__people-list-others")
 
-    # 監督、脚本のスクレイピング
     member_first.each do |mem|
       case mem.search(".p-movie-detail__people-list-term").inner_text
       when "監督" then
