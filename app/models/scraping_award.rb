@@ -11,7 +11,6 @@ class Scraping_award
       main = { name:name, url:url }
       lists << main
     end
-    puts lists
     info_subtitle(lists)
   end
 
