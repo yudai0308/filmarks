@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180131032830) do
+ActiveRecord::Schema.define(version: 20180131155438) do
 
   create_table "awards", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name",       null: false
@@ -71,10 +71,10 @@ ActiveRecord::Schema.define(version: 20180131032830) do
     t.string   "title",                    null: false
     t.string   "subtitle"
     t.text     "image",      limit: 65535
-    t.string   "time"
+    t.integer  "time"
     t.text     "story",      limit: 65535
     t.string   "production"
-    t.string   "release"
+    t.date     "release"
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
     t.index ["title"], name: "index_movies_on_title", using: :btree

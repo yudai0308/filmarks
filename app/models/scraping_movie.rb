@@ -3,24 +3,28 @@ class Scraping_movie
     # 年代の選択
     while true do
       puts "どの年代の映画、キャスト情報を取得しますか？（それぞれ20件ずつ）"
-      puts "[1] 1970年代\n[2] 1980年代\n[3] 1990年代\n[4] 2000年代\n[5] 2010年代\n [6]終了する"
-      input = get.to_i
+      puts "[1] 2010年代\n[2] 2000年代\n[3] 1990年代\n[4] 1980年代\n[5] 1970年代\n[6]終了する"
+      input = gets.to_i
       if input == 1
-        year = "1970"
+        year = "2010"
+        get_urls(year)
       elsif input == 2
-        year == "1980"
+        year == "2000"
+        get_urls(year)
       elsif input == 3
         year = "1990"
+        get_urls(year)
       elsif input == 4
-        year = "2000"
+        year = "1980"
+        get_urls(year)
       elsif input == 5
-        year = "2010"
+        year = "1970"
+        get_urls(year)
       elsif input == 6
         exit
       else
         puts "無効な入力だっちゃ"
       end
-      get_urls(year)
     end
   end
 
@@ -75,13 +79,13 @@ class Scraping_movie
     class_name = "p-movie-detail__other-info-title"
     more_infos = page.search(".#{class_name}")
     more_infos.each do |info|
-      if info.at(".#{class_name}").inner_text.include?("上映日")
-        release = info.at(".#{class_name}").inner_text
+      if info.children.inner_text.include?("上映日")
+        release = info.children.inner_text
         edited_release = release.gsub(/上映日：|年|月|日/, "上映日：" => "", "年" => "-", "月" => "-", "日" => "")
         return edited_release
       end
-      if info.at(".#{class_name}").inner_text.include?("上映時間")
-        time = info.at(".#{class_name}").inner_text
+      if info.children.inner_text.include?("上映時間")
+        time = info.children.inner_text
         edited_time = time.gsub(/上映時間：|分/, "上映時間：" => "", "分" => "")
         return edited_time
       end
