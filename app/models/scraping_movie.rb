@@ -1,9 +1,32 @@
 class Scraping_movie
-  def self.movie_urls_2010s
+  def self.select_year
+    while true do
+      puts "どの年代の映画、キャスト情報を取得しますか？（それぞれ20件ずつ）"
+      puts "[1] 1970年代\n[2] 1980年代\n[3] 1990年代\n[4] 2000年代\n[5] 2010年代\n [6]終了する"
+      input = get.to_i
+      if input == 1
+        year = "1970"
+      elsif input == 2
+        year == "1980"
+      elsif input == 3
+        year = "1990"
+      elsif input == 4
+        year = "2000"
+      elsif input == 5
+        year = "2010"
+      elsif input == 6
+        exit
+      else
+        puts "無効な入力だっちゃ"
+      end
+      get_urls(year)
+    end
+  end
+
+  def self.get_urls(year)
     links = []
     agent = Mechanize.new
-    detail_url = ""
-    current_page = agent.get("https://filmarks.com/list/year/2010s?page=1")
+    current_page = agent.get("https://filmarks.com/list/year/#{year}s?page=1")
     elements = current_page.search(".p-movie-cassette__readmore")
 
     elements.each do |ele|
