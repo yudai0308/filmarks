@@ -22,7 +22,7 @@ class Scraping_award
       subname = sub.inner_text
       url_sub = sub.get_attribute('href')
       lists.each do |list|
-        if url_sub.match(/#{ list[:url] }\//)
+        if url_sub == list[:url] || url_sub.match(/#{ list[:url] }\//)
           award = Award.new(name: list[:name], subname: subname)
           award.save
         end
