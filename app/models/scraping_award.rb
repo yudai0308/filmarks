@@ -6,7 +6,6 @@ class Scraping_award
     mains = page.search('dd ul li a')
     mains.each do |main|
       subname = main.inner_text
-      puts subname
       award = Award.new(name: "仮name", subname:subname)
       award.save
     end
