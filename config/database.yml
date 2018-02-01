@@ -50,6 +50,6 @@ test:
 production:
   <<: *default
   database: filmarks_production
-  username: root
+  username: filmarks
   password: <%= ENV['DATABASE_PASSWORD'] %>
   socket: /var/lib/mysql/mysql.sock
