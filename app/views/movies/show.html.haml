@@ -1,0 +1,25 @@
+.movie-detail
+  .movie-detail__wrapper
+    .movie-detail__header
+      %ul.top-navi
+        %li
+          =link_to "Filmarks映画情報", root_path
+        %li
+          >
+        %li
+          =link_to "日本映画", root_path
+        %li
+          >
+        %li
+          %p たまこラブストーリーの映画情報・感想・評価
+    .movie-detail__body
+      .movie-detail__body-wrapper.clearfix
+        .movie-detail__left
+          = image_tag "tamako_love_story.jpg"
+          .movie-actions
+            .post-review-btn
+            .clip-movie-btn
+        .movie-detail__main
+    .movie-detail__low-content
+      .review-timeline
+      .side-content

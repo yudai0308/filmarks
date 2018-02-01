@@ -1,0 +1,83 @@
+html, body {
+  height: 100%;
+  width: 100%;
+}
+
+.movie-detail{
+
+  &__wrapper {
+    width: 1000px;
+    margin: 0 auto;
+
+    a {
+      color: #00c4a5;
+      text-decoration: none;
+    }
+
+    .movie-detail__header {
+      background-color: Khaki;
+      height: 18px;
+      padding: 16px 0px;
+      font-size: 14px;
+
+        li {
+          list-style: none;
+          display: inline-block;
+        }
+    }
+    .movie-detail__body {
+      background-color: Wheat;
+      height: 600px;
+      margin: 0 auto;
+
+      .movie-detail__left {
+        background-color: SandyBrown;
+        width: 260px;
+        height: 600px;
+        float: left;
+
+        .movie-actions {
+
+          .post-review-btn {
+            background-color: #fef298;
+            width: 129px;
+            height: 65px;
+            margin-right: 1px;
+            float: left;
+          }
+          .clip-movie-btn {
+            background-color: #ffe100;
+            width: 129px;
+            height: 65px;
+            margin-left: 1px;
+            float: left;
+          }
+        }
+      }
+
+      .movie-detail__main {
+        background-color: GreenYellow;
+        width: 700px;
+        height: 600px;
+        padding-left: 40px;
+        float: left;
+      }
+    }
+
+    .movie-detail__low-content {
+      background-color: Plum;
+      height: 1000px;
+
+      .review-timeline{
+      }
+      .side-content{
+      }
+    }
+  }
+}
+
+.clearfix::after{
+  content: "";
+  display: block;
+  clear: both;
+}
