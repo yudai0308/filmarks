@@ -1,0 +1,39 @@
+$maxWidth: 150px;
+$starUnit: $maxWidth / 50;
+$starFull: $maxWidth / 5;
+
+.review-rate__wrapper {
+  width: $maxWidth;
+  height: $starFull;
+}
+
+.rate {
+  position: relative;
+  display: inline-block;
+  width: $maxWidth;
+  height: $starFull;
+  font-size: $starFull;
+  &:before, &:after {
+    top: 0;
+    left: 0;
+    position: absolute;
+    content: "★★★★★";
+    display: inline-block;
+    height: $starFull;
+    line-height: $starFull;
+  }
+  &:before {
+    color: #ddd;
+  }
+  &:after {
+    color: #ffa500;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+}
+
+@for $i from 0 through 50 {
+  .rate-#{$i}:after {
+    width: $starUnit * $i;
+  }
+}

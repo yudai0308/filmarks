@@ -1,0 +1,81 @@
+.movie-detail
+  .movie-detail__wrapper
+
+    .movie-detail__header
+      %ul.top-navi
+        %li
+          =link_to "Filmarks映画情報", root_path
+        %li
+          >
+        %li
+          =link_to "日本映画", root_path
+        %li
+          >
+        %li
+          %p たまこラブストーリーの映画情報・感想・評価
+
+    .movie-detail__body
+      .movie-detail__body-wrapper.clearfix
+        .movie-detail__left
+          = image_tag "tamako_love_story.jpg"
+          .movie-actions.clearfix
+            .post-review-btn
+              =fa_icon "pencil", class: "fa-2x"
+              %p 1000
+            .clip-movie-btn
+              =fa_icon "paperclip", class: "fa-2x fa-flip-horizontal"
+              %p 1000
+          .movie-detail__links--youtube
+            %a{href: `JavaScript: youtube_search("たまこラブストーリー", "予告")`}
+              =fa_icon "youtube", class: "youtube-icon"
+              %span 予告編を検索
+          .sns-links
+            .fb-share-button{"data-href": "http://tamakolovestory.com/", "data-layout": "button_count", "data-size": "small", "data-mobile-iframe": "false"}
+              %a.fb-xfbml-parse-ignore{target: "_blank", href: "https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Ftamakolovestory.com%2F&amp;src=sdkpreparse"} シェア
+            .tweeter-share-button
+              %a.twitter-share-button{href: "https://twitter.com/share?ref_src=twsrc%5Etfw", "data-url": "http://tamakolovestory.com/", "data-lang": "ja", "data-show-count": "false"} Tweet
+              %script{async: "", src: "https://platform.twitter.com/widgets.js", charset: "utf-8"}
+
+        .movie-detail__main
+          %h2.movie-detail__title
+            %span たまこラブストーリー
+            %small
+              （
+              =link_to "2014年", root_path
+              製作の映画）
+          .movie-detail__other-info
+            %ul
+              %li
+                上映日：2014年4月26日／
+              %li
+                製作国：
+                =link_to "日本", root_path
+                ／
+              %li
+                上映時間：83分
+          .movie-detail__review-rate{"data-review-rate": "43"}
+          -# 実際のレートは変数０〜５０を代入  変数によって星の数が変わる
+
+    .movie-detail__low-content
+      .review-timeline
+      .side-content
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
