@@ -1,0 +1,73 @@
+.clearfix:after {
+  content: "";
+  clear: both;
+  display: block;
+}
+
+.main {
+  font-size: 14px;
+}
+
+.content {
+  width: 1000px;
+  margin: 0 auto;
+  padding: 40px 0;
+}
+
+.sidebar {
+  width: 320px;
+  margin-bottom: 20px;
+  background: lightgray;
+  float: left;
+}
+
+.c-heading-2 {
+  height: 30px
+}
+
+.c-side-menu__item {
+  height: 40px;
+  padding-top: 10px;
+  border-top: solid 1px;
+  border-left: solid 1px;
+  border-right: solid 1px;
+}
+
+.main {
+  width: 660px;
+  margin-bottom: 20px;
+  background: lightblue;
+  float: right;
+}
+
+.movie-cassette__info {
+  padding: 20px;
+}
+
+.movie-cassette__info__left {
+  float: left;
+  width: 150px;
+}
+
+.movie-cassette__info__main {
+  float: right;
+  width: 430px;
+}
+
+.movie-cassette__synopsis-desc__text{
+  font-size: 10px;
+}
+
+.movie-cassette__review__body{
+  font-size: 10px;
+}
+
+.movie-cassette__review1{
+  float: left;
+  width: 320px;
+}
+
+.movie-cassette__review2{
+  float: right;
+  width: 320px;
+}
