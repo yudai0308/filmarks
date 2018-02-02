@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="50px" height="50px" viewBox="0 0 50 50" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 3.7.2 (28276) - http://www.bohemiancoding.com/sketch -->
+    <title>cast_m</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="50" height="50"></rect>
+        <polyline id="path-3" points="0 0 26.8247768 0 26.8247768 31.6666667 0 31.6666667"></polyline>
+    </defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="cast_m">
+            <mask id="mask-2" fill="white">
+                <use xlink:href="#path-1"></use>
+            </mask>
+            <use id="Mask" fill="#D8D8D8" xlink:href="#path-1"></use>
+            <g id="Page-1" mask="url(#mask-2)">
+                <g transform="translate(12.000000, 9.000000)">
+                    <g id="Group-3" stroke-width="1" fill="none">
+                        <mask id="mask-4" fill="white">
+                            <use xlink:href="#path-3"></use>
+                        </mask>
+                        <g id="Clip-2"></g>
+                        <path d="M26.8247768,27.084625 C26.8247768,29.792125 20.8198437,31.6667083 13.4123884,31.6667083 C6.00493304,31.6667083 0,29.5837917 0,27.084625 C0,23.4025417 6.00493304,18.333375 13.4123884,18.333375 C20.8198437,18.333375 26.8247768,23.4025417 26.8247768,27.084625" id="Fill-1" fill="#FFFFFF" mask="url(#mask-4)"></path>
+                    </g>
+                    <path d="M21.8945312,8.33333333 C21.8945312,12.9358333 18.0970759,16.6666667 13.4123884,16.6666667 C8.72770089,16.6666667 4.93024554,12.9358333 4.93024554,8.33333333 C4.93024554,3.73083333 8.72770089,0 13.4123884,0 C18.0970759,0 21.8945312,3.73083333 21.8945312,8.33333333" id="Fill-4" fill="#FFFFFF"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
