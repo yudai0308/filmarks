@@ -54,7 +54,9 @@
       %form#js-search-form.l-search__form{action: "#"}
         %fieldset.l-search-field
           %input#q.l-search-field__query{autocomplete: "off", name: "q", placeholder: "映画・キャスト・ユーザー検索", type: "search", value: ""}/
-          %input.l-search-field__submit{type: "submit", value: "検索"}/
+          = button_tag type: "submit", class: "l-search-field__submit" do
+            %i.fa.fa-search>
+
       .l-search__buttons
         %a.c-button-1{href: "#"} 映画を探す
         %a.c-button-1{href: "#"} ユーザーを探す

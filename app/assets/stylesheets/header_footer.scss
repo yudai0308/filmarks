@@ -1,9 +1,6 @@
 html{
   min-width: 1000px;
 }
-header{
-  min-width: 1000px;
-}
   .l-header-group{
     &__inner{
       height: 34px;
@@ -128,9 +125,16 @@ header{
       margin: 15px;
       &__query{
         width: 90%;
+        padding-left: 5px;
       }
       &__submit{
-        margin-left: -50px;
+        border : none;
+        margin-top: -10px;
+        margin-left: -40px;
+        i{
+          font-size: 18px;
+          color: #888;
+        }
       }
     }
     &__buttons{
@@ -158,6 +162,7 @@ header{
 
     &__inner{
     height: 169px;
+    margin: 0 auto;
 
       &-links{
         max-height: 169px;
@@ -177,16 +182,15 @@ header{
         }
         a{
           color: #888;
-          font-size: 12px;
+          font-size: 10px;
           text-decoration: none;
         }
         &-counter{
-          background-color: black;
-          color: white;
-
           &__count{
             font-size: 22px;
             letter-spacing: 0.5em;
+            background-color: black;
+            color: white;
           }
           &__unit{
             font-size: 10px;
