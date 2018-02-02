@@ -3,14 +3,18 @@ html, body {
   width: 100%;
 }
 
-.movie-detail{
+a:link { color: #00c4a5; }
+a:visited { color: #00c4a5; }
+a:hover { color: #00c4a5; }
+a:active { color: #00c4a5; }
+
+.movie-detail {
 
   &__wrapper {
     width: 1000px;
     margin: 0 auto;
 
     a {
-      color: #00c4a5;
       text-decoration: none;
     }
 
@@ -20,11 +24,12 @@ html, body {
       padding: 16px 0px;
       font-size: 14px;
 
-        li {
-          list-style: none;
-          display: inline-block;
-        }
+      li {
+        list-style: none;
+        display: inline-block;
+      }
     }
+
     .movie-detail__body {
       background-color: Wheat;
       height: 600px;
@@ -43,14 +48,44 @@ html, body {
             width: 129px;
             height: 65px;
             margin-right: 1px;
+            border-radius: 4px;
+            text-align:center;
             float: left;
+
+            .fa-pencil {
+              margin-top: 5px;
+            }
           }
+
           .clip-movie-btn {
             background-color: #ffe100;
             width: 129px;
             height: 65px;
             margin-left: 1px;
+            border-radius: 4px;
+            text-align:center;
             float: left;
+
+            .fa-paperclip {
+              margin-top: 5px;
+            }
+          }
+        }
+
+        .movie-detail__links--youtube {
+          font-size: 15px;
+          margin: 15px 0px ;
+          & a {
+            color: DimGray;
+          }
+
+          .youtube-icon {
+            font-size: 20px;
+          }
+        }
+        .sns-links {
+          .tweeter-share-button {
+            padding-top: 5px;
           }
         }
       }
@@ -61,18 +96,37 @@ html, body {
         height: 600px;
         padding-left: 40px;
         float: left;
+
+        .movie-detail__title span {
+          font-size: 24px;
+          font-weight: 700px;
+        }
+
+        .movie-detail__other-info {
+          margin-top: 10px;
+          font-size: 12px;
+          & ul li {
+            list-style: none;
+            display: inline-block;
+          }
+        }
+        .movie-detail__review-rate {
+          width: 150px;
+          height: 30px;
+          margin-top: 20px;
+        }
       }
     }
 
-    .movie-detail__low-content {
-      background-color: Plum;
-      height: 1000px;
+    // .movie-detail__low-content {
+    //   background-color: Plum;
+    //   height: 1000px;
 
-      .review-timeline{
-      }
-      .side-content{
-      }
-    }
+    //   .review-timeline{
+    //   }
+    //   .side-content{
+    //   }
+    // }
   }
 }
 
