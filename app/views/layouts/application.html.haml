@@ -1,0 +1,158 @@
+!!!
+%html
+  %head
+    %title Filmarks
+    = csrf_meta_tags
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+  %body
+    .header#header
+      .l-header-group
+        .l-header-group__inner
+          %ul.l-header-group-nav
+            %li.l-header-group-nav__item
+              %a{href: "#"} Filmarks
+            %li.l-header-group-nav__item
+              %a{href: "#"} FilMAGA
+      .l-header-authenticated
+        .l-header-authenticated__inner
+          .l-header-authenticated__brand
+            %a{href: "/movies"}
+              = image_tag "logo_brand.svg", size: "auto", alt: "Filmarks"
+          .l-header-authenticated__nav
+            %ul
+              %li
+                %a{href: "#"} Timeline
+              %li
+                %a{href: "#"} Trend
+          .l-header-authenticated-info
+            .l-header-authenticated-info__help
+              %a{href: "#"} ヘルプ
+            .l-header-authenticated-info__activity
+              %a{href:""}
+                %svg{height: "23", viewbox: "0 0 21 19", width: "25", xmlns: "http://www.w3.org/2000/svg"}
+                  %title activity
+                  %path#activity-balloon{d: "M11.062 0C4.89 0 0 3.66 0 8.176c0 2.558 1.512 4.84 4.024 6.34.57.34.635 2.887-2.567 4.426 0 0 4.533.726 7.408-2.963.71.102 1.445.324 2.197.324 6.174 0 9.938-3.612 9.938-8.128S17.236 0 11.062 0", fill: "#DDD", "fill-rule": "evenodd"}
+            .l-header-authenticated-info__my
+              .l-header-authenticated__overlay.modal-overlay-transition
+              %a{href: ""}
+                .l-header-authenticated-info__my-avator
+                  = image_tag "img_people-placehold.svg", size: "30x30", alt: "user_name"
+                .l-header-authenticated-info__my-name
+                  %span user_name
+              .l-header-authenticated-info__my-links.p-header-my-menu.slide-down-transition{style: "display: none;"}
+                %ul.more_list
+                  %li.p-header-my-menu__item
+                    %a{href: "#"} マイページ
+                  %li.p-header-my-menu__item
+                    %a{href: "#"} プロフィールを編集する
+                  %li.p-header-my-menu__item
+                    %a{href: "#"} ソーシャル連携
+                  %li.p-header-my-menu__item
+                    %a{href: "#"} メール設定
+                  %li.p-header-my-menu__item
+                    %a{href: "#"} パスワード設定
+                  %li.p-header-my-menu__item
+                    %a{href: "#"} ログアウト
+
+      .l-header-banner
+        = image_tag "banner.jpeg", alt: "banner_ad"
+      .l-search
+        .l-search__inner
+          %form#js-search-form.l-search__form{action: "#"}
+            %fieldset.l-search-field
+              %input#q.l-search-field__query{autocomplete: "off", name: "q", placeholder: "映画・キャスト・ユーザー検索", type: "search", value: ""}/
+              %input.l-search-field__submit{type: "submit", value: "検索"}/
+          .l-search__buttons
+            %a.c-button-1{href: "#"} 映画を探す
+            %a.c-button-1{href: "#"} ユーザーを探す
+
+    = yield
+
+
+
+
+    .l-footer
+      .l-footer__inner
+        .l-footer__inner-links
+          %h5 Filmarks
+          %ul
+            %li.l-footer__inner-links__item
+              %a{href: "https://filmaga.filmarks.com"} FILMAGA（フィルマガ）
+            %li.l-footer__inner-links__item
+              %a{href: "https://www.facebook.com/filmarks"} 公式Facebook
+            %li.l-footer__inner-links__item
+              %a{href: "https://twitter.com/Filmarks"} 公式Twitter
+        .l-footer__inner-links
+          %h5 映画を探す
+          .l-footer__inner-links__items-left
+            %ul
+              %li.l-footer__inner-links__item
+                %a{href: "/list/now"} 上映中の映画を探す
+              %li.l-footer__inner-links__item
+                %a{href: "/list/coming"} 公開予定の映画を探す
+              %li.l-footer__inner-links__item
+                %a{href: "/list/upcoming"} 今週公開の映画を探す
+              %li.l-footer__inner-links__item
+                %a{href: "/list/trend"} 今話題のおすすめ映画を探す
+              %li.l-footer__inner-links__item
+                %a{href: "/list/rental_now"} 新作レンタル映画を探す
+
+          .l-footer__inner-links__items-right
+            %ul
+              %li.l-footer__inner-links__item
+                %a{href: "/list/rental_coming"} レンタル予定の映画を探す
+              %li.l-footer__inner-links__item
+                %a{href: "/list/award"} 映画賞から探す
+              %li.l-footer__inner-links__item
+                %a{href: "/list/year"} 製作年から探す
+              %li.l-footer__inner-links__item
+                %a{href: "/list/country"} 製作国から探す
+              %li.l-footer__inner-links__item
+                %a{href: "/list/genre"} ジャンルで探す
+        .l-footer__inner-links
+          %h5 ヘルプ
+          %ul
+            %li.l-footer__inner-links__item
+              %a{href: "https://filmaga.filmarks.com"} 基本操作
+            %li.l-footer__inner-links__item
+              %a{href: "https://www.facebook.com/filmarks"} Filmarksの楽しみ方
+            %li.l-footer__inner-links__item
+              %a{href: "https://twitter.com/Filmarks"} よくある質問
+        .l-footer__inner-links
+          %h5 企業情報
+          %ul
+            %li.l-footer__inner-links__item
+              %a{href: "https://filmaga.filmarks.com"} 運営会社
+            %li.l-footer__inner-links__item
+              %a{href: "https://www.facebook.com/filmarks"} プライバシーポリシー
+            %li.l-footer__inner-links__item
+              %a{href: "https://twitter.com/Filmarks"} 利用規約
+            %li.l-footer__inner-links__item
+              %a{href: "https://twitter.com/Filmarks"} お問い合わせ
+            %li.l-footer__inner-links__item
+              %a{href: "https://twitter.com/Filmarks"} 媒体資料・広告掲載のお問い合わせ
+        .l-footer__inner-links
+          .l-footer__inner-links-counter
+            %span.l-footer__inner-links-counter__count 1000000
+            %span.l-footer__inner-links-counter__unit Marks
+
+          .l-footer-links__share-buttons
+            .l-footer-links__share-button
+              .fb-like{"data-action": "like", "data-layout": "button_count", "data-share": "false", "data-show-faces": "false"}
+            .l-footer-links__share-button
+              %a.twitter-share-button{"data-lang": "ja", "data-text": "映画の感想・レビュー Filmarks", "data-url": "https://filmarks.com/", "data-via": "filmarks", href: "https://twitter.com/share"} ツイート
+            .l-footer-links__share-button
+              %span
+              .line-it-button{"data-lang": "ja", "data-type": "share-a", style: "display: none;"}
+              %script{async: "async", defer: "defer", src: "//scdn.line-apps.com/n/line_it/thirdparty/loader.min.js", type: "text/javascript"}
+            .l-footer-links__share-button
+              .g-plusone{"data-size": "medium"}
+
+            .l-footer-links__share-button
+              %a.hatena-bookmark-button{"data-hatena-bookmark-layout": "simple-balloon", href: "http://b.hatena.ne.jp/entry/", title: "このエントリーをはてなブックマークに追加"}
+                %img{alt: "このエントリーをはてなブックマークに追加", height: "20", src: "https://b.st-hatena.com/images/entry-button/button-only@2x.png", style: "border: none;", width: "20"}/
+              %script{async: "async", charset: "utf-8", src: "https://b.st-hatena.com/js/bookmark_button.js", type: "text/javascript"}
+    .l-footer-copyright
+      %p
+        %small © TSUMIKI INC. ALL RIGHTS RESERVED.
