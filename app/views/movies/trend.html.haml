@@ -1,0 +1,103 @@
+.content.clearfix
+  .sidebar
+    .sidebar__container
+      %h2.c-heading-2
+        映画を探す
+      .sidebar__main
+        %nav.c-side-menu
+          %ul
+            %li.c-side-menu__item
+              %h3.c-side-menu__item_title
+                = link_to "映画賞", root_path
+            %li.c-side-menu__item
+              %h3.c-side-menu__item_title
+                = link_to "上映中の映画", root_path
+            %li.c-side-menu__item
+              %h3.c-side-menu__item_title
+                = link_to "公開予定の映画", root_path
+            %li.c-side-menu__item
+              %h3.c-side-menu__item_title
+                = link_to "今週公開の映画", root_path
+            %li.c-side-menu__item
+              %h3.c-side-menu__item_title
+                = link_to "今話題のおすすめ映画", root_path
+            %li.c-side-menu__item
+              %h3.c-side-menu__item_title
+                = link_to "製作年(年代)", root_path
+            %li.c-side-menu__item
+              %h3.c-side-menu__item_title
+                = link_to "製作国", root_path
+            %li.c-side-menu__item
+              %h3.c-side-menu__item_title
+                = link_to "ジャンル", root_path
+            %li.c-side-menu__item
+              %h3.c-side-menu__item_title
+                = link_to "#タグ", root_path
+  .main
+    .movies-grid
+      .movie-cassette
+        .movie-cassette__info.clearfix
+          .movie-cassette__info__left
+            .movie-cassette__jacket
+              = link_to root_path do
+                = image_tag("https://d2ueuvlup6lbue.cloudfront.net/attachments/45ef7a95fe63caa5846291168e7d697754fffd59/store/fitpad/260/364/b27f5732a58a7e0a73b07fba81ec81e77ed5e853cb78795b5378826aaf5a/km_jp_poster.jpg", alt: "photo", class: "media-object", style: "width: 150px; height: 200px;")
+            .movie-cassette__actions
+          .movie-cassette__info__main
+            %h3.movie-cassette__title
+              キングスマン：ゴールデン・サークル
+            .movie-cassette__other-info
+              %span.movie-cassette__other-info__title
+                上映日：
+              %span
+                2018年01月05日/
+              %span.movie-cassette__other-info__title
+                製作国：
+              = link_to "イギリス/", root_path
+              %span.movie-cassette__other-info__title
+                上映時間：
+              %span
+                140分
+            .movie-cassette__genre
+              %span.movie-cassette__other-info__title
+                ジャンル：
+              = link_to "アクション", root_path
+            .movie-cassette__rate
+              .score score:4.0
+            %h4.movie-cassette__synopsis-term
+              あらすじ
+            .movie-cassette__synopsis-desc
+              %p.movie-cassette__synopsis-desc__text
+                スパイ機関“キングスマン”の拠点が、謎の敵、ゴールデン・サークルの攻撃により壊滅。残されたのは、前作で一流のエージェントに成長した主人公エグジー（タロン・エガートン）と、教官兼メカ担当のマーリン（マーク・ストロング）のみとなってしまう。敵を追い、同盟を結ぶスパイ機関“ステイツマン”の協力を得るためアメリカに向かう二人。しかし、表ではバーボン・ウイスキーの蒸留所と最高級のバーボンを提供する店を経営…
+            .movie-cassette__people
+              .movie-cassette__people-wrap
+                %h4.movie-cassette__people-list-term
+                  監督
+                  %ul
+                    %li
+                      = link_to "マシュー・ヴォーン", root_path
+              .movie-cassette__people-wrap
+                %h4.movie-cassette__people-list-term
+                  脚本
+                  %ul
+                    %li
+                      = link_to "ジェーン・ゴールドマン", root_path
+              .movie-cassette__people-wrap
+                %h4.movie-cassette__people-list-term
+                  出演者
+                  %ul
+                    %li
+                      = link_to "コリン・ファース", root_path
+            .movie-cassette__people__readmore
+        .movie-cassette__reviews
+          .movie-cassette__reviews__container.clearfix
+            .movie-cassette__review1
+              .c-media
+                ピカチュウのパパの感想・評価
+              .movie-cassette__review__body
+                映画の続編には大きく分けて三つのタイプがあると思う。①前作で描かれたことへのアンサーとなる作品②前作と物量や展開の明暗によって差をつける作品
+            .movie-cassette__review2
+              .c-media
+                カズ坊のパパの感想・評価
+              .movie-cassette__review__body
+                2015年公開「キングスマン」の続編。アクション・コメディ・音楽 ・おバカレベル
+                何もかもが前作よりもパワーアップしてます⤴️

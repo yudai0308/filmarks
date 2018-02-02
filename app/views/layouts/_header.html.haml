@@ -1,0 +1,62 @@
+.header#header
+  .l-header-group
+    .l-header-group__inner
+      %ul.l-header-group-nav
+        %li.l-header-group-nav__item
+          %a{href: "#"} Filmarks
+        %li.l-header-group-nav__item
+          %a{href: "#"} FilMAGA
+  .l-header-authenticated
+    .l-header-authenticated__inner
+      .l-header-authenticated__brand
+        %a{href: "/movies"}
+          = image_tag "logo_brand.svg", size: "auto", alt: "Filmarks"
+      .l-header-authenticated__nav
+        %ul
+          %li
+            %a{href: "#"} Timeline
+          %li
+            %a{href: "#"} Trend
+      .l-header-authenticated-info
+        .l-header-authenticated-info__help
+          %a{href: "#"} ヘルプ
+        .l-header-authenticated-info__activity
+          %a{href:""}
+            %svg{height: "23", viewbox: "0 0 21 19", width: "25", xmlns: "http://www.w3.org/2000/svg"}
+              %title activity
+              %path#activity-balloon{d: "M11.062 0C4.89 0 0 3.66 0 8.176c0 2.558 1.512 4.84 4.024 6.34.57.34.635 2.887-2.567 4.426 0 0 4.533.726 7.408-2.963.71.102 1.445.324 2.197.324 6.174 0 9.938-3.612 9.938-8.128S17.236 0 11.062 0", fill: "#DDD", "fill-rule": "evenodd"}
+        .l-header-authenticated-info__my
+          .l-header-authenticated__overlay.modal-overlay-transition
+          %a{href: ""}
+            .l-header-authenticated-info__my-avator
+              = image_tag "img_people-placehold.svg", size: "30x30", alt: "user_name"
+            .l-header-authenticated-info__my-name
+              %span user_name
+          .l-header-authenticated-info__my-links.p-header-my-menu.slide-down-transition{style: "display: none;"}
+            %ul.more_list
+              %li.p-header-my-menu__item
+                %a{href: "#"} マイページ
+              %li.p-header-my-menu__item
+                %a{href: "#"} プロフィールを編集する
+              %li.p-header-my-menu__item
+                %a{href: "#"} ソーシャル連携
+              %li.p-header-my-menu__item
+                %a{href: "#"} メール設定
+              %li.p-header-my-menu__item
+                %a{href: "#"} パスワード設定
+              %li.p-header-my-menu__item
+                %a{href: "#"} ログアウト
+
+  .l-header-banner
+    = image_tag "banner.jpeg", alt: "banner_ad"
+  .l-search
+    .l-search__inner
+      %form#js-search-form.l-search__form{action: "#"}
+        %fieldset.l-search-field
+          %input#q.l-search-field__query{autocomplete: "off", name: "q", placeholder: "映画・キャスト・ユーザー検索", type: "search", value: ""}/
+          = button_tag type: "submit", class: "l-search-field__submit" do
+            %i.fa.fa-search>
+
+      .l-search__buttons
+        %a.c-button-1{href: "#"} 映画を探す
+        %a.c-button-1{href: "#"} ユーザーを探す

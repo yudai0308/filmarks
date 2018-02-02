@@ -51,4 +51,5 @@ production:
   <<: *default
   database: filmarks_production
   username: filmarks
-  password: <%= ENV['FILMARKS_DATABASE_PASSWORD'] %>
+  password: <%= ENV['DATABASE_PASSWORD'] %>
+  socket: /var/lib/mysql/mysql.sock
