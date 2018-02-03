@@ -3,21 +3,16 @@
 
     .movie-detail__header
       %ul.top-navi
-        %li
-          =link_to "Filmarks映画情報", root_path
-        %li
-          >
-        %li
-          =link_to "日本映画", root_path
-        %li
-          >
-        %li
-          %p たまこラブストーリーの映画情報・感想・評価
+        %li=link_to "Filmarks映画情報", root_path
+        %li >
+        %li=link_to "アメリカ映画", root_path
+        %li >
+        %li ラ・ラ・ランドの映画情報・感想・評価
 
     .movie-detail__body
       .movie-detail__body-wrapper.clearfix
         .movie-detail__left
-          = image_tag "tamako_love_story.jpg"
+          = image_tag "lalaland.jpg"
           .movie-actions.clearfix
             .post-review-btn
               =fa_icon "pencil", class: "fa-2x"
@@ -26,35 +21,77 @@
               =fa_icon "paperclip", class: "fa-2x fa-flip-horizontal"
               %p 1000
           .movie-detail__links--youtube
-            %a{href: `JavaScript: youtube_search("たまこラブストーリー", "予告")`}
+            %a{href: `JavaScript: youtube_search("ラ・ラ・ランド", "予告")`}
               =fa_icon "youtube", class: "youtube-icon"
               %span 予告編を検索
           .sns-links
-            .fb-share-button{"data-href": "http://tamakolovestory.com/", "data-layout": "button_count", "data-size": "small", "data-mobile-iframe": "false"}
+            .fb-share-button{"data-href": "http://www.lalaland.movie/", "data-layout": "button_count", "data-size": "small", "data-mobile-iframe": "false"}
               %a.fb-xfbml-parse-ignore{target: "_blank", href: "https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Ftamakolovestory.com%2F&amp;src=sdkpreparse"} シェア
             .tweeter-share-button
-              %a.twitter-share-button{href: "https://twitter.com/share?ref_src=twsrc%5Etfw", "data-url": "http://tamakolovestory.com/", "data-lang": "ja", "data-show-count": "false"} Tweet
+              %a.twitter-share-button{href: "https://twitter.com/share?ref_src=twsrc%5Etfw", "data-url": "http://www.lalaland.movie/", "data-lang": "ja", "data-show-count": "false"} Tweet
               %script{async: "", src: "https://platform.twitter.com/widgets.js", charset: "utf-8"}
 
         .movie-detail__main
           %h2.movie-detail__title
-            %span たまこラブストーリー
+            %span ラ・ラ・ランド
             %small
               （
-              =link_to "2014年", root_path
+              =link_to "2016年", root_path
               製作の映画）
           .movie-detail__other-info
             %ul
-              %li
-                上映日：2014年4月26日／
+              %li 上映日：2017年02月24日／
               %li
                 製作国：
-                =link_to "日本", root_path
+                =link_to "アメリカ", root_path
                 ／
-              %li
-                上映時間：83分
-          .movie-detail__review-rate{"data-review-rate": "43"}
+              %li 上映時間：126分
+          .movie-detail__genre
+            %h3.movie-detail__genre-title
+              ジャンル：
+            %ul
+              %li=link_to "恋愛", root_path
+              %li 、
+              %li=link_to "ミュージカル", root_path
+          .movie-detail__review-rate{"data-review-rate": "40"}
           -# 実際のレートは変数０〜５０を代入  変数によって星の数が変わる
+          .movie-detail__story
+            %h3.movie-detail__story-term あらすじ
+            %p.movie-detail__story-body
+              夢追い人が集まる街、ロサンゼルス。
+              映画スタジオのカフェで働くミア＜エマ・ストーン＞は女優を目指していたが、
+              何度オーディションを受けても落ちてばかり。
+              ある日、ミアは場末のバーでピアノを弾くセバスチャン＜ライアン・ゴズリング＞と出会う。
+              彼はいつか自分の店を持ち、本格的なジャズを思う存分演奏したいと願っていた。
+              やがて二人は恋におち、互いの夢を応援し合うが、
+              セバスチャンが生活のために加入したバンドが成功したことから二人の心はすれ違い始める……。
+          .movie-detail__people-list
+            .movie-detail__people-list-others__wrapper.clearfix
+              .movie-detail__people-list-others
+                %h3 監督
+                %ul
+                  %li.p-movie-detail__people-list-desc
+                    =link_to "デイミアン・チャゼル", root_path, class: "member-label"
+              .movie-detail__people-list-others
+                %h3 脚本
+                %ul
+                  %li.p-movie-detail__people-list-desc
+                    =link_to "デイミアン・チャゼル", root_path, class: "member-label"
+              .movie-detail__people-list-casts
+                %h3 出演者
+                %ul
+                  %li.p-movie-detail__people-list-desc
+                    =link_to "ライアン・ゴズリング", root_path, class: "member-label"
+                    =link_to "エマ・ストーン", root_path, class: "member-label"
+                    =link_to "J・K・シモンズ", root_path, class: "member-label"
+                    =link_to "フィン・ウィットロック", root_path, class: "member-label"
+                    =link_to "ローズマリー・デウィット", root_path, class: "member-label"
+                    =link_to "ミーガン・フェイ", root_path, class: "member-label"
+                    =link_to "ジェイソン・フックス", root_path, class: "member-label"
+              .movie-detail__trailer
+                %h3 予告編
+                %iframe{width: "360", height: "200", src: "https://www.youtube.com/embed/tlyqz57sHgM", frameborder: "0", allow: "autoplay; encrypted-media"}
+
 
     .movie-detail__low-content
       .review-timeline

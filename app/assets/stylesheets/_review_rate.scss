@@ -1,34 +1,39 @@
-$maxWidth: 150px;
+$maxWidth: 160px;
 $starUnit: $maxWidth / 50;
-$starFull: $maxWidth / 5;
+$starHeight: 30px;
 
 .review-rate__wrapper {
   width: $maxWidth;
-  height: $starFull;
+  height: $starHeight;
 }
 
 .rate {
   position: relative;
   display: inline-block;
   width: $maxWidth;
-  height: $starFull;
-  font-size: $starFull;
+  height: $starHeight;
+  font-size: $starHeight;
   &:before, &:after {
     top: 0;
     left: 0;
     position: absolute;
-    content: "★★★★★";
     display: inline-block;
-    height: $starFull;
-    line-height: $starFull;
+    height: $starHeight;
+    line-height: $starHeight;
   }
   &:before {
     color: #ddd;
+    font-family: FontAwesome;
+    content: "\f005 \f005 \f005 \f005 \f005";
+    letter-spacing: 5px;
   }
   &:after {
     color: #ffa500;
     overflow: hidden;
     white-space: nowrap;
+    font-family: FontAwesome;
+    content: "\f005 \f005 \f005 \f005 \f005";
+    letter-spacing: 5px;
   }
 }
 
