@@ -89,7 +89,7 @@
               border-color: #04B431;
             }
             .review-editer__header {
-              background-color: #FACC2E;
+              background-color: #ffe100;
               width: 620px;
               height: 60px;
               font-size: 26px;
@@ -100,11 +100,24 @@
             .review-editer__score {
               background-color: #555;
               color: white;
-              width: 620px;
-              height: 60px;
+              width: 560px;
+              height: 40px;
+              padding: 10px 30px;
 
-              .review-editer__score-rate {}
-              .review-editer__score-slider {}
+              .review-editer__score-rate {
+                color: #ffe100;
+                width: 50px;
+                height: 40px;
+                font-size: 32px;
+                text-align: center;
+                line-height: 40px;
+                float: left;
+              }
+              .review-editer__score-slider {
+                float: left;
+                width: 410px;
+                margin: 12.5px 50px;
+              }
             }
             .review-editer__input-wrapper {
               height: 256px;

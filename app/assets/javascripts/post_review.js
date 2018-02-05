@@ -3,9 +3,15 @@ $(function() {
  `<div class="review-background"></div>
   <div class="review-window">
     <div class="review-editer__header"> レビュー </div>
-    <div class="review-editer__score">
-      <div class="review-editer__score-rate"> スコア </div>
-      <div class="review-editer__score-slider"></div>
+    <div class="review-editer__score clearfix">
+      <div class="review-editer__score-rate"> 1.0 </div>
+      <input class="review-editer__score-slider" type="range" name="num" min="0" max="50" step="1" value="10">
+<!--         <span id="val">50</span>
+        <script type="text/javascript">
+        function changeValue(value) {
+            document.getElementById("val").innerHTML = value;
+        }
+        </script> -->
     </div>
     <div class="review-editer__input-wrapper">
       <textarea class="review-editer__review-input review-textarea" placeholder="レビューを入力"></textarea>
@@ -32,6 +38,12 @@ $(function() {
 
   $(".post-review-btn").on("click", function() {
     $(".post-review-btn").after(reviewHTML)
+  });
+
+  $(document).on("input[taype=range]", "input", function() {
+    alert();
+    // var val = $(this).val();
+    // $(".review-editer__score-rate").text(val);
   });
 
   $(document).on("click", ".review-background", function() {
