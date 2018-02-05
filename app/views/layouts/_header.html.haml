@@ -49,13 +49,13 @@
 
   .l-header-banner
     = image_tag "banner.jpeg", alt: "banner_ad"
-  .l-search
+  .l-search.clearfix
     .l-search__inner
-      %form#js-search-form.l-search__form{action: "#"}
+      %form#js-search-form.l-search__form{action: '/movies/search'}
         %fieldset.l-search-field
-          %input#q.l-search-field__query{autocomplete: "off", name: "q", placeholder: "映画・キャスト・ユーザー検索", type: "search", value: ""}/
+          %input#q.l-search-field__query{autocomplete: "off", name: "keyword", placeholder: "映画・キャスト・ユーザー検索", type: "search", value: "#{ params[:keyword] }"}/
           = button_tag type: "submit", class: "l-search-field__submit" do
-            %i.fa.fa-search>
+            %i.fa.fa-search
 
       .l-search__buttons
         %a.c-button-1{href: "#"} 映画を探す
