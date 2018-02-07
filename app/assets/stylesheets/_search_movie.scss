@@ -1,0 +1,195 @@
+.search-detail{
+  background-color: #fafafa;
+  &__header{
+    background-color: white;
+    padding: 16px 0;
+    border-bottom: 1px solid #eee;
+    li{
+      float: left;
+      font-size: 12px;
+
+    }
+    &-title{
+      text-align: center;
+      font-size: 24px;
+      font-weight: 600;
+      padding-top: 16px;
+      color: #333;
+    }
+  }
+  .search-detail__body{
+    &-main{
+      width:1000px;
+      padding: 40px 0;
+      margin:0 auto;
+      .sidebar{
+        background-color: #fafafa;
+        float: left;
+        &__container{
+          background-color: white;
+          font-size: 14px;
+          width: 318px;
+          h2{
+            background-color: #dfdfdf;
+            text-align: center;
+            height: 21px;
+            line-height:21px;
+            padding: 8px 10px;
+            font-weight: 600;
+          }
+          .sidebar__main{
+            .c-side-menu__items{
+              border: 1px solid #eee;
+              &_title{
+                padding: 14px 30px 14px 15px;
+                a{
+                  color: #7e7e7e;
+                  line-height: 21px;
+                }
+                &.active{
+                  background-color: #7e7e7e;
+                  a{
+                    color: #fff;
+                  }
+                }
+              }
+              &:hover{
+                background-color: #F5F5F5;
+              }
+            }
+          }
+        }
+        .barnner__content{
+          margin: 20px 10px 0;
+        }
+      }
+      .search__lists{
+        float: left;
+        width: 680px;
+        .list-content{
+          background-color: white;
+          margin-left: 20px;
+          margin-bottom: 20px;
+          float:left;
+          &__image{
+            width: 150px;
+            height: 200px;
+            img{
+            margin: auto;
+            }
+          }
+          &__title{
+            font-size: 10px;
+            width: 140px;
+            height: 25px;
+            padding: 7px 5px;
+            text-align: center;
+            text-decoration: none;
+            span{
+              color: #333;
+              font-weight: 800;
+            }
+          }
+          &__mark{
+            height: 45px;
+            width:  33.333%;
+            float: left;
+            color: #d7bc43;
+            background-color: #fef298;
+            text-align: center;
+            padding-top: 5px;
+            .fa-2x{
+              font-size: 18px;
+            }
+            p{
+              font-size: 12px;
+            }
+          }
+          &__clip{
+            font-size: 18px;
+            height: 48px;
+            width:  33.333%;
+            float: left;
+            color: #d7bc43;
+            background-color: #fef298;
+            text-align: center;
+            padding-top: 2px;
+            .fa-flip-horizontal{
+              font-size: 18px;
+            }
+            p{
+              font-size: 12px;
+            }
+          }
+          &__score{
+            height: 49px;
+            width:  33.333%;
+            float: left;
+            color: #ffd400;
+            font-size: 18px;
+            text-align: center;
+            padding-top: 1px;
+            p{
+              font-size: 12px;
+            }
+          }
+        }
+        &-page{
+          width: 100%;
+          text-align: center;
+          clear:both;
+        }
+      }
+    }
+    .sub-contents{
+      width: 100%;
+      &__barnner{
+        width: 640px;
+        margin:auto;
+        &-content{
+          float:left;
+          margin: 0 10px;
+        }
+      }
+      &__app{
+          box-sizing: border-box;
+          width: 1000px;
+          height: 88px;
+          padding: 20px;
+          margin: auto;
+          background-color: #f7f7f7;
+        &-logo{
+          float:left;
+        }
+        &-comment{
+          float:left;
+          font-size: 12px;
+          padding-left: 20px;
+          p.span{
+            font-weight: 600;
+            font-size: 15px;
+            margin-bottom: 7px;
+          }
+        }
+        &-btns{
+          float: left;
+          padding-left: 20px;
+          img{
+            padding-left: 10px;
+          }
+        }
+      }
+      &__sns{
+        box-sizing: border-box;
+        width: 1000px;
+        margin: auto;
+        &-content{
+          padding-top: 30px;
+          float:left;
+          margin: 0 10px;
+        }
+      }
+    }
+  }
+}
+

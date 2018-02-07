@@ -70,3 +70,4 @@ gem 'haml-rails'
 gem 'erb2haml'
 gem 'mechanize'
 gem "font-awesome-rails"
+gem 'kaminari'
