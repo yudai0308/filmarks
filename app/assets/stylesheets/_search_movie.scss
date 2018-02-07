@@ -135,14 +135,16 @@
           }
         }
         &-page{
-          height:50px;
-          width: 100%;
-          text-align: center;
-          clear:both;
-          margin: 20px 0;
-          background-color: #fff;
-          line-height: 50px;
-          font-size: 14px;
+          nav{
+            height:50px;
+            width: 100%;
+            text-align: center;
+            clear:both;
+            margin: 20px 0;
+            background-color: #fff;
+            line-height: 50px;
+            font-size: 14px;
+          }
         }
       }
     }

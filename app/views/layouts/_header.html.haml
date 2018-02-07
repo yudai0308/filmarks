@@ -3,36 +3,33 @@
     .l-header-group__inner
       %ul.l-header-group-nav
         %li.l-header-group-nav__item
-          %a{href: "#"} Filmarks
+          = link_to "Filmarks", root_path, class: "border-line"
         %li.l-header-group-nav__item
-          %a{href: "#"} FilMAGA
+          = link_to "FilMAGA"
   .l-header-authenticated
-    .l-header-authenticated__inner
+    .l-header-authenticated__inner.clearfix
       .l-header-authenticated__brand
-        %a{href: "/movies"}
+        = link_to  root_path do
           = image_tag "logo_brand.svg", size: "auto", alt: "Filmarks"
       .l-header-authenticated__nav
         %ul
           %li
-            %a{href: "/movies"} Timeline
+            = link_to "Timeline", root_path
           %li
-            %a{href: "/lists/trend"} Trend
+            = link_to "Trend", trend_lists_path
       .l-header-authenticated-info
         .l-header-authenticated-info__help
-          %a{href: "#"} ヘルプ
+          = link_to "ヘルプ"
         .l-header-authenticated-info__activity
-          %a{href:""}
-            %svg{height: "23", viewbox: "0 0 21 19", width: "25", xmlns: "http://www.w3.org/2000/svg"}
-              %title activity
-              %path#activity-balloon{d: "M11.062 0C4.89 0 0 3.66 0 8.176c0 2.558 1.512 4.84 4.024 6.34.57.34.635 2.887-2.567 4.426 0 0 4.533.726 7.408-2.963.71.102 1.445.324 2.197.324 6.174 0 9.938-3.612 9.938-8.128S17.236 0 11.062 0", fill: "#DDD", "fill-rule": "evenodd"}
+          = link_to do
+            %i.fa.fa-comment
         .l-header-authenticated-info__my{ onclick: "obj=document.getElementById('more_list').style; obj.display=(obj.display=='none')?'block':'none';" }
-          .l-header-authenticated__overlay.modal-overlay-transition
-            %a{href: ""}
           .l-header-authenticated-info__my-avator
             = image_tag "img_people-placehold.svg", size: "30x30", alt: "user_name"
           .l-header-authenticated-info__my-name
             %span user_name
-          .l-header-authenticated-info__my-links.p-header-my-menu.slide-down-transition
+            %span.fa.fa-angle-double-down
+          .l-header-authenticated-info__my-links
             %ul#more_list{style: "display:none;"}
               %li.p-header-my-menu__item
                 %a{href: "#"} マイページ
@@ -48,14 +45,16 @@
                 %a{href: "#"} ログアウト
 
   .l-header-banner
-    = image_tag "banner.jpeg", alt: "banner_ad"
+    .l-header-banner__image
+      = image_tag "banner.gif", alt: "banner_ad"
   .l-search
     %form#js-search-form.l-search__form{action: '/movies/search'}
       .l-search__inner.clearfix
         %fieldset.l-search-field
           %input#q.l-search-field__query{autocomplete: "off", name: "keyword", placeholder: "映画・キャスト・ユーザー検索", type: "search", value: "#{ params[:keyword] }"}/
-          = button_tag type: "submit", class: "l-search-field__submit", value: "movie" do
-            %i.fa.fa-search
+          .l-search-field__sumbit
+            = button_tag type: "submit", class: "l-search-field__sumbit-btn", value: "movie" do
+              %i.fa.fa-search
         .l-search__buttons
           %a.c-button-1{href: "#"} 映画を探す
           %a.c-button-1{href: "#"} ユーザーを探す

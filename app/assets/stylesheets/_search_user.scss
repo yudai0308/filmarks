@@ -83,14 +83,11 @@
         }
       }
     }
-    &-movie{
+    &-movies{
       margin-top: 20px;
       .movie-image:hover{
         opacity: 0.5;
       }
     }
-  }
-  &.search__lists-page{
-
   }
 }
