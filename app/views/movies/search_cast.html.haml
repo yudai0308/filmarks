@@ -55,7 +55,7 @@
                 - movies = cast.movies.order('time DESC')
                 - 3.times do |i|
                   - if movies[i]
-                    =link_to href: "" do
+                    =link_to  movie_path(movies[i].id) do
                       = image_tag "#{ movies[i].image }", width: "89", heigth: "126", class: "movie-image"
                   - else
                     = image_tag "img_cover-placehold.svg", width: "89", heigth: "126"
