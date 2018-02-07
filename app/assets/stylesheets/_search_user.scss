@@ -1,10 +1,10 @@
 .sidebar{
   float: left;
 }
-.search-cast__lists{
+.search-user__lists{
   float:left;
   width: 680px;
-  .cast__lists-content{
+  .user__lists-content{
     height: 240px;
     width: 278px;
     float:left;
@@ -34,23 +34,41 @@
       p{
         font-size: 12px;
         color: #7e7e7e;
-        font-weight: 10;
+        font-weight: 1000;
       }
     }
-    &-fun{
+    &-follow{
       width: 278px;
       height: 37px;
-      clear:both;
-      &__count{
+      margin-bottom: 16px;
+      &__info{
+        margin-right: 12px;
         float: left;
-        text-align: center;
-        line-height: 37px;
-        color: #7e7e7e;
-        font-size: 14px;
-        strong{
-          font-weight: 800;
+        p.info-name{
+          text-align: center;
+          line-height: 12px;
+          color: #7e7e7e;
+          font-size: 11px;
         }
-
+        p.info-count{
+          text-align: center;
+          line-height: 27px;
+          font-size: 18px;
+        }
+      }
+      &__block{
+        float: left;
+        width: 36px;
+        height: 33px;
+        text-align: center;
+        margin-right: 8px;
+        &:hover{
+          opacity: 0.5;
+        }
+      }
+      &__btn:hover{
+        float: left;
+        opacity: 0.5;
       }
       .fun__btn{
         float:left;
@@ -71,5 +89,8 @@
         opacity: 0.5;
       }
     }
+  }
+  &.search__lists-page{
+
   }
 }
