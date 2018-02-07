@@ -42,7 +42,6 @@ html{
         li{
           margin: -3px 10px;
           float: left;
-          border-bottom: 3px solid #ffe100;
           a{
             color: #aaa;
             text-decoration: none;
@@ -50,6 +49,13 @@ html{
             line-height: 24px;
             font-family: "Helvetica Neue", helvetica, arial, Verdana, Roboto, sans-serif;
             font-weight: 300;
+          }
+        }
+        li:hover{
+          border-bottom: 3px solid #ffe100;
+          color: #ffe100;
+          a{
+            color: #ffe100;
           }
         }
       }

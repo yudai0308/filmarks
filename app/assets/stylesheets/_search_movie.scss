@@ -18,7 +18,6 @@
     }
   }
   .search-detail__body{
-    // background-color: #eee;
     &-main{
       width:1000px;
       padding: 40px 0;
@@ -47,6 +46,15 @@
                   color: #7e7e7e;
                   line-height: 21px;
                 }
+                &.active{
+                  background-color: #7e7e7e;
+                  a{
+                    color: #fff;
+                  }
+                }
+              }
+              &:hover{
+                background-color: #F5F5F5;
               }
             }
           }
@@ -65,7 +73,7 @@
           float:left;
           &__image{
             width: 150px;
-            height: 210px;
+            height: 200px;
             img{
             margin: auto;
             }
@@ -73,7 +81,7 @@
           &__title{
             font-size: 10px;
             width: 140px;
-            height: 15px;
+            height: 25px;
             padding: 7px 5px;
             text-align: center;
             text-decoration: none;
@@ -135,14 +143,11 @@
     }
     .sub-contents{
       width: 100%;
-      // background-color: gray;
       &__barnner{
         width: 640px;
         margin:auto;
-        // background: red;
         &-content{
           float:left;
-          // background-color: black;
           margin: 0 10px;
         }
       }
