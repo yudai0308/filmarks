@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   # root "movies#index"
   root "movies#show"
   devise_for :users
+  resources :reviews, only: [:create]
   resources :movies, only: [:index, :show]
   resource :lists, only: [:index] do
     collection do
