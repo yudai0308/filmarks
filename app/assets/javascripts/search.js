@@ -10,7 +10,7 @@ $(function(){
                   </li>
                   <li class="p-header-my-menu__item">
                     <button name="button" type="submit" class="search__btn" value="cast">
-                      <span>「${input}」でキャストーを検索</span>
+                      <span>「${input}」でキャストを検索</span>
                     </button>
                   </li>
                   <li class="p-header-my-menu__item">

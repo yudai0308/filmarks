@@ -3,7 +3,8 @@
     .search-detail__header
       .search-detail__header-index.clearfix
         %ul.top-navi
-          %li= link_to "Filmarks映画情報", root_path
+          %li
+            = link_to "Filmarks映画情報", root_path
           %li
             &nbsp;>&nbsp;&nbsp;
           %li
@@ -36,25 +37,25 @@
         .search__lists.clearfix
           - @movies.each do |movie|
             .list-content
-              =link_to root_path do
+              =link_to movie_path(movie.id) do
                 .list-content__image
                   = image_tag "#{ movie.image }", alt: "#{ movie.title }", width: "150px", height: "200px"
               .list-content__title
-                =link_to root_path do
+                =link_to movie_path(movie.id) do
                   %span
                     = movie.title
               .list-content__wrapper.clearfix
-                =link_to root_path do
+                =link_to "#" do
                   .list-content__mark
                     =fa_icon "pencil", class: "fa-2x"
                     %p.mark__count
                       10
-                =link_to root_path do
+                =link_to "#" do
                   .list-content__clip
                     =fa_icon "paperclip", class: "fa-2x fa-flip-horizontal"
                     %p.clip__count
                       10
-                =link_to root_path do
+                =link_to "#" do
                   .list-content__score
                     =fa_icon "star",class: "far fa-star"
                     %p.score__rate
