@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   # root "movies#show"
   devise_for :users
   resources :movies, only: [:index, :show] do
+    resources :reviews, only: [:index, :create] do
+      resources :tags, only: [:index, :create]
     collection do
       get "search"
     end
