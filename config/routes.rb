@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :movies, only: [:index, :show] do
     resources :reviews, only: [:index, :create] do
       resources :tags, only: [:index, :create]
+    end
     collection do
       get "search"
     end
