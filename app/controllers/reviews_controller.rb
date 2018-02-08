@@ -1,13 +1,13 @@
 class ReviewsController < ApplicationController
 
+  def index
+  end
+
   def create
-    review = Review.new(review_params)
-    review.save
+    # review = Review.new(review_params)
+    # review.save
 
-    tag = Tag.where(name: tags_params).first_or_initialize
-    tag.save
-
-    redirect_to :root
+    # redirect_to :root
     # 最終的に映画詳細ページがリロードされるように設定
   end
 
@@ -21,7 +21,4 @@ class ReviewsController < ApplicationController
                                     movie_id: params[:movie.id])
   end
 
-  def tags_params
-    params.require(:tag).permit(:name)
-  end
 end
