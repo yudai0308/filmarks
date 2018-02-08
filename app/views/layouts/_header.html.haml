@@ -17,6 +17,15 @@
             %a{href: "/movies"} Timeline
           %li
             %a{href: "/lists/trend"} Trend
+          - if user_signed_in?  
+            %li
+              = link_to 'ログアウト', destroy_user_session_path, method: :delete 
+          - else      
+            %li
+              = link_to 'メンバー登録', new_user_registration_path
+            %li
+              = link_to 'ログイン', user_session_path
+          
       .l-header-authenticated-info
         .l-header-authenticated-info__help
           %a{href: "#"} ヘルプ
@@ -31,7 +40,14 @@
             .l-header-authenticated-info__my-avator
               = image_tag "img_people-placehold.svg", size: "30x30", alt: "user_name"
             .l-header-authenticated-info__my-name
-              %span user_name
+            - if user_signed_in? 
+              %span 
+              = current_user.nickname
+            - else
+              %span 
+              = "No user"
+              
+
           .l-header-authenticated-info__my-links.p-header-my-menu.slide-down-transition{style: "display: none;"}
             %ul.more_list
               %li.p-header-my-menu__item
