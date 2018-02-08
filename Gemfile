@@ -71,3 +71,5 @@ gem 'erb2haml'
 gem 'mechanize'
 gem "font-awesome-rails"
 gem 'bootstrap-sass'
+gem 'kaminari'
+

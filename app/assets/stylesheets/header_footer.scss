@@ -1,208 +1,318 @@
-html{
-  min-width: 1000px;
-}
-  .l-header-group{
-    &__inner{
-      height: 34px;
-      width: 100%;
-      background-color: #fff;
-      margin: 0 auto;
-      min-width: 1000px;
+.l-header-group{
+  width: 100%;
+  &__inner{
+    height: 34px;
+    min-width: 1000px;
+    background-color: #fff;
+    margin: 0 auto;
+    ul{
+      margin-left: 80%;
       li{
-      float: right;
-      list-style: none;
+        float: left;
+        list-style: none;
+
         a{
           color: #666;
           line-height: 34px;
           padding: 0 20px;
           font-size: 12px;
+          &.border-line{
+            border-right: 1px solid #666;
+          }
         }
       }
     }
   }
-  .l-header-authenticated{
-    &__inner{
+}
+.l-header-authenticated{
+  min-width: 1000px;
+  background-color: black;
+  &__inner{
+    height: 60px;
+    width: 1000px;
+    margin: 0 auto;
+    .l-header-authenticated__brand{
+      float: left;
+      width: 170px;
       height: 60px;
-      min-width: 1000px;
-      background-color: black;
-      .l-header-authenticated__brand{
+      img{
+        padding: 10px 0px;
+        height: 40px;
+      }
+    }
+    .l-header-authenticated__nav{
+      margin-left: 30px;
+      margin-top: 3px;
+      line-height: 54px;
+      float: left;
+      li{
         float: left;
-        width: 169px;
-        height: auto;
-        line-height: 60px;
-        img{
-          padding: 10px 0px;
-          height: 40px;
+        margin: 0px 10px;
+        a{
+          color: #aaa;
+          text-decoration: none;
+          font-size: 16px;
+          font-family: "Helvetica Neue";
+          font-weight: 300;
         }
       }
-      .l-header-authenticated__nav{
-        margin-left: 30px;
+      li:hover{
+        margin-bottom: -3px;
+        border-bottom: 3px solid #ffe100;
+        a{
+          color: #ffe100;
+        }
+      }
+    }
+    .l-header-authenticated-info{
+      float: left;
+      margin-left: 390px;
+
+      &__help{
         line-height: 60px;
+        font-size: 14px;
+        width: 42px;
+        padding: 0 21px;
         float: left;
-        li{
-          margin: -3px 10px;
+        a{
+          text-decoration: none;
+          color: #ccc;
+        }
+      }
+      &__activity{
+        height: 60px;
+        width: 49px;
+        float: left;
+        text-align: center;
+        i{
+          line-height: 60px;
+          font-size: 30px;
+          color:#ccc;
+        }
+      }
+      &__my{
+        margin-left: 10px;
+        float: left;
+        line-height: 60px;
+        position: relative;
+        &:hover ul.more_list {
+          display: block;
+        }
+        &-avator{
           float: left;
-          border-bottom: 3px solid #ffe100;
-          a{
-            color: #aaa;
-            text-decoration: none;
-            font-size: 16px;
-            line-height: 24px;
-            font-family: "Helvetica Neue", helvetica, arial, Verdana, Roboto, sans-serif;
-            font-weight: 300;
+          height: 60px;
+          img{
+            border-radius: 3px;
+            margin-top: 15px;
           }
         }
-      }
-      .l-header-authenticated-info{
-        float: left;
-        margin-left: 450px;
-
-        &__help{
-          line-height: 60px;
-          font-size: 14px;
-          width: 42px;
-          padding: 0 21px;
+        &-name{
           margin-left: 10px;
+          font-size: 14px;
           float: left;
-          a{
+          span{
             text-decoration: none;
             color: #ccc;
           }
         }
-        &__activity{
-          height: 60px;
-          width: 49px;
-          float: left;
-        }
-        svg{
-          padding: 19px 10px;
-        }
-        &__my{
-          margin-left: 10px;
-          height: 60px;
-          float: left;
-          color: #CCC;
-          font-size: 14px;
-          position: relative;
-          &:hover ul.more_list {
-            display: block;
-          }
-
-          &-avator{
+        &-links{
+          width: 200px;
+          background-color: white;
+          position: absolute;
+          top: 50px;
+          right: -15px;
+          z-index: 1;
+          border-radius: 5px;
+          ul{
+            &:before{
+            content: "";
             position: absolute;
-            top: 15px;
-          }
-          &-name{
-            span{
-              text-decoration: none;
-              color: #ccc;
+            top: -10px;
+            left: 85%;
+            width: 0;
+            height: 0;
+            border-bottom: 10px solid #DDD;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
             }
-            position: absolute;
-            top: 15px;
-            left: 40px;
+            li{
+              font-size: 12px;
+              line-height: 20px;
+              border-bottom: 1px solid #DDD;
+              padding: 10px 0;
+
+              a{
+                color: #333;
+                margin-left:10px;
+                &:hover{
+                border-bottom: 1px solid #333;
+                }
+              }
+            }
           }
         }
       }
     }
   }
-  .l-header-banner{
-    min-width: 1000px;
-    height: 90px;
-    margin: 10px auto;
+}
+.l-header-banner{
+  min-width: 1000px;
+  height: 90px;
+  margin: 10px 0;
+  &__image{
+    width: 728px;
+    margin: auto;
     img{
-      padding: 0 auto;
+      text-align: center;;
     }
   }
-  .l-search{
-    &__inner{
-      min-width: 1000px;
-      height: 56px;
-      background-color: #eee;
-    }
-    &-field{
-      float: left;
-      min-width: 70%;
-      margin: 15px;
-      &__query{
-        width: 90%;
-        padding-left: 5px;
-      }
-      &__submit{
-        border : none;
-        margin-top: -10px;
-        margin-left: -40px;
-        i{
-          font-size: 18px;
-          color: #888;
-        }
-      }
-    }
-    &__buttons{
-      a.c-button-1{
-        border: 1px solid #000;
-        border-radius: 3px;
-        background-color: black;
-        color: white;
-        text-decoration: none;
-        font-size: 12px;
-        width: 100px;
-        padding: 12px 10px;
-        line-height: 12px;
-        float: right;
-        text-align: center;
-        margin: 10px 10px 0px;
-      }
-    }
-  }
-  .l-footer{
+}
+.l-search{
+  min-width: 1000px;
+  background-color: #eee;
+  position: relative;
+  &__inner{
     min-width: 1000px;
-    height: 169px;
-    padding: 50px 0 40px;
-    background-color: #eee;
+    height: 56px;
+  }
+  &-field{
+    margin: 15px;
+    float: left;
+    &__query{
+      width: 680px;
+      float: left;
+      padding: 0 5px;
+    }
+    .l-search-field__sumbit{
+      float: left;
+      margin-left: -40px;
+      margin-top: 1px;
+      &-btn{
+        padding: 0;
+        cursor: pointer;
+        outline: none;
+        border : none;
+      }
+      i{
+        margin: auto;
+        line-height: 18px;
+        font-size: 18px;
+        color: #888;
+      }
+    }
+  }
+  &__buttons{
+    float: left;
+    height: 36px;
+    padding: 10px 0;
+    a.c-button-1{
+      border: 1px solid #000;
+      border-radius: 3px;
+      background-color: black;
+      color: white;
+      font-size: 12px;
+      width: 100px;
+      padding: 12px 10px;
+      line-height: 12px;
+      float: left;
+      text-align: center;
+      margin-left:15px;
+    }
+  }
+  &__hover{
+    position: absolute;
+    margin-left: 15px;
+    margin-top: -15px;
 
-    &__inner{
-    height: 169px;
-    margin: 0 auto;
-
-      &-links{
-        max-height: 169px;
-        float: left;
-        margin: 0 10px;
-        h5{
-          color: #888;
-          font-size: 14px;
-          margin-bottom: 10px;
-        }
-        &__items-left{
-          float:left;
-          margin-right: 10px;
-        }
-        &__items-right{
-          float:left;
-        }
+    ul{
+      width: 680px;
+      box-shadow: 0 1px 3px 0 #DDD;
+      border-radius: 10px;
+      border: 1px solid #DDD;
+      li{
+        height: 30px;
+        background-color: white;
+        border-bottom: 1px solid #DDD;
+        line-height: 30px;
         a{
-          color: #888;
-          font-size: 10px;
-          text-decoration: none;
+          padding-left: 10px;
+          font-size: 14px;
         }
-        &-counter{
-          &__count{
-            font-size: 22px;
-            letter-spacing: 0.5em;
-            background-color: black;
-            color: white;
+        &.active{
+          background-color: #d9f6f2;
           }
-          &__unit{
-            font-size: 10px;
+        .search__btn{
+          background-color: transparent;
+          border: none;
+          cursor: pointer;
+          outline: none;
+          padding: 0;
+          appearance: none;
+          span{
+            font-size: 14px;
+            color: #00c4a5;
+            margin: 10px;
           }
         }
       }
     }
   }
-  .l-footer-copyright{
-    height: 68px;
-    color: #a3a3a3;
-    text-align: center;
-    line-height: 68px;
-    font-size: 12px;
+}
+.l-footer{
+  min-width: 1000px;
+  height: 169px;
+  padding: 50px 0 40px;
+  background-color: #eee;
+
+  &__inner{
+  width: 1000px;
+  height: 169px;
+  margin: 0 auto;
+
+    &-links{
+      max-height: 169px;
+      float: left;
+      margin: 0 10px;
+      h5{
+        color: #888;
+        font-size: 14px;
+        margin-bottom: 10px;
+      }
+      &__items-left{
+        float:left;
+        margin-right: 10px;
+      }
+      &__items-right{
+        float:left;
+      }
+      a{
+        font-size: 10px;
+        text-decoration: none;
+        &:hover{
+          border-bottom: 1px solid #888;
+        }
+        &.font-color{
+          color: #888;
+        }
+      }
+      &-counter{
+        &__count{
+          font-size: 22px;
+          letter-spacing: 0.5em;
+          background-color: black;
+          color: white;
+        }
+        &__unit{
+          font-size: 10px;
+        }
+      }
+    }
   }
+}
+.l-footer-copyright{
+  height: 68px;
+  color: #a3a3a3;
+  text-align: center;
+  line-height: 68px;
+  font-size: 12px;
+}
