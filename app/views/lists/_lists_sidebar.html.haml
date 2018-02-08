@@ -1,0 +1,37 @@
+.sidebar
+  .sidebar__container
+    %h2.c-heading-2
+      映画を探す
+    .sidebar__main
+      %nav.c-side-menu
+        %ul
+          %li.c-side-menu__items
+            %h3.c-side-menu__items_title
+              = link_to "上映中の映画", now_lists_path
+          %li.c-side-menu__items
+            %h3.c-side-menu__items_title
+              = link_to "公開予定の映画", comming_lists_path
+          %li.c-side-menu__items
+            %h3.c-side-menu__items_title
+              = link_to "今週公開の映画", upcomming_lists_path
+          %li.c-side-menu__items
+            %h3.c-side-menu__items_title
+              = link_to "今話題のおすすめ映画", trend_lists_path
+          %li.c-side-menu__items
+            %h3.c-side-menu__items_title
+              = link_to "制作年（年代）", root_path
+          %li.c-side-menu__items
+            %h3.c-side-menu__items_title
+              = link_to "制作国", root_path
+          %li.c-side-menu__items
+            %h3.c-side-menu__items_title
+              = link_to "ジャンル", root_path
+          %li.c-side-menu__items
+            %h3.c-side-menu__items_title
+              = link_to "タグ", root_path
+
+  .sidebar-banner__contents
+    .barnner__content
+      = image_tag "banner1.jpeg", alt: "banner_ad"
+    .barnner__content
+      %iframe{:allow => "autoplay; encrypted-media", :allowfullscreen => "", :frameborder => "0", :height => "250", :src => "https://www.youtube.com/embed/JXJ0ADlG8bg", :width => "300"}
