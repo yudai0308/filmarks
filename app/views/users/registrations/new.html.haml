@@ -1,0 +1,81 @@
+-# %h2 Sign up
+
+-# = render "users/shared/links"
+
+.contents-body
+  .contents-body__p-content-header
+    .contents-body__p-content-header__inner
+      %ul.path
+        %li
+          %a{:href => "/"} Filmarks映画情報
+        %li > メンバー登録（入力）
+  .contents-body__p-content
+    .contents-body__p-content__p-panel
+      .contents-body__p-content__p-panel__header
+        .contents-body__p-content__p-panel__header__innner
+          %p
+          = "メンバー登録(入力)"
+      .contents-body__p-content__p-panel__body
+        .contents-body__p-content__p-panel__body__text
+          %p
+          = "以下、必要事項にご記入のうえ、「入力内容を確認する」ボタンを押してください。"
+        .contents-body__p-content__p-panel__body__form
+          = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+            = render 'layouts/error_messages'
+            .contents-body__p-content__p-panel__body__form__list
+              .contents-body__p-content__p-panel__body__form__list__state1
+                = "Filmarks ID"
+              .contents-body__p-content__p-panel__body__form__list__state2
+                %span
+                ="必須"
+              .contents-body__p-content__p-panel__body__form__list__state3
+                %span
+                ="(15文字以内 登録後に変更はできません）"
+            .contents-body__p-content__p-panel__body__form__input
+              = f.text_field :Filmarks_ID, class: 'input-form', placeholder: 'Filmarks'
+            .contents-body__p-content__p-panel__body__form__list
+              .contents-body__p-content__p-panel__body__form__list__state1
+                = "Nickname"
+              .contents-body__p-content__p-panel__body__form__list__state2
+                %span
+                ="必須"
+              .contents-body__p-content__p-panel__body__form__list__state3
+            .contents-body__p-content__p-panel__body__form__input
+              = f.text_field :nickname, class: 'input-form', placeholder: 'フィルマークス'
+            .contents-body__p-content__p-panel__body__form__list
+              .contents-body__p-content__p-panel__body__form__list__state1
+                = "E-mail"
+              .contents-body__p-content__p-panel__body__form__list__state2
+                %span
+                ="必須"
+              .contents-body__p-content__p-panel__body__form__list__state3
+            .contents-body__p-content__p-panel__body__form__input
+              = f.text_field :email, class: 'input-form', placeholder: 'tsumiki@tsumikiinc.com'      
+            .contents-body__p-content__p-panel__body__form__list
+              .contents-body__p-content__p-panel__body__form__list__state1
+                = "パスワード"
+              .contents-body__p-content__p-panel__body__form__list__state2
+                %span
+                ="必須"
+              .contents-body__p-content__p-panel__body__form__list__state3
+                %span
+                ="(5文字以上)"  
+            .contents-body__p-content__p-panel__body__form__input
+              = f.text_field :password, class: 'input-form', placeholder: 'パスワードを入力してください'  
+
+            -# .contents-body__p-content__p-panel__body__form__checkbox
+            -#   = f.check_box :checkbox, :as => :boolean, checked:false
+            -#   .contents-body__p-content__p-panel__body__form__checkbox__text
+            -#     %span
+            -#       当サービスの
+            -#       %a{:href => "https://filmarks.com/term", :rel => "nofollow", :target => "_blank"}> 利用規約
+            -#       と
+            -#       %a{:href => "https://filmarks.com/privacy", :rel => "nofollow", :target => "_blank"}> プライバシーポリシー
+            -#       に同意する  
+              
+
+            .contents-body__p-content__p-panel__body__form__send-button      
+              %input#user_confirmed{:name => "user[confirmed]", :type => "hidden"}/
+              = f.submit "入力内容を確認する", class: 'send'  
+
+        
