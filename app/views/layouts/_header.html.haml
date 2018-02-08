@@ -41,10 +41,10 @@
           .l-header-authenticated-info__my-name
             - if user_signed_in?
               %span
-              = current_user.nickname
+                = current_user.nickname
             - else
               %span
-              = "No user"
+                = "No user"
             %span.fa.fa-angle-double-down
           .l-header-authenticated-info__my-links
             %ul#more_list{style: "display:none;"}
@@ -65,26 +65,27 @@
     .l-header-banner__image
       = image_tag "banner.gif", alt: "banner_ad"
   .l-search
-    %form#js-search-form.l-search__form{action: '/movies/search'}
-      .l-search__inner.clearfix
-        %fieldset.l-search-field
-          %input#q.l-search-field__query{autocomplete: "off", name: "keyword", placeholder: "映画・キャスト・ユーザー検索", type: "search", value: "#{ params[:keyword] }"}/
-          .l-search-field__sumbit
-            = button_tag type: "submit", class: "l-search-field__sumbit-btn", value: "movie" do
-              %i.fa.fa-search
-        .l-search__buttons
-          %a.c-button-1{href: "#"} 映画を探す
-          %a.c-button-1{href: "#"} ユーザーを探す
-      .l-search__hover#js-search-list
-        %ul#search_lists{style: "display:none;"}
-          %li.p-header-my-menu__item.active
-            = button_tag type: "submit", class: "search__btn", value: "movie" do
-              %span「」で映画を検索
-          %li.p-header-my-menu__item
-            = button_tag type: "submit", class: "search__btn", value: "cast" do
-              %span「」でキャストを検索
-          %li.p-header-my-menu__item
-            = button_tag type: "submit", class: "search__btn", value: "user" do
-              %span「」でユーザーを検索
+    .l-search-wrapper
+      %form#js-search-form.l-search__form{action: '/movies/search'}
+        .l-search__inner.clearfix
+          %fieldset.l-search-field
+            %input#q.l-search-field__query{autocomplete: "off", name: "keyword", placeholder: "映画・キャスト・ユーザー検索", type: "search", value: "#{ params[:keyword] }"}/
+            .l-search-field__sumbit
+              = button_tag type: "submit", class: "l-search-field__sumbit-btn", value: "movie" do
+                %i.fa.fa-search
+          .l-search__buttons
+            %a.c-button-1{href: "#"} 映画を探す
+            %a.c-button-1{href: "#"} ユーザーを探す
+        .l-search__hover#js-search-list
+          %ul#search_lists{style: "display:none;"}
+            %li.p-header-my-menu__item.active
+              = button_tag type: "submit", class: "search__btn", value: "movie" do
+                %span「」で映画を検索
+            %li.p-header-my-menu__item
+              = button_tag type: "submit", class: "search__btn", value: "cast" do
+                %span「」でキャストを検索
+            %li.p-header-my-menu__item
+              = button_tag type: "submit", class: "search__btn", value: "user" do
+                %span「」でユーザーを検索
 
 

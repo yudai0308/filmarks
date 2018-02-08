@@ -1,0 +1,32 @@
+.search-detail
+  .search-detail__wrapper
+    .search-detail__header
+      .search-detail__header-index.clearfix
+        %ul.top-navi
+          %li
+            = link_to "Filmarks映画情報", root_path
+          %li
+            &nbsp;>&nbsp;&nbsp;
+          %li
+            映画作品を探す
+      .search-detail__header-title
+        「#{ params[:keyword] }」に関する映画 #{ @movies_count }作品
+    .search-detail__body
+      .search-detail__body-main.clearfix
+        .sidebar
+          .sidebar__container
+            %h2.c-heading-2
+              検索
+            .sidebar__main
+              %nav.c-side-menu
+                %ul
+                  %li.c-side-menu__items
+                    %h3.c-side-menu__items_title.active
+                      = link_to "映画を検索する", search_movies_path(keyword: "#{params[:keyword]}",button: "movie")
+                  %li.c-side-menu__items
+                    %h3.c-side-menu__items_title
+                      = link_to "キャストを検索する", search_movies_path(keyword: "#{params[:keyword]}",button: "cast")
+                  %li.c-side-menu__items
+                    %h3.c-side-menu__items_title
+                      = link_to "ユーザーを検索する", search_movies_path(keyword: "#{params[:keyword]}",button: "user")
+
