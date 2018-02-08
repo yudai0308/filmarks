@@ -1,0 +1,97 @@
+.search-detail
+  .search-detail__wrapper
+    .search-detail__header
+      .search-detail__header-index.clearfix
+        %ul.top-navi
+          %li= link_to "Filmarks映画情報", root_path
+          %li
+            &nbsp;>&nbsp;&nbsp;
+          %li
+            映画作品を探す
+      .search-detail__header-title
+        映画作品を探す
+      .search-detail__header-info
+        上映中映画、公開予定映画、邦画・洋画、製作国別、サスペンス・ドラマ・SFなどのジャンル別、アカデミー賞・カンヌ国際映画祭などの映画賞受賞作品といった様々なテーマで映画を探せます。
+    .search-detail__body
+      .search-detail__body-main.clearfix
+        .sidebar
+          .sidebar__container
+            %h2.c-heading-2
+              検索
+            .sidebar__main
+              %nav.c-side-menu
+                %ul
+                  %li.c-side-menu__items
+                    %h3.c-side-menu__items_title
+                      = link_to "映画を検索する", root_path
+                  %li.c-side-menu__items
+                    %h3.c-side-menu__items_title
+                      = link_to "キャストを検索する", root_path
+                  %li.c-side-menu__items
+                    %h3.c-side-menu__items_title
+                      = link_to "ユーザーを検索する", root_path
+          .sidebar-banner__contents
+            .barnner__content
+              = image_tag "banner1.jpeg", alt: "banner_ad"
+            .barnner__content
+              %iframe{:allow => "autoplay; encrypted-media", :allowfullscreen => "", :frameborder => "0", :height => "250", :src => "https://www.youtube.com/embed/JXJ0ADlG8bg", :width => "300"}
+        .search__lists.clearfix
+          - @movies.each do |movie|
+            .list-content
+              =link_to root_path do
+                .list-content__image
+                  = image_tag "#{ movie.image }", alt: "#{ movie.title }", width: "150px", height: "200px"
+              .list-content__title
+                =link_to root_path do
+                  %span
+                    = movie.title
+              .list-content__wrapper.clearfix
+                =link_to root_path do
+                  .list-content__mark
+                    =fa_icon "pencil", class: "fa-2x"
+                    %p.mark__count
+                      10
+                =link_to root_path do
+                  .list-content__clip
+                    =fa_icon "paperclip", class: "fa-2x fa-flip-horizontal"
+                    %p.clip__count
+                      10
+                =link_to root_path do
+                  .list-content__score
+                    =fa_icon "star",class: "far fa-star"
+                    %p.score__rate
+                      4
+          .search__lists-page
+            = paginate(@movies)
+
+      .sub-contents
+        .sub-contents__barnner.clearfix
+          .sub-contents__barnner-content
+            = image_tag "banner2.png", alt: "banner_ad"
+          .sub-contents__barnner-content
+            %iframe{:allow => "autoplay; encrypted-media", :allowfullscreen => "", :frameborder => "0", :height => "250", :src => "https://www.youtube.com/embed/JXJ0ADlG8bg", :width => "300"}
+        .sub-contents__app.clearfix
+          .sub-contents__app-logo
+            = image_tag "img_logo-icon.svg", size: "auto", alt: "Filmarks"
+          .sub-contents__app-comment
+            %p.span Filmarksはスマートフォンでも楽しめます！
+            %p iPhone、Android、Kindleでも！
+            %p 3つのアプリストアでダウンロードできます♪
+          .sub-contents__app-btns
+            = link_to 'https://itunes.apple.com/jp/app/filmarks/id549126249' do
+              = image_tag "btn_appstore.svg", size: "auto", alt: "appstore"
+            = link_to 'https://play.google.com/store/apps/details?id=in.tsumiki.filmarks' do
+              = image_tag "btn_googleplay.svg", size: "auto", alt: "googleplay"
+            = link_to 'http://www.amazon.co.jp/Tsumiki-Inc-Filmarks/dp/B00JGOYQ2Y/ref=sr_1_1?ie=UTF8&qid=1399026550&sr=8-1&keywords=filmarks' do
+              = image_tag "btn_amazon.svg", size: "auto", alt: "amazon"
+        .sub-contents__sns.clearfix
+          .sub-contents__sns-content
+            %a.twitter-timeline{"data-height" => "400", "data-width" => "480", :href => "https://twitter.com/Filmarks?ref_src=twsrc%5Etfw"} Tweets by Filmarks
+            %script{:async => "", :charset => "utf-8", :src => "https://platform.twitter.com/widgets.js"}
+          .sub-contents__sns-content
+            .fb-page{"data-adapt-container-width" => "false", "data-height" => "400", "data-hide-cover" => "false", "data-href" => "https://www.facebook.com/filmarks/", "data-show-facepile" => "true", "data-small-header" => "false", "data-tabs" => "timeline", "data-width" => "480"}
+              %blockquote.fb-xfbml-parse-ignore{:cite => "https://www.facebook.com/filmarks/"}
+                %a{:href => "https://www.facebook.com/filmarks/"} Filmarks（フィルマークス）
+
+ 
+
