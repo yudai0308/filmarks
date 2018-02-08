@@ -1,13 +1,16 @@
 .search-detail{
-  background-color: #fafafa;
   &__header{
+    min-width: 1000px;
     background-color: white;
-    padding: 16px 0;
     border-bottom: 1px solid #eee;
-    li{
-      float: left;
-      font-size: 12px;
-
+    padding: 16px;
+    &-index{
+      width: 1000px;
+      margin:auto;
+      li{
+        float: left;
+        font-size: 12px;
+      }
     }
     &-title{
       text-align: center;
