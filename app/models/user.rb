@@ -4,9 +4,10 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  validates :Filmarks_ID, presence: true
+  validates :Filmarks_ID, length: { in: 1..15 }
   validates :nickname, presence: true
-
+  # validates_acceptance_of :checkbox, allow_nil: false, on: :create
+  
   has_many :reviews, dependent: :destroy
   has_many :likes, dependent: :destroy
   has_many :comments

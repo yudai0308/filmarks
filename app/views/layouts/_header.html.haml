@@ -17,20 +17,39 @@
             = link_to "Timeline", root_path
           %li
             = link_to "Trend", trend_lists_path
+          - if user_signed_in?  
+            %li
+              = link_to 'ログアウト', destroy_user_session_path, method: :delete 
+          - else      
+            %li
+              = link_to 'メンバー登録', new_user_registration_path
+            %li
+              = link_to 'ログイン', user_session_path
+          
+
       .l-header-authenticated-info
         .l-header-authenticated-info__help
           = link_to "ヘルプ"
         .l-header-authenticated-info__activity
-          = link_to do
+
+         = link_to do
             %i.fa.fa-comment
+              %title activity
+              %path#activity-balloon{d: "M11.062 0C4.89 0 0 3.66 0 8.176c0 2.558 1.512 4.84 4.024 6.34.57.34.635 2.887-2.567 4.426 0 0 4.533.726 7.408-2.963.71.102 1.445.324 2.197.324 6.174 0 9.938-3.612 9.938-8.128S17.236 0 11.062 0", fill: "#DDD", "fill-rule": "evenodd"}
         .l-header-authenticated-info__my{ onclick: "obj=document.getElementById('more_list').style; obj.display=(obj.display=='none')?'block':'none';" }
-          .l-header-authenticated-info__my-avator
-            = image_tag "img_people-placehold.svg", size: "30x30", alt: "user_name"
-          .l-header-authenticated-info__my-name
-            %span user_name
-            %span.fa.fa-angle-double-down
-          .l-header-authenticated-info__my-links
-            %ul#more_list{style: "display:none;"}
+            .l-header-authenticated-info__my-avator
+              = image_tag "img_people-placehold.svg", size: "30x30", alt: "user_name"
+            .l-header-authenticated-info__my-name
+              - if user_signed_in? 
+                %span 
+                = current_user.nickname
+
+              - else
+                %span 
+                = "No user"
+              %span.fa.fa-angle-double-down
+            .l-header-authenticated-info__my-links
+            　%ul#more_list{style: "display:none;"}  
               %li.p-header-my-menu__item
                 %a{href: "#"} マイページ
               %li.p-header-my-menu__item
