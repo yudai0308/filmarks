@@ -2,7 +2,7 @@
 lock "~> 3.10.1"
 
 set :application, "filmarks"
-set :repo_url, "git@example.com:yudai0308/filmarks.git"
+set :repo_url, "git@github.com:yudai0308/filmarks.git"
 
 set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system', 'public/uploads')
 
