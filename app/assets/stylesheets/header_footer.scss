@@ -172,8 +172,9 @@
   background-color: #eee;
   position: relative;
   &__inner{
-    min-width: 1000px;
+    width: 1000px;
     height: 56px;
+    margin: auto;
   }
   &-field{
     margin: 15px;
@@ -186,7 +187,6 @@
     .l-search-field__sumbit{
       float: left;
       margin-left: -40px;
-      margin-top: 1px;
       &-btn{
         padding: 0;
         cursor: pointer;
