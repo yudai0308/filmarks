@@ -21,6 +21,7 @@ Rails.application.routes.draw do
       get "genre"
       get "year"
       get "tag"
+      get "index"
     end
     resources :countrys, only: [:show]
     resources :genres, only: [:show]
