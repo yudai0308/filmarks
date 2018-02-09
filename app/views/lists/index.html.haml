@@ -50,7 +50,7 @@
                 =image_tag "logo_netflix_logo.png"
                 .link-name
                   %span netflix
-        .contents-block
+        .contents-block.clearfix
           .contents-block__recommended
             .contents-block__recommended-showing
               .contents-block__title
@@ -100,6 +100,42 @@
               .contents-block__link
                 .contents-block__link-btn
                   =link_to "もっと見る　>", trend_lists_path
+        .contents-block
+          .contents-block__title
+            =link_to country_lists_path do
+              %span 製作国
+          .contents-block__content.clearfix
+            .contents-block__content-category
+              %ul.countries-lists
+              - @countries.each do |country|
+                = link_to lists_country_path(country.id) do
+                  %li.countries-lists-name
+                    %span
+                      = country.name
+        .contents-block
+          .contents-block__title
+            =link_to genre_lists_path do
+              %span ジャンル
+          .contents-block__content.clearfix
+            .contents-block__content-category
+              - @genres.each do |genre|
+                %ul.genre-lists
+                  = link_to lists_genre_path(genre.id) do
+                    %li.genre-lists-name
+                      %span
+                        = genre.name
+        .contents-block
+          .contents-block__title
+            =link_to  do
+              %span 映画賞
+          .contents-block__content.clearfix
+            .contents-block__content-category
+              - @awards.each do |award|
+                %ul.award-lists
+                  = link_to  do
+                    %li.award-lists-name
+                      %span
+                        = award.name
 
 
 
