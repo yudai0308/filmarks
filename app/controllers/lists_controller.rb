@@ -24,7 +24,9 @@ class ListsController < ApplicationController
   end
 
   def index
-    @movies_new = Movie.order('created_at DESC').limit(5)
-    @movies_random  = Movie.order("RAND()").limit(5)
+    @movies_now = Movie.order('created_at DESC').limit(5)
+    @movies_comming  = Movie.order("RAND()").limit(5)
+    @movies_upcomming  = Movie.order("RAND()").limit(5)
+    @movies_trend  = Movie.order("RAND()").limit(5)
   end
 end

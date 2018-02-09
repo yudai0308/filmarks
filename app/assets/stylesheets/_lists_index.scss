@@ -28,6 +28,7 @@
     &__content{
       font-size: 14px;
       margin: 8px 18px;
+
       &-link{
         box-sizing:border-box;
         height: 80px;
@@ -49,21 +50,43 @@
       }
     }
     &__recommended-showing{
-      width: 495px;
-      height: 271px;
+      width: 493px;
+      // height: 271px;
+      border: 1px solid #eee;
+      float:left;
+      margin-top:15px;
+      margin-right: 5px;
     }
     &__image{
       width: 475px;
       padding: 15px 9px;
       margin: auto;
-      border: 1px solid #eee;
+      border-bottom: 1px solid #eee;
       &__list{
         float: left;
         margin-left: 5px;
       }
     }
-    __link{
-
+    &__link{
+      width: 493px;
+      height: 77px;
+      box-sizing:border-box;
+      // background-color: red;
+      padding-top: 21px;
+      &-btn{
+        width: 471px;
+        height: 36px;
+        background-color: gray;
+        text-align: center;
+        border-radius: 3px;
+        margin: auto;
+        a{
+          text-align: center;
+          line-height: 36px;
+          color: white;
+          font-size: 12px;
+        }
+      }
     }
   }
 }

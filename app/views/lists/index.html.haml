@@ -54,19 +54,52 @@
           .contents-block__recommended
             .contents-block__recommended-showing
               .contents-block__title
-                =link_to do
+                =link_to now_lists_path do
                   %span 上映中
               .contents-block__image.clearfix
-                - @movies_new.each do |movie|
+                - @movies_now.each do |movie|
                   =link_to movie_path(movie.id) do
                     .contents-block__image__list
                       = image_tag "#{ movie.image }", alt: "#{ movie.title }", width: "90px", height: "120px"
               .contents-block__link
                 .contents-block__link-btn
-                  =link_to "もっと見る  >",now_lists_path
-
-
-
+                  =link_to "もっと見る　>", now_lists_path
+            .contents-block__recommended-showing
+              .contents-block__title
+                =link_to comming_lists_path do
+                  %span 公開予定の映画
+              .contents-block__image.clearfix
+                - @movies_comming.each do |movie|
+                  =link_to movie_path(movie.id) do
+                    .contents-block__image__list
+                      = image_tag "#{ movie.image }", alt: "#{ movie.title }", width: "90px", height: "120px"
+              .contents-block__link
+                .contents-block__link-btn
+                  =link_to "もっと見る　>", comming_lists_path
+            .contents-block__recommended-showing
+              .contents-block__title
+                =link_to upcomming_lists_path do
+                  %span 今週公開の映画
+              .contents-block__image.clearfix
+                - @movies_upcomming.each do |movie|
+                  =link_to movie_path(movie.id) do
+                    .contents-block__image__list
+                      = image_tag "#{ movie.image }", alt: "#{ movie.title }", width: "90px", height: "120px"
+              .contents-block__link
+                .contents-block__link-btn
+                  =link_to "もっと見る　>", upcomming_lists_path
+            .contents-block__recommended-showing
+              .contents-block__title
+                =link_to trend_lists_path do
+                  %span 今話題のおすすめ映画
+              .contents-block__image.clearfix
+                - @movies_trend.each do |movie|
+                  =link_to movie_path(movie.id) do
+                    .contents-block__image__list
+                      = image_tag "#{ movie.image }", alt: "#{ movie.title }", width: "90px", height: "120px"
+              .contents-block__link
+                .contents-block__link-btn
+                  =link_to "もっと見る　>", trend_lists_path
 
 
 
