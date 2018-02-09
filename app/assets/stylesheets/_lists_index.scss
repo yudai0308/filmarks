@@ -28,7 +28,6 @@
     &__content{
       font-size: 14px;
       margin: 8px 18px;
-
       &-link{
         box-sizing:border-box;
         height: 80px;
@@ -36,6 +35,9 @@
         padding: 4px 0 12px 0px;
         margin-right: 16px;
         float: left;
+        &:hover{
+          opacity: 0.5;
+        }
         img{
           float: left
         }
@@ -51,11 +53,15 @@
     }
     &__recommended-showing{
       width: 493px;
-      // height: 271px;
       border: 1px solid #eee;
       float:left;
       margin-top:15px;
       margin-right: 5px;
+    }
+    &__title{
+      a:hover{
+      border-bottom: 1px solid black;
+      }
     }
     &__image{
       width: 475px;
@@ -65,13 +71,15 @@
       &__list{
         float: left;
         margin-left: 5px;
+        &:hover{
+          opacity: 0.5;
+        }
       }
     }
     &__link{
       width: 493px;
       height: 77px;
       box-sizing:border-box;
-      // background-color: red;
       padding-top: 21px;
       &-btn{
         width: 471px;
@@ -80,6 +88,9 @@
         text-align: center;
         border-radius: 3px;
         margin: auto;
+        &:hover{
+          opacity: 0.5;
+        }
         a{
           text-align: center;
           line-height: 36px;
@@ -87,6 +98,26 @@
           font-size: 12px;
         }
       }
+    }
+    &__content-category{
+      background-color: gray;
+      li{
+        width: 168px;
+        padding: 11px;
+        list-style: none;
+        float:left;
+        border-bottom: 1px solid #eee;
+        span{
+          color: #333;
+          &:hover{
+            border-bottom: 1px solid black;
+          }
+        }
+        &.award-lists-name{
+          width: 280px;
+        }
+      }
+
     }
   }
 }

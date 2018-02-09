@@ -33,5 +33,8 @@ class ListsController < ApplicationController
     @movies_comming  = Movie.order("RAND()").limit(5)
     @movies_upcomming  = Movie.order("RAND()").limit(5)
     @movies_trend  = Movie.order("RAND()").limit(5)
+    @countries = Country.all
+    @genres = Genre.all
+    @awards = Award.group(:name)
   end
 end
