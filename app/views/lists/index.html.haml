@@ -1,0 +1,105 @@
+.search-detail
+  .search-detail__wrapper
+    .search-detail__header
+      .search-detail__header-index.clearfix
+        %ul.top-navi
+          %li
+            = link_to "Filmarks映画情報", root_path
+          %li
+            &nbsp;>&nbsp;&nbsp;
+          %li
+            映画作品を探す
+      .search-detail__header-title
+        %p.title__heading 映画作品を探す
+        %p.title__heading-sub
+          上映中映画、公開予定映画、邦画・洋画、製作国別、サスペンス・ドラマ・SFなどのジャンル別、アカデミー賞・カンヌ国際映画祭などの映画賞受賞作品といった様々なテーマで映画を探せます。
+    .search-detail__body
+      .search-detail__body-main.clearfix
+        .contents-block
+          .contents-block__title
+            =link_to do
+              %span 動画配信サービス
+          .contents-block__content.clearfix
+            =link_to do
+              .contents-block__content-link
+                =image_tag "logo_ttv.png"
+                .link-name
+                  %span TUTAYA TV
+            =link_to do
+              .contents-block__content-link
+                =image_tag "video-market.png"
+                .link-name
+                  %span ビデオマーケット
+            =link_to do
+              .contents-block__content-link
+                =image_tag "logo_unext.png"
+                .link-name
+                  %span U-NEXT
+            =link_to do
+              .contents-block__content-link
+                =image_tag "videopass_logo.png"
+                .link-name
+                  %span ビデオパス
+            =link_to do
+              .contents-block__content-link
+                =image_tag "hulu_logo.png"
+                .link-name
+                  %span Hulu
+            =link_to do
+              .contents-block__content-link
+                =image_tag "logo_netflix_logo.png"
+                .link-name
+                  %span netflix
+        .contents-block
+          .contents-block__recommended
+            .contents-block__recommended-showing
+              .contents-block__title
+                =link_to now_lists_path do
+                  %span 上映中
+              .contents-block__image.clearfix
+                - @movies_now.each do |movie|
+                  =link_to movie_path(movie.id) do
+                    .contents-block__image__list
+                      = image_tag "#{ movie.image }", alt: "#{ movie.title }", width: "90px", height: "120px"
+              .contents-block__link
+                .contents-block__link-btn
+                  =link_to "もっと見る　>", now_lists_path
+            .contents-block__recommended-showing
+              .contents-block__title
+                =link_to comming_lists_path do
+                  %span 公開予定の映画
+              .contents-block__image.clearfix
+                - @movies_comming.each do |movie|
+                  =link_to movie_path(movie.id) do
+                    .contents-block__image__list
+                      = image_tag "#{ movie.image }", alt: "#{ movie.title }", width: "90px", height: "120px"
+              .contents-block__link
+                .contents-block__link-btn
+                  =link_to "もっと見る　>", comming_lists_path
+            .contents-block__recommended-showing
+              .contents-block__title
+                =link_to upcomming_lists_path do
+                  %span 今週公開の映画
+              .contents-block__image.clearfix
+                - @movies_upcomming.each do |movie|
+                  =link_to movie_path(movie.id) do
+                    .contents-block__image__list
+                      = image_tag "#{ movie.image }", alt: "#{ movie.title }", width: "90px", height: "120px"
+              .contents-block__link
+                .contents-block__link-btn
+                  =link_to "もっと見る　>", upcomming_lists_path
+            .contents-block__recommended-showing
+              .contents-block__title
+                =link_to trend_lists_path do
+                  %span 今話題のおすすめ映画
+              .contents-block__image.clearfix
+                - @movies_trend.each do |movie|
+                  =link_to movie_path(movie.id) do
+                    .contents-block__image__list
+                      = image_tag "#{ movie.image }", alt: "#{ movie.title }", width: "90px", height: "120px"
+              .contents-block__link
+                .contents-block__link-btn
+                  =link_to "もっと見る　>", trend_lists_path
+
+
+
