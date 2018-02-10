@@ -1,4 +1,4 @@
-class Scraping_movie
+class Scraping_movies
   def self.select_year
     # 年代の選択
     while true do
@@ -31,17 +31,20 @@ class Scraping_movie
   def self.get_urls(year)
     links = []
     agent = Mechanize.new
-    current_page = agent.get("https://filmarks.com/list/year/#{year}s?page=1")
-    elements = current_page.search(".p-movie-cassette__readmore")
+    current_page = agent.get("https://filmarks.com/list/year/#{year}s?page=1&view=poster")
+    elements = current_page.search(".c-movie-item")
     # 各映画のURLを取得
     elements.each do |ele|
-      links << ele.get_attribute("href")
+      links << ele.children.at("a").get_attribute("href")
     end
+    binding.pry
 
     # movie情報のスクレイピング
     links.each do |link|
+      # binding.pry
       get_movie_info("https://filmarks.com" + link)
     end
+    binding.pry
 
     # member情報のスクレイピング
     links.each do |link|
@@ -53,6 +56,7 @@ class Scraping_movie
   def self.get_movie_info(link)
     agent = Mechanize.new
     page = agent.get(link)
+    # binding.pry
 
     image = page.at(".c-movie__jacket img")[:src] if page.at(".c-movie__jacket img")[:src]
     title = page.at(".p-movie-detail__title span").inner_text if page.at(".p-movie-detail__title span")
@@ -61,6 +65,7 @@ class Scraping_movie
     release = get_release_or_time(link)
     time = get_release_or_time(link)
     story = page.at(".p-movie-detail__synopsis-desc").inner_text if page.at(".p-movie-detail__synopsis-desc")
+    # binding.pry
 
     movie = Movie.where(title:      title,
                         subtitle:   subtitle,
