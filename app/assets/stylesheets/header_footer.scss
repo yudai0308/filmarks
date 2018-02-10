@@ -170,11 +170,14 @@
 .l-search{
   min-width: 1000px;
   background-color: #eee;
-  position: relative;
+  &-wrapper{
+    position: relative;
+    width: 1000px;
+    margin: auto;
+  }
   &__inner{
     width: 1000px;
     height: 56px;
-    margin: auto;
   }
   &-field{
     margin: 15px;
@@ -221,7 +224,7 @@
   }
   &__hover{
     position: absolute;
-    margin-left: 15px;
+    margin-left: 10px;
     margin-top: -15px;
 
     ul{

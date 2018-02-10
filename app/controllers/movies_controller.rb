@@ -4,6 +4,7 @@ class MoviesController < ApplicationController
   end
 
   def show
+    @movie = Movie.find(params[:id])
   end
 
   def search
@@ -22,6 +23,5 @@ class MoviesController < ApplicationController
       @movies = Movie.where('title LIKE(?)', "%#{params[:keyword]}%").page(params[:page]).per(36)
       render action:'search_movie'
     end
-    # binding.pry
   end
 end

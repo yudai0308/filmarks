@@ -1,37 +1,39 @@
 $(function() {
   function buildReviewHTML(reviewURL) {
 
-  var reviewHTML = `<form class="post_review_form" action="${reviewURL}" method="POST">
-                      <div class="review-background"></div>
-                      <div class="review-window">
-                        <div class="review-editer__header"> レビュー </div>
-                        <div class="review-editer__score clearfix">
-                          <div class="review-editer__score-rate"> - </div>
-                          <input class="review-editer__score-slider" type="range" name="rate" min="9" max="9" step="1">
-                        </div>
-                        <div class="review-editer__input-wrapper">
-                          <textarea class="review-editer__review-input review-textarea" placeholder="レビューを入力"></textarea>
-                        </div>
-                        <div class="review-editer__tags-wrapper">
-                          <textarea class="review-editer__tags-input review-textarea" placeholder="# タグを入力"></textarea>
-                        </div>
-                        <div class="review-editer__bottons-secondary">
-                          <div class="review-editer__status-wrapper">
-                            <a class="review-editer__status-botton gray-botton" data-status="0">
-                              <i class="fa fa-warning"></i>
-                              <p> ネタバレ </p>
-                            </a>
-                            <p class="review-editer__secret-note">
-                              レビューが映画の内容のネタバレに<br>
-                              あたる場合はチェックしてください。
-                            </p>
-                          </div>
-                        </div>
-                        <div class="review-editer__bottons-primary">
-                          <a class="review-editer__botton--post" href="#" onclick="postReview();"> 投稿 </a>
-                        </div>
-                      </div>
-                    </form>`
+  var reviewHTML =
+     `<form class="post_review_form">
+        <div class="review-background"></div>
+        <div class="review-window">
+          <div class="review-editer__header"> レビュー </div>
+          <div class="review-editer__score clearfix">
+            <div class="review-editer__score-rate"> - </div>
+            <input class="review-editer__score-slider" type="range" name="review[score]" min="9" max="9" step="1">
+          </div>
+          <div class="review-editer__input-wrapper">
+            <textarea class="review-editer__review-input review-textarea" placeholder="レビューを入力" name="review[comment]"></textarea>
+          </div>
+          <div class="review-editer__tags-wrapper">
+            <textarea class="review-editer__tags-input review-textarea" placeholder="# タグを入力" name="tag[name]"></textarea>
+          </div>
+          <div class="review-editer__bottons-secondary">
+            <div class="review-editer__status-wrapper">
+              <input class="review-status" type="hidden" value="0" name="review[status]">
+              <a class="review-editer__status-botton gray-botton">
+                <i class="fa fa-warning"></i>
+                <p> ネタバレ </p>
+              </a>
+              <p class="review-editer__secret-note">
+                レビューが映画の内容のネタバレに<br>
+                あたる場合はチェックしてください。
+              </p>
+            </div>
+          </div>
+          <div class="review-editer__bottons-primary">
+            <a class="review-editer__botton--post" href="#"> 投稿 </a>
+          </div>
+        </div>
+      </form>`
   return reviewHTML;
   }
 
@@ -90,28 +92,29 @@ $(function() {
 
   // ----- ネタバレ禁止の処理 -----
   $(document).on("click", ".review-editer__status-botton", function() {
-    console.log($(this).attr("status"));
-    if($(this).attr("data-status") == "0") {
-      $(this).attr("data-status", "1");
+    if($(".review-status").val() == 0) {
+      $(".review-status").val(1);
       $(this).css({"color": "White", "background-color": "Red"});
     } else {
-      $(this).attr("data-status", "0");
+      $(".review-status").val(0);
       $(this).css({"color": "Dimgray", "background-color": "#eee"});
     };
   });
 
   // ----- データ送信 -----
-  function postReview() {
-
+  $(document).on("click", ".review-editer__botton--post", function(e) {
+    e.preventDefault();
     var formData = new FormData($(".post_review_form").get()[0]);
-    console.log(formData);
+    var postURL = window.location.href + "/reviews"
 
-  };
-  // var reviewRate = $(".review-editer__score-slider").val();
-  // var reviewComment = $(".review-editer__review-input").val();
-  // var reviewStatus = $
-  // var postReviewData = {"comment": "", "score": "", "status": ""}
-  // var postTagsData = {""}
+    $.ajax({
+      url: postURL,
+      type: "POST",
+      data: formData,
+      processData: false,
+      contentType: false
+    });
+  });
 });
 
 

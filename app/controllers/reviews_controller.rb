@@ -1,14 +1,18 @@
 class ReviewsController < ApplicationController
 
+  before_action :set_movie
+
   def index
   end
 
   def create
-    # review = Review.new(review_params)
-    # review.save
-
-    # redirect_to :root
-    # 最終的に映画詳細ページがリロードされるように設定
+    review = Review.new(review_params)
+    review.save
+    tag = Tag.new(tag_params)
+    # tag.split(/\s*/)
+    # tag.each do ||
+    tag.save
+    render :js => "window.location = '/movies/#{params[:movie_id]}'"
   end
 
   private
@@ -16,9 +20,17 @@ class ReviewsController < ApplicationController
   def review_params
     params.require(:review).permit( :comment,
                                     :score,
-                                    :status
-                           ).marge( user_id:  current_user.id,
-                                    movie_id: params[:movie.id])
+                                    :status,
+                                   { tag_ids: [] }
+                            ).merge( user_id:  current_user.id,
+                                     movie_id: params[:movie_id])
   end
 
+  def tag_params
+    params.require(:tag).permit(:name, :review_id)
+  end
+
+  def set_movie
+    @moview = Movie.find(params[:movie_id])
+  end
 end

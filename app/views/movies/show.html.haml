@@ -7,12 +7,12 @@
         %li >
         %li=link_to "アメリカ映画", root_path
         %li >
-        %li ラ・ラ・ランドの映画情報・感想・評価
+        %li #{@movie.title}の映画情報・感想・評価
 
     .movie-detail__body
       .movie-detail__body-wrapper.clearfix
         .movie-detail__left
-          = image_tag "lalaland.jpg"
+          = image_tag @movie.image
           .movie-actions.clearfix
             %a.post-review-btn
               =fa_icon "pencil", class: "fa-2x"
@@ -21,7 +21,7 @@
               =fa_icon "paperclip", class: "fa-2x fa-flip-horizontal"
               %p 1000
           .movie-detail__links--youtube
-            %a{href: `JavaScript: youtube_search("ラ・ラ・ランド", "予告")`}
+            %a{href: `JavaScript: youtube_search("#{@movie.title}", "予告")`}
               =fa_icon "youtube", class: "youtube-icon"
               %span 予告編を検索
           .sns-links
@@ -33,10 +33,10 @@
 
         .movie-detail__main
           %h2.movie-detail__title
-            %span ラ・ラ・ランド
+            %span #{@movie.title}
             %small
               （
-              =link_to "2016年", root_path
+              =link_to "#{@movie.production}", root_path
               製作の映画）
           .movie-detail__other-info
             %ul
@@ -45,7 +45,7 @@
                 製作国：
                 =link_to "アメリカ", root_path
                 ／
-              %li 上映時間：126分
+              %li 上映時間：#{@movie.time}分
           .movie-detail__genre
             %h3.movie-detail__genre-title
               ジャンル：
@@ -58,13 +58,7 @@
           .movie-detail__story
             %h3.movie-detail__story-term あらすじ
             %p.movie-detail__story-body
-              夢追い人が集まる街、ロサンゼルス。
-              映画スタジオのカフェで働くミア＜エマ・ストーン＞は女優を目指していたが、
-              何度オーディションを受けても落ちてばかり。
-              ある日、ミアは場末のバーでピアノを弾くセバスチャン＜ライアン・ゴズリング＞と出会う。
-              彼はいつか自分の店を持ち、本格的なジャズを思う存分演奏したいと願っていた。
-              やがて二人は恋におち、互いの夢を応援し合うが、
-              セバスチャンが生活のために加入したバンドが成功したことから二人の心はすれ違い始める……。
+              #{@movie.story}
           .movie-detail__people-list
             .movie-detail__people-list-others__wrapper.clearfix
               .movie-detail__people-list-others

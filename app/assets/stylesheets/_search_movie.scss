@@ -1,13 +1,16 @@
 .search-detail{
-  background-color: #fafafa;
   &__header{
+    min-width: 1000px;
     background-color: white;
-    padding: 16px 0;
     border-bottom: 1px solid #eee;
-    li{
-      float: left;
-      font-size: 12px;
-
+    padding: 16px;
+    &-index{
+      width: 1000px;
+      margin:auto;
+      li{
+        float: left;
+        font-size: 12px;
+      }
     }
     &-title{
       text-align: center;
@@ -15,6 +18,11 @@
       font-weight: 600;
       padding-top: 16px;
       color: #333;
+    }
+    &-info{
+      text-align: center;
+      padding-top: 16px;
+      font-size: 14px;
     }
   }
   .search-detail__body{
@@ -41,10 +49,17 @@
             .c-side-menu__items{
               border: 1px solid #eee;
               &_title{
-                padding: 14px 30px 14px 15px;
                 a{
                   color: #7e7e7e;
-                  line-height: 21px;
+                  line-height: 49px;
+                  display: block;
+                  height: 49px;
+                  width: 288px;
+                  padding: 0px 15px;
+                }
+                a:after{
+                  content: ">";
+                  float: right;
                 }
                 &.active{
                   background-color: #7e7e7e;
