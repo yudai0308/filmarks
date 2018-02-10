@@ -9,11 +9,10 @@ class ReviewsController < ApplicationController
     review = Review.new(review_params)
     review.save
     tag = Tag.new(tag_params)
-    tag.split(/\s*/)
-    tag.each do ||
+    # tag.split(/\s*/)
+    # tag.each do ||
     tag.save
-    # redirect_to movie_path(params[:movie_id])
-    render :js => "window.location = '/movies/#{params[:movie_id]}"
+    render :js => "window.location = '/movies/#{params[:movie_id]}'"
   end
 
   private
