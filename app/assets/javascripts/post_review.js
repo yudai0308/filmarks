@@ -2,7 +2,7 @@ $(function() {
   function buildReviewHTML(reviewURL) {
 
   var reviewHTML =
-     `<form class="post_review_form" action="/movies/153/reviews" method="POST">
+     `<form class="post_review_form">
         <div class="review-background"></div>
         <div class="review-window">
           <div class="review-editer__header"> レビュー </div>
@@ -105,9 +105,10 @@ $(function() {
   $(document).on("click", ".review-editer__botton--post", function(e) {
     e.preventDefault();
     var formData = new FormData($(".post_review_form").get()[0]);
+    var postURL = window.location.href + "/reviews"
 
     $.ajax({
-      url: "/movies/153/reviews",
+      url: postURL,
       type: "POST",
       data: formData,
       processData: false,

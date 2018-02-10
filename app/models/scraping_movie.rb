@@ -31,19 +31,17 @@ class Scraping_movie
   def self.get_urls(year)
     links = []
     agent = Mechanize.new
-    current_page = agent.get("https://filmarks.com/list/year/#{year}s?page=1")
-    elements = current_page.search(".p-movie-cassette__readmore")
+    current_page = agent.get("https://filmarks.com/list/year/#{year}s?page=1&view=poster")
+    elements = current_page.search(".c-movie-item")
     # 各映画のURLを取得
     elements.each do |ele|
-      links << ele.get_attribute("href")
+      links << ele.children.at("a")[:href]
     end
-    binding.pry
 
     # movie情報のスクレイピング
     links.each do |link|
       get_movie_info("https://filmarks.com" + link)
     end
-    binding.pry
 
     # member情報のスクレイピング
     links.each do |link|
@@ -55,16 +53,14 @@ class Scraping_movie
   def self.get_movie_info(link)
     agent = Mechanize.new
     page = agent.get(link)
-    binding.pry
 
     image = page.at(".c-movie__jacket img")[:src] if page.at(".c-movie__jacket img")[:src]
-    title = page.at(".p-movie-detail__title span").inner_text if page.at(".p-movie-detail__title span")
-    subtitle = page.at(".p-movie-detail__original").inner_text if page.at(".p-movie-detail__original")
-    production = page.at(".p-movie-detail__title small a").inner_text if page.at(".p-movie-detail__title small a")
-    release = get_release_or_time(link)
-    time = get_release_or_time(link)
-    story = page.at(".p-movie-detail__synopsis-desc").inner_text if page.at(".p-movie-detail__synopsis-desc")
-    binding.pry
+    title = page.at(".p-content-detail__title span").inner_text if page.at(".p-content-detail__title span")
+    subtitle = page.at(".p-content-detail__original").inner_text if page.at(".p-content-detail__original")
+    production = page.at(".p-content-detail__title small a").inner_text if page.at(".p-content-detail__title small a")
+    release = get_release(link) if get_release(link)
+    time = get_time(link) if get_time(link)
+    story = get_story(link) if get_story(link)
 
     movie = Movie.where(title:      title,
                         subtitle:   subtitle,
@@ -76,19 +72,27 @@ class Scraping_movie
     movie.save
   end
 
-  # release と time の情報所得と編集
-  def self.get_release_or_time(link)
+  # release の情報取得と編集
+  def self.get_release(link)
     agent = Mechanize.new
     page = agent.get(link)
-    class_name = "p-movie-detail__other-info-title"
-    more_infos = page.search(".#{class_name}")
+    more_infos = page.search(".p-content-detail__other-info-title")
     more_infos.each do |info|
-      if info.children.inner_text.include?("上映日")
+      if info.children.text.match(/^上映日.*/)
         release = info.children.inner_text
         edited_release = release.gsub(/上映日：|年|月|日/, "上映日：" => "", "年" => "-", "月" => "-", "日" => "")
         return edited_release
       end
-      if info.children.inner_text.include?("上映時間")
+    end
+  end
+
+  # time の情報取得と編集
+  def self.get_time(link)
+    agent = Mechanize.new
+    page = agent.get(link)
+    more_infos = page.search(".p-content-detail__other-info-title")
+    more_infos.each do |info|
+      if info.inner_text.match(/^上映時間.*/)
         time = info.children.inner_text
         edited_time = time.gsub(/上映時間：|分/, "上映時間：" => "", "分" => "")
         return edited_time
@@ -96,23 +100,38 @@ class Scraping_movie
     end
   end
 
+  # story 情報の取得
+  def self.get_story(link)
+    agent = Mechanize.new
+    page = agent.get(link)
+    storys = page.search(".p-content-detail__synopsis-desc")
+    if storys[1]
+      return storys.children.text
+      exit
+    elsif storys
+      return storys.children.text
+    else
+      return nil
+    end
+  end
+
   # 監督、脚本のスクレイピング
   def self.get_movie_members(link)
     agent = Mechanize.new
     page = agent.get(link)
-    member_first = page.search(".p-movie-detail__people-list-others")
+    member_first = page.search(".p-content-detail__people-list-others")
 
     member_first.each do |mem|
-      case mem.search(".p-movie-detail__people-list-term").inner_text
+      case mem.search(".p-content-detail__people-list-term").inner_text
       when "監督" then
-        directors = mem.search(".p-movie-detail__people-list-desc")
+        directors = mem.search(".p-content-detail__people-list-desc")
         directors.each do |director|
           director_name = director.search(".c-label").inner_text if director.search(".c-label")
           member = Member.where(status: "0", name: director_name).first_or_initialize
           member.save
         end
       when "脚本" then
-        wrighters = mem.search(".p-movie-detail__people-list-desc")
+        wrighters = mem.search(".p-content-detail__people-list-desc")
         wrighters.each do |wrighter|
           wrighter_name = wrighter.search(".c-label").inner_text if wrighter.search(".c-label")
           member = Member.where(status: "1", name: wrighter_name).first_or_initialize
@@ -122,8 +141,8 @@ class Scraping_movie
     end
 
     # キャストのスクレイピング
-    member_second = page.search(".p-movie-detail__people-list-casts")
-    casts = member_second.search(".p-movie-detail__people-list-desc")
+    member_second = page.search(".p-content-detail__people-list-casts")
+    casts = member_second.search(".p-content-detail__people-list-desc")
 
     casts.each do |cast|
       cast_name = cast.search(".c-label").inner_text if cast.search(".c-label").inner_text
