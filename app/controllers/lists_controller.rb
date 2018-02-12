@@ -17,6 +17,7 @@ class ListsController < ApplicationController
   end
 
   def country
+
   end
 
   def genre
@@ -39,4 +40,7 @@ class ListsController < ApplicationController
     @movies_product = Movie.group(:time)
     @movies_rental = @movies_trend  = Movie.order("RAND()").limit(3)
   end
+  def user
+  end
+
 end
