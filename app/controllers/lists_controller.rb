@@ -17,7 +17,7 @@ class ListsController < ApplicationController
   end
 
   def country
-
+    @countries = Country.all
   end
 
   def genre

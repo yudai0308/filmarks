@@ -1,0 +1,30 @@
+.search-detail
+  .search-detail__wrapper
+    .search-detail__header
+      .search-detail__header-index.clearfix
+        %ul.top-navi
+          %li
+            = link_to "Filmarks映画情報", root_path
+          %li
+            &nbsp;>&nbsp;&nbsp;
+          %li
+            映画製作国
+      .search-detail__header-title
+        %p.title__heading 映画製作国一覧
+        %p.title__heading-sub
+          製作国別に映画作品を探せます。邦画・洋画だけでなく、中国映画・韓国映画・インド映画などのアジア映画、フランス映画・イタリア映画・ドイツ映画などのヨーロッパ映画や北欧映画まで。
+    .search-detail__body
+      .search-detail__body-main.clearfix
+        .contents-block
+          .contents-block__title
+            =link_to country_lists_path do
+              %span 製作国
+          .contents-block__content
+            .contents-block__content-category.clearfix
+              %ul.countries-lists.clearfix
+              - @countries.each do |country|
+                .countries-list
+                  = link_to lists_country_path(country.id) do
+                    %li.countries-list-name
+                      %span
+                        = country.name
