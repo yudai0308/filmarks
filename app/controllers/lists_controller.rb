@@ -32,6 +32,7 @@ class ListsController < ApplicationController
   end
 
   def award
+    @awards = Award.group(:name).order('id ASC').pluck(:name)
   end
 
   def index
