@@ -25,3 +25,22 @@ $(function(){
     }
   });
 });
+$(function() {
+  $('.category-list__hidden').on('click', function() {
+    var target_hidden = $(this).prevAll('.hidden');
+    var target_open = $(this).prevAll('.open');
+    var btn_class = $(this).attr('class');
+    var target = $(this).prevAll()
+    if (btn_class == 'category-list__hidden readmore arrow-down'){
+      $(this).removeClass('readmore').addClass('close');
+      $(this).removeClass('arrow-down').addClass('arrow-up');
+      $(this).text('閉じる');
+      $(target_hidden).removeClass('hidden').addClass('open')
+    }else{
+      $(this).removeClass('close').addClass('readmore');
+      $(this).text('もっと見る');
+      $(target_open).removeClass('open').addClass('hidden')
+      $(this).removeClass('arrow-up').addClass('arrow-down');
+    }
+  });
+});
