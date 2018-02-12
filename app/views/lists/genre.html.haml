@@ -1,0 +1,30 @@
+.search-detail
+  .search-detail__wrapper
+    .search-detail__header
+      .search-detail__header-index.clearfix
+        %ul.top-navi
+          %li
+            = link_to "Filmarks映画情報", root_path
+          %li
+            &nbsp;>&nbsp;&nbsp;
+          %li
+            映画ジャンル
+      .search-detail__header-title
+        %p.title__heading 映画製作国一覧
+        %p.title__heading-sub
+          製作国別に映画作品を探せます。邦画・洋画だけでなく、中国映画・韓国映画・ジャンル別に映画作品を探せます。ドラマ、サスペンス、コメディ、ホラー、SF、恋愛、アニメなどの人気ジャンルから、ドキュメンタリー、時代劇、ミュージカルといったシブめジャンルまで、77445作品から探せます。
+    .search-detail__body
+      .search-detail__body-main.clearfix
+        .contents-block
+          .contents-block__title
+            =link_to genre_lists_path do
+              %span ジャンル
+          .contents-block__content
+            .contents-block__content-category.clearfix
+              %ul.genre-lists
+              - @genres.each do |genre|
+                = link_to lists_genre_path(genre.id) do
+                  %li.genre-list-name
+                    %span
+                      = genre.name
+      = render partial: "share/barnner_contents"

@@ -21,9 +21,11 @@ class ListsController < ApplicationController
   end
 
   def genre
+    @genres = Genre.all
   end
 
   def year
+    @movies_age = Movie.group(:time).order('time DESC')
   end
 
   def tag
