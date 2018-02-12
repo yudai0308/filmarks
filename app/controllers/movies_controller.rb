@@ -9,11 +9,9 @@ class MoviesController < ApplicationController
 
   def search
     if params[:button] == "user"
-# Viewが出来たら変更↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
       @users_count = User.where('nickname LIKE(?)', "%#{params[:keyword]}%").count
-      @users = User.where('nickname LIKE(?)', "%#{params[:keyword]}%").page(params[:page]).per(3)
+      @users = User.where('nickname LIKE(?)', "%#{params[:keyword]}%").page(params[:page]).per(24)
       render action:'search_user'
-#↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
     elsif params[:button] == "cast"
       @casts_count = Member.where('name LIKE(?)', "%#{params[:keyword]}%").count
       @casts = Member.where('name LIKE(?)', "%#{params[:keyword]}%").page(params[:page]).per(24)
