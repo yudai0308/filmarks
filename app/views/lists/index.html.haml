@@ -104,38 +104,220 @@
           .contents-block__title
             =link_to country_lists_path do
               %span 製作国
-          .contents-block__content.clearfix
-            .contents-block__content-category
-              %ul.countries-lists
+          .contents-block__content
+            .contents-block__content-category.clearfix
+              %ul.countries-lists.clearfix
+              - i = 0
               - @countries.each do |country|
-                = link_to lists_country_path(country.id) do
-                  %li.countries-lists-name
-                    %span
-                      = country.name
+                - if i <= 15
+                  .countries-list
+                    = link_to lists_country_path(country.id) do
+                      %li.countries-list-name
+                        %span
+                          = country.name
+                - else
+                  .countries-list.hidden
+                    = link_to lists_country_path(country.id) do
+                      %li.countries-list-name
+                        %span
+                          = country.name
+                - i = i + 1
+              .category-list__hidden.readmore.arrow-down
+                もっと見る
         .contents-block
           .contents-block__title
             =link_to genre_lists_path do
               %span ジャンル
-          .contents-block__content.clearfix
-            .contents-block__content-category
+          .contents-block__content
+            .contents-block__content-category.clearfix
+              %ul.genre-lists
               - @genres.each do |genre|
-                %ul.genre-lists
-                  = link_to lists_genre_path(genre.id) do
-                    %li.genre-lists-name
-                      %span
-                        = genre.name
+                = link_to lists_genre_path(genre.id) do
+                  %li.genre-list-name
+                    %span
+                      = genre.name
         .contents-block
           .contents-block__title
             =link_to  do
               %span 映画賞
-          .contents-block__content.clearfix
-            .contents-block__content-category
+          .contents-block__content
+            .contents-block__content-category.clearfix
+              %ul.award-lists
+              -i = 0
               - @awards.each do |award|
-                %ul.award-lists
-                  = link_to  do
-                    %li.award-lists-name
-                      %span
-                        = award.name
-
-
-
+                - if i <= 9
+                  .award-list
+                    = link_to  do
+                      %li.award-list-name
+                        %span
+                          = award.name
+                - else
+                  .award-list.hidden
+                    = link_to  do
+                      %li.award-list-name
+                        %span
+                          = award.name
+                - i = i +1
+              .category-list__hidden.readmore.arrow-down
+                もっと見る
+        .contents-block
+          .contents-block__title
+            =link_to  do
+              %span 制作年
+          .contents-block__content
+            .contents-block__content-category.clearfix
+              %dl.category__year
+                .category__year-list.clearfix
+                  %dt
+                    = link_to do
+                      %span 2020年代
+                  %dd
+                    - 5.downto(0) do |num|
+                      = link_to do
+                        %span #{2020 + num}年
+                .category__year-list.clearfix
+                  %dt
+                    = link_to do
+                      %span 2010年代
+                  %dd
+                    - 9.downto(0) do |num|
+                      = link_to do
+                        %span #{2010 + num}年
+                .category__year-list.clearfix
+                  %dt
+                    = link_to do
+                      %span 2000年代
+                  %dd
+                    - 9.downto(0) do |num|
+                      = link_to do
+                        %span #{2000 + num}年
+                .category__year-list.hidden.clearfix
+                  %dt
+                    = link_to do
+                      %span 1990年代
+                  %dd
+                    - 9.downto(0) do |num|
+                      = link_to do
+                        %span #{1990 + num}年
+                .category__year-list.hidden.clearfix
+                  %dt
+                    = link_to do
+                      %span 1980年代
+                  %dd
+                    - 9.downto(0) do |num|
+                      = link_to do
+                        %span #{ 1980 + num}年
+                .category__year-list.hidden.clearfix
+                  %dt
+                    = link_to do
+                      %span 1970年代
+                  %dd
+                    - 9.downto(0) do |num|
+                      = link_to do
+                        %span #{ 1970 + num}年
+                .category__year-list.hidden.clearfix
+                  %dt
+                    = link_to do
+                      %span 1960年代
+                  %dd
+                    - 9.downto(0) do |num|
+                      = link_to do
+                        %span #{ 1960 + num}年
+                .category__year-list.hidden.clearfix
+                  %dt
+                    = link_to do
+                      %span 1950年代
+                  %dd
+                    - 9.downto(0) do |num|
+                      = link_to do
+                        %span #{ 1950 + num}年
+                .category__year-list.hidden.clearfix
+                  %dt
+                    = link_to do
+                      %span 1940年代
+                  %dd
+                    - 9.downto(0) do |num|
+                      = link_to do
+                        %span #{ 1940 + num}年
+                .category__year-list.hidden.clearfix
+                  %dt
+                    = link_to do
+                      %span 1930年代
+                  %dd
+                    - 9.downto(0) do |num|
+                      = link_to do
+                        %span #{ 1930 + num}年
+                .category__year-list.hidden.clearfix
+                  %dt
+                    = link_to do
+                      %span 1920年代
+                  %dd
+                    - 9.downto(0) do |num|
+                      = link_to do
+                        %span #{ 1920 + num}年
+                .category__year-list.hidden.clearfix
+                  %dt
+                    = link_to do
+                      %span 1910年代
+                  %dd
+                    - 9.downto(0) do |num|
+                      = link_to do
+                        %span #{ 1910 + num}年
+                .category__year-list.hidden.clearfix
+                  %dt
+                    = link_to do
+                      %span 1900年代
+                  %dd
+                    - 9.downto(0) do |num|
+                      = link_to do
+                        %span #{ 1900 + num}年
+                .category-list__hidden.readmore.arrow-down
+                  もっと見る
+        .contents-block-sub
+          .contents-block__title
+            =link_to do
+              %span 新作レンタル
+          .contents-block__content
+            .contents-block__content-category.clearfix
+              - @movies_rental.each do |movie|
+                =link_to movie_path(movie.id) do
+                  .contents-block__image__list
+                    = image_tag "#{ movie.image }", alt: "#{ movie.title }", width: "90px", height: "120px"
+          .contents-block-sub__link
+            .contents-block-sub__link-btn
+              =link_to "もっと見る　>"
+        .contents-block-sub.margin
+          .contents-block__title
+            =link_to do
+              %span レンタル予定の映画
+          .contents-block__content
+            .contents-block__content-category.clearfix
+              - @movies_rental.each do |movie|
+                =link_to movie_path(movie.id) do
+                  .contents-block__image__list
+                    = image_tag "#{ movie.image }", alt: "#{ movie.title }", width: "90px", height: "120px"
+          .contents-block-sub__link
+            .contents-block-sub__link-btn
+              =link_to "もっと見る　>"
+        .contents-block-sub.margin
+          .contents-block__title
+            =link_to do
+              %span #タグ
+          .contents-block__content
+            .contents-block__content-category
+              = link_to  do
+                .tag-list
+                  %span
+                    = '#映画'
+              = link_to  do
+                .tag-list
+                  %span
+                    = '#記録'
+              = link_to  do
+                .tag-list
+                  %span
+                    = '#DVD'
+          .contents-block-sub__link
+            .contents-block-sub__link-btn
+              =link_to "もっと見る　>"
+      = render partial: "share/barnner_contents"
