@@ -23,6 +23,7 @@ Rails.application.routes.draw do
       get "tag"
       get "index"
       get "user"
+      get "award"
     end
     resources :countrys, only: [:show]
     resources :genres, only: [:show]
