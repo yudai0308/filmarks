@@ -31,7 +31,7 @@
                       %dd
                         - award_lists = Award.where(name: award)
                         - award_lists.each do |list|
-                          = link_to do
+                          = link_to lists_year_path(list.id) do
                             %span
                               = list.subname
       = render partial: "share/barnner_contents"
