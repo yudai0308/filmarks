@@ -17,15 +17,22 @@ class ListsController < ApplicationController
   end
 
   def country
+    @countries = Country.all
   end
 
   def genre
+    @genres = Genre.all
   end
 
   def year
+    @movies_age = Movie.group(:time).order('time DESC')
   end
 
   def tag
+  end
+
+  def award
+    @awards = Award.group(:name).order('id ASC').pluck(:name)
   end
 
   def index
@@ -36,7 +43,12 @@ class ListsController < ApplicationController
     @countries = Country.all
     @genres = Genre.all
     @awards = Award.group(:name)
-    @movies_product = Movie.group(:time)
-    @movies_rental = @movies_trend  = Movie.order("RAND()").limit(3)
+    @movies_age = Movie.group(:time).order('time DESC')
+    @movies_rental = Movie.order("RAND()").limit(3)
   end
+  def user
+    # ↓フォロワー数で取得？
+    @users = User.all.limit(50)
+  end
+
 end

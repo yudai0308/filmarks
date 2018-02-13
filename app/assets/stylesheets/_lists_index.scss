@@ -242,6 +242,33 @@
     left: -15px;
     margin-top: -4px;
   }
-
+  .category__award-list{
+    border-bottom: 1px solid #eee;
+    span:hover{
+    border-bottom: 1px solid black;
+    }
+    dt{
+      margin: auto 0;
+      float: left;
+      clear:both;
+      width: 250px;
+      padding: 12px 0;
+      a{
+        color: black;
+      }
+    }
+    dd{
+      float: left;
+      width: 713px;
+      border-left: 1px solid #eee;
+      a{
+        width: 300px;
+        padding: 12px;
+        display: block;
+        float: left;
+        color: black;
+      }
+    }
+  }
 }
 

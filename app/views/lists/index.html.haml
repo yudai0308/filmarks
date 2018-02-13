@@ -138,7 +138,7 @@
                       = genre.name
         .contents-block
           .contents-block__title
-            =link_to  do
+            =link_to award_lists_path do
               %span 映画賞
           .contents-block__content
             .contents-block__content-category.clearfix
@@ -162,115 +162,41 @@
                 もっと見る
         .contents-block
           .contents-block__title
-            =link_to  do
-              %span 制作年
+            =link_to year_lists_path do
+              %span 製作年
           .contents-block__content
             .contents-block__content-category.clearfix
               %dl.category__year
-                .category__year-list.clearfix
-                  %dt
-                    = link_to do
-                      %span 2020年代
-                  %dd
-                    - 5.downto(0) do |num|
-                      = link_to do
-                        %span #{2020 + num}年
-                .category__year-list.clearfix
-                  %dt
-                    = link_to do
-                      %span 2010年代
-                  %dd
-                    - 9.downto(0) do |num|
-                      = link_to do
-                        %span #{2010 + num}年
-                .category__year-list.clearfix
-                  %dt
-                    = link_to do
-                      %span 2000年代
-                  %dd
-                    - 9.downto(0) do |num|
-                      = link_to do
-                        %span #{2000 + num}年
-                .category__year-list.hidden.clearfix
-                  %dt
-                    = link_to do
-                      %span 1990年代
-                  %dd
-                    - 9.downto(0) do |num|
-                      = link_to do
-                        %span #{1990 + num}年
-                .category__year-list.hidden.clearfix
-                  %dt
-                    = link_to do
-                      %span 1980年代
-                  %dd
-                    - 9.downto(0) do |num|
-                      = link_to do
-                        %span #{ 1980 + num}年
-                .category__year-list.hidden.clearfix
-                  %dt
-                    = link_to do
-                      %span 1970年代
-                  %dd
-                    - 9.downto(0) do |num|
-                      = link_to do
-                        %span #{ 1970 + num}年
-                .category__year-list.hidden.clearfix
-                  %dt
-                    = link_to do
-                      %span 1960年代
-                  %dd
-                    - 9.downto(0) do |num|
-                      = link_to do
-                        %span #{ 1960 + num}年
-                .category__year-list.hidden.clearfix
-                  %dt
-                    = link_to do
-                      %span 1950年代
-                  %dd
-                    - 9.downto(0) do |num|
-                      = link_to do
-                        %span #{ 1950 + num}年
-                .category__year-list.hidden.clearfix
-                  %dt
-                    = link_to do
-                      %span 1940年代
-                  %dd
-                    - 9.downto(0) do |num|
-                      = link_to do
-                        %span #{ 1940 + num}年
-                .category__year-list.hidden.clearfix
-                  %dt
-                    = link_to do
-                      %span 1930年代
-                  %dd
-                    - 9.downto(0) do |num|
-                      = link_to do
-                        %span #{ 1930 + num}年
-                .category__year-list.hidden.clearfix
-                  %dt
-                    = link_to do
-                      %span 1920年代
-                  %dd
-                    - 9.downto(0) do |num|
-                      = link_to do
-                        %span #{ 1920 + num}年
-                .category__year-list.hidden.clearfix
-                  %dt
-                    = link_to do
-                      %span 1910年代
-                  %dd
-                    - 9.downto(0) do |num|
-                      = link_to do
-                        %span #{ 1910 + num}年
-                .category__year-list.hidden.clearfix
-                  %dt
-                    = link_to do
-                      %span 1900年代
-                  %dd
-                    - 9.downto(0) do |num|
-                      = link_to do
-                        %span #{ 1900 + num}年
+                - age_first = (@movies_age.first.time/10.to_f).floor*10
+                - age_last = (@movies_age.last.time/10.to_f).floor*10
+                - list_count = 0
+                - age_first.step age_last,-10 do |num|
+                  - movies = Movie.where("time >= ?", num).where("time < ?", num + 10)
+                  - years = movies.group(:time).order('time DESC')
+                  - if movies.count != 0
+                    - if list_count <= 3
+                      .category__year-list.clearfix
+                        %dt
+                          = link_to do
+                            %span
+                              = "#{ num }年代"
+                        %dd
+                          - years.each do |year|
+                            = link_to do
+                              %span
+                                = "#{ year.time }年"
+                    - else
+                      .category__year-list.hidden.clearfix
+                        %dt
+                          = link_to do
+                            %span
+                              = "#{ num }年代"
+                        %dd
+                          - years.each do |year|
+                            = link_to do
+                              %span
+                                = "#{ year.time }年"
+                    - list_count = list_count + 1
                 .category-list__hidden.readmore.arrow-down
                   もっと見る
         .contents-block-sub

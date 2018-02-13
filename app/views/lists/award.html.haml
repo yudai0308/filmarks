@@ -1,0 +1,37 @@
+.search-detail
+  .search-detail__wrapper
+    .search-detail__header
+      .search-detail__header-index.clearfix
+        %ul.top-navi
+          %li
+            = link_to "Filmarks映画情報", root_path
+          %li
+            &nbsp;>&nbsp;&nbsp;
+          %li
+            映画賞・映画祭
+      .search-detail__header-title
+        %p.title__heading 映画賞・映画祭一覧
+        %p.title__heading-sub
+          アカデミー賞、日本アカデミー賞、ゴールデングローブ賞、東京国際映画祭、世界三大映画祭（カンヌ国際映画祭・ヴェネチア国際映画祭・ベルリン国際映画祭）、サンダンス国際映画祭、トロント国際映画際など、世界各国の映画賞・映画祭の受賞作品を受賞歴や各部門から探せます。
+    .search-detail__body
+      .search-detail__body-main.clearfix
+        .contents-block
+          .contents-block__title
+            =link_to award_lists_path do
+              %span 映画賞
+          .contents-block__content
+            .contents-block__content-category.clearfix
+              %dl.category__award
+                - @awards.each do |award|
+                  .category__award-list.clearfix
+                    %dt
+                      = link_to do
+                        %span
+                          = "#{ award }"
+                      %dd
+                        - award_lists = Award.where(name: award)
+                        - award_lists.each do |list|
+                          = link_to lists_year_path(list.id) do
+                            %span
+                              = list.subname
+      = render partial: "share/barnner_contents"
