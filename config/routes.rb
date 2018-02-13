@@ -30,4 +30,7 @@ Rails.application.routes.draw do
     resources :years, only: [:show]
     resources :tags, only: [:show]
   end
+  resources :users do
+    resources :relationships , only: [:create, :destroy]
+  end
 end
