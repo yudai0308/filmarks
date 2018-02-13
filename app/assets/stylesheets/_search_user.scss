@@ -66,9 +66,21 @@
           opacity: 0.5;
         }
       }
-      &__btn:hover{
-        float: left;
-        opacity: 0.5;
+      &__btn{
+          float: left;
+        &:hover{
+          opacity: 0.5;
+        }
+        &.follow-btn{
+          width: 106px;
+          height: 36px;
+          background-image: url('btn_following.svg');
+        }
+        &.unfollow-btn{
+          width: 106px;
+          height: 36px;
+          background-image: url('btn_follow.svg');
+        }
       }
       .fun__btn{
         float:left;
