@@ -17,9 +17,14 @@
             %a.post-review-btn
               =fa_icon "pencil", class: "fa-2x"
               %p 1000
-            %a.clip-movie-btn
-              =fa_icon "paperclip", class: "fa-2x fa-flip-horizontal"
-              %p 1000
+            - if @movie.clip_user(current_user.id)
+              = link_to "#", class: "clip-movie-btn1", "data-clip-id": "#{@movie.id}", "data-clip-url": "/movies/#{@movie.id}/clips/#{@clip.id}" do
+                =fa_icon "paperclip", class: "fa-2x fa-flip-horizontal"
+                %p #{@movie.users.length}
+            - else
+              = link_to "#", class: "clip-movie-btn2", "data-clip-id": "#{@movie.id}", "data-clip-url": "/movies/#{@movie.id}/clips" do
+                =fa_icon "paperclip", class: "fa-2x fa-flip-horizontal"
+                %p #{@movie.users.length}
           .movie-detail__links--youtube
             %a{href: `JavaScript: youtube_search("#{@movie.title}", "予告")`}
               =fa_icon "youtube", class: "youtube-icon"
