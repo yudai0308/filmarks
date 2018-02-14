@@ -12,4 +12,9 @@ class Movie < ApplicationRecord
   has_many :movies_awards, dependent: :destroy
 
   validates :title, presence: true
+
+  def clip_user(user_id)
+   clips.find_by(user_id: user_id)
+  end
+
 end

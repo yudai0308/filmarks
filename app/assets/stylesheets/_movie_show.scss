@@ -50,7 +50,22 @@
             }
           }
 
-          .clip-movie-btn {
+          .clip-movie-btn1 {
+            background-color: #ffe100;
+            color: #1C1C1C;
+            width: 129px;
+            height: 65px;
+            margin-left: 1px;
+            border-radius: 4px;
+            text-align:center;
+            cursor: pointer;
+            float: left;
+
+            .fa-paperclip {
+              margin-top: 5px;
+            }
+          }
+          .clip-movie-btn2 {
             background-color: #ffe100;
             color: #1C1C1C;
             width: 129px;
