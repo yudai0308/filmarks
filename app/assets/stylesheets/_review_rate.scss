@@ -2,9 +2,13 @@ $maxWidth: 160px;
 $starUnit: $maxWidth / 50;
 $starHeight: 30px;
 
-.review-rate__wrapper {
-  width: $maxWidth;
-  height: $starHeight;
+.review-rate-ave {
+  position: relative;
+  color: #ffa500;
+  font-size: 30px;
+  font-weight: 900;
+  margin-left: 10px;
+  bottom: 3px;
 }
 
 .rate {

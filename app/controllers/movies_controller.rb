@@ -5,6 +5,7 @@ class MoviesController < ApplicationController
 
   def show
     @movie = Movie.find(params[:id])
+    @reviews = @movie.reviews
     @clip = Clip.find_by(movie_id: params[:id], user_id: current_user.id)
   end
 
