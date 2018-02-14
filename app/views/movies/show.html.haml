@@ -59,8 +59,7 @@
                 %li=link_to "恋愛", root_path
                 %li 、
                 %li=link_to "ミュージカル", root_path
-            .movie-detail__review-rate{"data-review-rate": "40"}
-            -# 実際のレートは変数０〜５０を代入  変数によって星の数が変わる
+            .movie-detail__review-rate{"data-review-rate": "#{@review_ave}"}
             .movie-detail__story
               %h3.movie-detail__story-term あらすじ
               %p.movie-detail__story-body

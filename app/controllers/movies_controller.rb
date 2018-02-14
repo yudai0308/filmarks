@@ -6,6 +6,15 @@ class MoviesController < ApplicationController
   def show
     @movie = Movie.find(params[:id])
     @reviews = @movie.reviews
+    # --- 平均値を求める処理 ---
+    reviews_array = []
+    @reviews.each do |review|
+      reviews_array << review[:score]
+    end
+    reviews_count = reviews_array.length
+    reviews_sum = reviews_array.sum
+    @review_ave = reviews_sum / reviews_count
+
     @clip = Clip.find_by(movie_id: params[:id], user_id: current_user.id)
   end
 
