@@ -47,10 +47,10 @@
               .user__lists-content-follow.clearfix
                 .user__lists-content-follow__info
                   %p.info-name followers
-                  %p.info-count #{ user.followers.count }
+                  %p.info-count{id:"followers-count_userid#{user.id}"} #{ user.followers.count }
                 .user__lists-content-follow__info
                   %p.info-name followings
-                  %p.info-count #{ user.following.count }
+                  %p.info-count{id:"followings-count_userid#{user.id}"}  #{ user.following.count }
                 - if user != current_user
                   .user__lists-content-follow__block
                     = link_to href: "" do
