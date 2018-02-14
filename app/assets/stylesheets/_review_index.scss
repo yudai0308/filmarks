@@ -6,7 +6,6 @@
 
     .review-content__body {
       width: 640px;
-      height: 2000px;
       float: left;
 
       .review-content__header {
@@ -45,7 +44,6 @@
       }
       .review-content__main {
         width: 640px;
-        height: 1000px;
 
         .mark-card {
           background-color: #fff;
@@ -138,13 +136,19 @@
         }
       }
       .review-content__pagenate {
+        background-color: #fff;
+        border: 1px solid #eee;
+        width: 640px;
+        height: 50px;
+        text-align: center;
+        line-height: 50px;
       }
     }
 
     .review-content__side {
       background-color: #CECEF6;
       width: 320px;
-      height: 2000px;
+      height: 800px;
       margin-left: 40px;
       float: left;
 

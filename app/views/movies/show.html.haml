@@ -107,6 +107,7 @@
           -@reviews.each do |review|
             =render partial:"reviews/index", locals: {review: review}
         .review-content__pagenate
+          =paginate(@reviews)
       .review-content__side
         .review-content__recomend
 
