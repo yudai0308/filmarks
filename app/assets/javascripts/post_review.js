@@ -78,12 +78,14 @@ $(function() {
   });
 
   // ----- フォーカスが外れた時、全てのタグに # をつける -----
-  $(document).on("blur", ".review-editer__tags-input", function() {
+  $(document).on("keydown", ".review-editer__tags-input", function() {
     var tags = $(".review-editer__tags-input").val().replace(/　/g, " ").split(" ");
+    console.log(tags);
     var tagsWithSharp = tags.map(function(ele) {
       if(ele.match(/^#+.*/)) {
-        ele.replace(/^#+(.*)/, "@")
+        ele = ele.replace(/^#+(.*)/, "$1")
       }
+      console.log(ele);
       return "#" + ele
     });
     var tagsToString = tagsWithSharp.join(" ");

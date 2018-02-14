@@ -17,7 +17,7 @@
             .movie-actions.clearfix
               %a.post-review-btn
                 =fa_icon "pencil", class: "fa-2x"
-                %p 1000
+                %p #{@movie.reviews.length}
               - if @movie.clip_user(current_user.id)
                 = link_to "#", class: "clip-movie-btn1", "data-clip-id": "#{@movie.id}", "data-clip-url": "/movies/#{@movie.id}/clips/#{@clip.id}" do
                   =fa_icon "paperclip", class: "fa-2x fa-flip-horizontal"
