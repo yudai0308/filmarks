@@ -1,0 +1,44 @@
+$maxWidthSmall: 90px;
+$starUnitSmall: $maxWidthSmall / 50;
+$starHeightSmall: 15px;
+
+.user-review-rate__wrapper {
+  width: $maxWidthSmall;
+  height: $starHeightSmall;
+}
+
+.user-rate {
+  position: relative;
+  display: inline-block;
+  width: $maxWidthSmall;
+  height: $starHeightSmall;
+  font-size: $starHeightSmall;
+  &:before, &:after {
+    top: 0;
+    left: 0;
+    position: absolute;
+    display: inline-block;
+    height: $starHeightSmall;
+    line-height: $starHeightSmall;
+  }
+  &:before {
+    color: #ddd;
+    font-family: FontAwesome;
+    content: "\f005 \f005 \f005 \f005 \f005";
+    letter-spacing: 5px;
+  }
+  &:after {
+    color: #ffa500;
+    overflow: hidden;
+    white-space: nowrap;
+    font-family: FontAwesome;
+    content: "\f005 \f005 \f005 \f005 \f005";
+    letter-spacing: 5px;
+  }
+}
+
+@for $i from 0 through 50 {
+  .user-rate-#{$i}:after {
+    width: $starUnitSmall * $i;
+  }
+}
