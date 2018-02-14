@@ -93,4 +93,27 @@
                   %iframe{width: "360", height: "200", src: "https://www.youtube.com/embed/tlyqz57sHgM", frameborder: "0", allow: "autoplay; encrypted-media"}
 
   .movie-detail__low-content
-    =render partial:"reviews/index", locals: {movie: @movie, reviews: @reviews}
+    .review-content__wrapper.clearfix
+      .review-content__body
+        .review-content__header
+          .review-content__header-title
+            =fa_icon "user"
+            「#{@movie.title}」に投稿された感想・評価
+          .review-content__header-status
+            %ul.review-content__header-status__list
+              %li=link_to "全ての感想・評価"
+              %li=link_to "ネタバレなし"
+              %li=link_to "ネタバレ"
+        .review-content__main
+          -@reviews.each do |review|
+            =render partial:"reviews/index", locals: {review: review}
+        .review-content__pagenate
+      .review-content__side
+        .review-content__recomend
+
+
+
+
+
+
+

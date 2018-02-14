@@ -2,9 +2,12 @@ $maxWidthSmall: 90px;
 $starUnitSmall: $maxWidthSmall / 50;
 $starHeightSmall: 15px;
 
-.user-review-rate__wrapper {
-  width: $maxWidthSmall;
-  height: $starHeightSmall;
+.user-review-rate-ave {
+  position: relative;
+  color: #ffa500;
+  font-size: 18px;
+  font-weight: 500;
+  margin-left: 5px;
 }
 
 .user-rate {

@@ -1,41 +1,24 @@
-.review-content__wrapper.clearfix
-  .review-content__body
-    .review-content__header
-      .review-content__header-title
-        =fa_icon "user"
-        「#{movie.title}」に投稿された感想・評価
-      .review-content__header-status
-        %ul.review-content__header-status__list
-          %li=link_to "全ての感想・評価"
-          %li=link_to "ネタバレなし"
-          %li=link_to "ネタバレ"
-    .review-content__main
-      -reviews.each do |review|
-        .mark-card
-          .mark-card__header.clearfix
-            .user-image
-              =link_to do
-                =image_tag("no_image", size: "50x50")
-            .review-infos
-              =link_to "#{review.user.nickname}の感想・評価"
-              %time.review-date{datetime: "#{review.created_at}"} #{review.created_at}
-              .user-review-rate__wrapper.clearfix
-                .user-review-rate__star{"data-review-rate": "review.score"}
-                .user-review-rate__ave
-                  %span #{review.score / 10}
-          .mark-card__body
-            #{review.comment}
-          .mark-card__reactions
-            .reactions__button.reactions__button--likes
-              =link_to do
-                =fa_icon "heart"
-                %p いいね！
-              %span 0
-            .reactions__button.reactions__button--comment
-              =link_to do
-                =fa_icon "comment"
-                %p コメントする
-              %span 0
-    .review-content__pagenate
-  .review-content__side
-    .review-content__recomentd
+.mark-card
+  .mark-card__header.clearfix
+    .user-image
+      =link_to do
+        =image_tag("img_people-placehold", size: "50x50")
+    .review-infos
+      =link_to "#{review.user.nickname}の感想・評価"
+      %time.review-date{datetime: "#{review.created_at}"} #{review.created_at}
+      .user-review-rate{"data-review-rate": "#{review.score}"}
+        %span{class: "user-rate user-rate-#{review.score}"}
+        %spna{class: "user-review-rate-ave"} #{review.score / 10}
+  .mark-card__body
+    #{review.comment}
+  .mark-card__reactions
+    .reactions__button.reactions__button--likes
+      =link_to do
+        =fa_icon "heart"
+        %p いいね！
+      %span 0
+    .reactions__button.reactions__button--comment
+      =link_to do
+        =fa_icon "comment"
+        %p コメントする
+      %span 0

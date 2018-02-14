@@ -4,4 +4,4 @@ $(function() {
   var htmlStar = `<span class="rate rate-${starCount}"></span>
                   <span class="review-rate-ave">${starCountToF}</span>`
   $(".movie-detail__review-rate").append(htmlStar)
-})
+});

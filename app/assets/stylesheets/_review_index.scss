@@ -78,23 +78,10 @@
               & time {
                 font-size: 12px;
               }
-              .user-review-rate__wrapper {
-                width: 110px;
+              .user-review-rate {
+                width: 528px;
                 height: 30px;
                 line-height: 30px;
-
-                .user-review-rate__star {
-                  float: left;
-                }
-                .user-review-rate__ave {
-                  color: #ffd400;
-                  width: 15px;
-                  height: 30px;
-                  font-size: 20px;
-                  font-weight: 600;
-                  margin-left: 5px;
-                  float: left;
-                }
               }
             }
           }
