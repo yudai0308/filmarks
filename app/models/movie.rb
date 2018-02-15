@@ -12,6 +12,10 @@ class Movie < ApplicationRecord
   has_many :movies_awards, dependent: :destroy, foreign_key: true
 
   validates :title, presence: true
+  accepts_nested_attributes_for :movies_members, allow_destroy: true
+  accepts_nested_attributes_for :movies_countrys, allow_destroy: true
+  accepts_nested_attributes_for :movies_genres, allow_destroy: true
+  accepts_nested_attributes_for :movies_awards, allow_destroy: true
 
   def clip_user(user_id)
    clips.find_by(user_id: user_id)
