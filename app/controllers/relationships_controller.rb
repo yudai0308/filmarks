@@ -1,59 +1,48 @@
 class RelationshipsController < ApplicationController
+  before_action :authenticate_user!
 
   def create
     user = params[:followed_id]
     current_user.follow(user)
-    redirect_to controller: 'lists', action: 'user'
+    @passive_user_followers_count = passive_user_followers_count(user)
+    @active_user_followers_count = active_user_followings_count(current_user.id)
+    respond_to do |format|
+      format.html { redirect_to controller: 'lists', action: 'user' }
+      format.json {
+        render json: {
+          passive_count: @passive_user_followers_count,
+          active_count: @active_user_followers_count,
+          active_user_id: current_user.id,
+          passive_user_id: user,
+        }
+      }
+    end
   end
 
   def destroy
     user = params[:id]
     current_user.unfollow(user)
-    redirect_to controller: 'lists', action: 'user'
+    @passive_user_followers_count = passive_user_followers_count(user)
+    @active_user_followers_count = active_user_followings_count(current_user.id)
+    respond_to do |format|
+      format.html { redirect_to controller: 'lists', action: 'user' }
+      format.json {
+        render json: {
+          passive_count: @passive_user_followers_count,
+          active_count: @active_user_followers_count,
+          active_user_id: current_user.id,
+          passive_user_id: user,
+        }
+      }
+    end
   end
 
+  private
+  def passive_user_followers_count(user_id)
+    User.find_by(id:user_id).followers.count
+  end
+  def active_user_followings_count(user_id)
+    User.find_by(id:user_id).following.count
+  end
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  # def create
-  #   followed_user = params[:followed_id]
-  #   follow(followed_user)
-  #   redirect_to controller: 'lists', action: 'user'
-  # end
-
-  # def destroy
-  #     @follow = Relationship.where(follower_id: current_user.id, followed_id: params[:id])
-  #     @follow.destroy
-  # end
-
-
-
-  # private
-  #    # ユーザーをフォローする
-  #   def follow(other_user)
-  #     Relationship.create(follower_id: current_user.id, followed_id: other_user)
-  #   end
-
-  #   # ユーザーをフォロー解除する
-  #   def unfollow
-  #     # followed = Relationship.where(follower_id: current_user.id, followed_id: params[:id])
-  #     # followed.destroy
-  #   end
-
-  #   # 現在のユーザーがフォローしてたらtrueを返す
-  #   def following?(other_user)
-  #     following.include?(other_user)
-  #   end
 end
