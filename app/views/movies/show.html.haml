@@ -17,7 +17,7 @@
             .movie-actions.clearfix
               %a.post-review-btn
                 =fa_icon "pencil", class: "fa-2x"
-                %p 1000
+                %p #{@movie.reviews.length}
               - if @movie.clip_user(current_user.id)
                 = link_to "#", class: "clip-movie-btn1", "data-clip-id": "#{@movie.id}", "data-clip-url": "/movies/#{@movie.id}/clips/#{@clip.id}" do
                   =fa_icon "paperclip", class: "fa-2x fa-flip-horizontal"
@@ -59,8 +59,7 @@
                 %li=link_to "恋愛", root_path
                 %li 、
                 %li=link_to "ミュージカル", root_path
-            .movie-detail__review-rate{"data-review-rate": "40"}
-            -# 実際のレートは変数０〜５０を代入  変数によって星の数が変わる
+            .movie-detail__review-rate{"data-review-rate": "#{@review_ave}"}
             .movie-detail__story
               %h3.movie-detail__story-term あらすじ
               %p.movie-detail__story-body
@@ -93,4 +92,28 @@
                   %iframe{width: "360", height: "200", src: "https://www.youtube.com/embed/tlyqz57sHgM", frameborder: "0", allow: "autoplay; encrypted-media"}
 
   .movie-detail__low-content
-    =render partial:"reviews/index", locals: {movie: @movie, reviews: @reviews}
+    .review-content__wrapper.clearfix
+      .review-content__body
+        .review-content__header
+          .review-content__header-title
+            =fa_icon "user"
+            「#{@movie.title}」に投稿された感想・評価
+          .review-content__header-status
+            %ul.review-content__header-status__list
+              %li=link_to "全ての感想・評価"
+              %li=link_to "ネタバレなし"
+              %li=link_to "ネタバレ"
+        .review-content__main
+          -@reviews.each do |review|
+            =render partial:"reviews/index", locals: {review: review}
+        .review-content__pagenate
+          =paginate(@reviews)
+      .review-content__side
+        .review-content__recomend
+
+
+
+
+
+
+
