@@ -6,9 +6,10 @@ class MoviesController < ApplicationController
   def show
     @movie = Movie.find(params[:id])
     @reviews = @movie.reviews.page(params[:page]).per(5).order("created_at DESC")
+    all_reviews = @movie.reviews
     # --- 平均値を求める処理 ---
     reviews_array = []
-    @reviews.each do |review|
+    all_reviews.each do |review|
       reviews_array << review[:score]
     end
     reviews_count = reviews_array.length
