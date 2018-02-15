@@ -6,5 +6,10 @@ class Member < ApplicationRecord
   validates :name, presence: true
   validates :status, presence: true
 
+
+  def fan_user(user_id)
+   users_members.find_by(user_id: user_id)
+  end
+
   accepts_nested_attributes_for :movies_members, allow_destroy: true
 end

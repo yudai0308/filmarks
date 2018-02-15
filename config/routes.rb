@@ -34,4 +34,8 @@ Rails.application.routes.draw do
   resources :users do
     resources :relationships , only: [:create, :destroy]
   end
+
+  resources :members do
+    resources :users_members
+  end
 end
