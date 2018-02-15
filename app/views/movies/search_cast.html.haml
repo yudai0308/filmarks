@@ -46,11 +46,15 @@
               .cast__lists-content-fun.clearfix
                 .cast__lists-content-fun__count
                   %span
-                    Funが
-                    %strong  1000
+                    Fanが
+                    %strong  #{ cast.users.length }
                     人います
-                = button_tag  type: "submit", class: "fun__btn" do
-                  = image_tag "btn_fan.svg", alt: "fun_btn-image"
+                - if cast.fan_user(current_user.id)
+                  = button_tag  type: "submit", class: "fun__btn1", "data-fan-id": "#{cast.id}", "data-fan-url": "/members/#{cast.id}/users_members/#{cast.users_members.find_by(user_id: current_user.id).id}" do
+                    = image_tag "btn_fan.svg", alt: "fun_btn-image"
+                - else
+                  = button_tag  type: "submit", class: "fun__btn2", "data-fan-id": "#{cast.id}", "data-fan-url": "/members/#{cast.id}/users_members" do
+                    = image_tag "btn_fan.svg", alt: "fun_btn-image"
               .cast__lists-content-movie
                 - movies = cast.movies.order('time DESC')
                 - 3.times do |i|
@@ -62,3 +66,4 @@
           .search__lists-page
             = paginate(@casts)
       = render partial: "share/barnner_contents"
+
