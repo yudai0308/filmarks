@@ -27,24 +27,24 @@ end
 orders_csv = CSV.readlines("db/movies_awards.csv")
 orders_csv.shift
 orders_csv.each do |row|
-  Movie.create(movie_id: row[1], award_id: row[2], created_at: row[3], updated_at: row[4],)
+  Movie.create(movie_id: row[1], award_id: row[2], created_at: row[3], updated_at: row[4])
 end
 
 orders_csv = CSV.readlines("db/movies_countries.csv")
 orders_csv.shift
 orders_csv.each do |row|
-  Movie.create(movie_id: row[1], country_id: row[2], created_at: row[3], updated_at: row[4],)
+  Movie.create(movie_id: row[1], country_id: row[2], created_at: row[3], updated_at: row[4])
 end
 
 orders_csv = CSV.readlines("db/movies_genres.csv")
 orders_csv.shift
 orders_csv.each do |row|
-  Movie.create(movie_id: row[1], genre_id: row[2], created_at: row[3], updated_at: row[4],)
+  Movie.create(movie_id: row[1], genre_id: row[2], created_at: row[3], updated_at: row[4])
 end
 
 orders_csv = CSV.readlines("db/movies_members.csv")
 orders_csv.shift
 orders_csv.each do |row|
-  Movie.create(movie_id: row[1], member_id: row[2], created_at: row[3], updated_at: row[4],)
+  Movie.create(movie_id: row[1], member_id: row[2], created_at: row[3], updated_at: row[4])
 end
 
