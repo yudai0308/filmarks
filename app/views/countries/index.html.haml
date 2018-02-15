@@ -1,7 +1,7 @@
-.movie-list
-  .movie-list__wrapper
-    .movie-list__header
-      .movie-list__header-index.clearfix
+.search-detail
+  .search-detail__wrapper
+    .search-detail__header
+      .search-detail__header-index.clearfix
         %ul.top-navi
           %li
             = link_to "Filmarks映画情報", root_path
@@ -12,48 +12,102 @@
           %li
             &nbsp;>&nbsp;&nbsp;
           %li
-            〇〇映画
-      .movie-list__header-title
-        今話題のおすすめ映画
-      .movie-list__header-info
-        今Filmarksで話題になっているおすすめ映画。直近のユーザーの注目度やアクションを元に集計しています。
-
-    .movie-list__body
-      .movie-list__body-main.clearfix
+            #{@search_country.name}映画
+      .search-detail__header-title
+        %p.title__heading
+          #{@search_country.name}のおすすめ映画 #{@search_country.movies.count}作品
+        %p.title__heading-sub
+          - if @popular_movies.count !=0
+            #{@search_country.name}のおすすめ映画。#{@search_country.name}映画には
+            - movie = @popular_movies[0]
+            - if @popular_movies[0].members.find_by(status:'0') != nil
+              - director = @popular_movies[0].members.find_by(status:'0')
+              %span
+                = "、#{director.name} 監督の#{movie.title}"
+            - else
+              %span
+                = "、#{movie_title}"
+            - if @popular_movies[1] != nil
+              - movie = @popular_movies[1]
+              - if @popular_movies[1].members.find_by(status:'2') != nil
+                - cast = @popular_movies[1].members.find_by(status:'2')
+                %span
+                  = "、#{cast.name} が出演する#{movie.title}"
+              - else
+                %span
+                  = "、#{movie.title}"
+            - if @popular_movies[2] != nil
+              - movie = @popular_movies[2]
+              %span
+                = "、#{movie.title}"
+            %span
+              などの作品があります。
+          -else
+            本サイトに登録されている作品情報はありません。
+    .search-detail__body
+      .search-detail__body-main.clearfix
         .sidebar
           .sidebar__container
             %h2.c-heading-2
-              映画を探す
+              製作国を探す
             .sidebar__main
               %nav.c-side-menu
                 %ul
-                  %li.c-side-menu__items
+                  - @country_index.each do |country|
+                    -if "#{country.id}" == params[:country_id]
+                      %li.c-side-menu__items{id:"country_id#{country.id}"}
+                        %h3.c-side-menu__items_title.active
+                          = link_to "#{country.name}(#{country.movies.count})", lists_countries_path(country.id)
+                    -else
+                      %li.c-side-menu__items{id:"country_id#{country.id}"}
+                        %h3.c-side-menu__items_title
+                          = link_to "#{country.name}(#{country.movies.count})", lists_countries_path(country.id)
+                  %li.c-side-menu__items{id:"others"}
                     %h3.c-side-menu__items_title
-                      = link_to "上映中の映画", now_lists_path
-                  %li.c-side-menu__items
-                    %h3.c-side-menu__items_title
-                      = link_to "公開予定の映画", comming_lists_path
-                  %li.c-side-menu__items
-                    %h3.c-side-menu__items_title
-                      = link_to "今週公開の映画", upcomming_lists_path
-                  %li.c-side-menu__items
-                    %h3.c-side-menu__items_title
-                      = link_to "今話題のおすすめ映画", trend_lists_path
-                  %li.c-side-menu__items
-                    %h3.c-side-menu__items_title
-                      = link_to "制作年（年代）", root_path
-                  %li.c-side-menu__items
-                    %h3.c-side-menu__items_title
-                      = link_to "制作国", root_path
-                  %li.c-side-menu__items
-                    %h3.c-side-menu__items_title
-                      = link_to "ジャンル", root_path
-                  %li.c-side-menu__items
-                    %h3.c-side-menu__items_title
-                      = link_to "タグ", root_path
+                      = link_to "その他",country_other_lists_path
 
           .sidebar-banner__contents
             .barnner__content
               = image_tag "banner1.jpeg", alt: "banner_ad"
             .barnner__content
               %iframe{:allow => "autoplay; encrypted-media", :allowfullscreen => "", :frameborder => "0", :height => "250", :src => "https://www.youtube.com/embed/JXJ0ADlG8bg", :width => "300"}
+        .movie-list-content
+          .movie-list-content__tab
+            おすすめ順
+          .movie-list-content__index.clearfix
+            - @search_country_movies.each do |movie|
+              .list-content
+                =link_to movie_path(movie.id) do
+                  .list-content__image
+                    = image_tag "#{ movie.image }", alt: "#{ movie.title }", width: "150px", height: "200px"
+                .list-content__title
+                  =link_to movie_path(movie.id) do
+                    %span
+                      = movie.title
+                .list-content__wrapper.clearfix
+                  =link_to "#" do
+                    .list-content__mark
+                      =fa_icon "pencil", class: "fa-2x"
+                      %p.mark__count
+                        10
+                  - if movie.clip_user(current_user.id)
+                    - @clip = movie.clips.find_by(user_id: current_user.id)
+                    =link_to "#", class: "clip-movie-btn3", "data-clip-id": "#{movie.id}", "data-clip-url": "/movies/#{movie.id}/clips/#{@clip.id}" do
+                      .list-content__clip
+                        =fa_icon "paperclip", class: "fa-2x fa-flip-horizontal"
+                        %p.clip__count
+                          #{movie.users.length}
+                  - else
+                    =link_to "#", class: "clip-movie-btn4", "data-clip-id": "#{movie.id}", "data-clip-url": "/movies/#{movie.id}/clips" do
+                      .list-content__clip
+                        =fa_icon "paperclip", class: "fa-2x fa-flip-horizontal"
+                        %p.clip__count
+                          #{movie.users.length}
+                  =link_to "#" do
+                    .list-content__score
+                      =fa_icon "star",class: "far fa-star"
+                      %p.score__rate
+                        4
+          .movie-list-content__search
+            = paginate(@search_country_movies)
+      = render partial: "share/barnner_contents"
