@@ -10,8 +10,8 @@ class CountriesController < ApplicationController
 
   def others
     @country_index_other = Country.offset(20).map{|country| [country,country.movies,country.movies.count]}
-    movies = @country_index.map{ |country,movie,count| movie }.flatten
+    movies = @country_index_other.map{ |country,movie,count| movie }.flatten
     @search_country_movies = Kaminari.paginate_array(movies).page(params[:page]).per(36)
-    @all_movie_count = @country_index.map{ |country,movie,count| count }.sum
+    @all_movie_count = @country_index_other.map{ |country,movie,count| count }.sum
   end
 end
