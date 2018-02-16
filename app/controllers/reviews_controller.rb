@@ -10,7 +10,6 @@ class ReviewsController < ApplicationController
     @review = Review.new(review_params)
     if @review.score == 9
       @review.score = nil
-      binding.pry
     end
     @review.save
 
