@@ -89,6 +89,14 @@
           &__body {
             font-size: 14px;
           }
+          &__tags {
+            margin-top: 20px;
+            & ul li {
+              font-size: 14px;
+              display: inline-block;
+              margin-right: 10px;
+            }
+          }
           &__reactions {
             height: 21px;
             padding-top: 20px;

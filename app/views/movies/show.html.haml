@@ -95,4 +95,4 @@
                   %iframe{width: "360", height: "200", src: "https://www.youtube.com/embed/tlyqz57sHgM", frameborder: "0", allow: "autoplay; encrypted-media"}
 
   .movie-detail__low-content
-    =render partial: "reviews/movie_detail_low_content", locals: {movie: @movie, reviews: @reviews}
+    =render partial: "reviews/movie_detail_low_content", locals: {movie: @movie, reviews: @reviews, all_reviews: @all_reviews}

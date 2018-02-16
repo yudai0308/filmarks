@@ -16,6 +16,11 @@
           %spna{class: "user-review-rate-ave"} #{(review.score).to_f / 10}
   .mark-card__body
     #{review.comment}
+  .mark-card__tags
+    %ul
+      -review.tags.each do |tag|
+        %li
+          =link_to "#{tag.name}"
   .mark-card__reactions
     .reactions__button.reactions__button--likes
       =link_to do

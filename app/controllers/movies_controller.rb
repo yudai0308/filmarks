@@ -6,17 +6,13 @@ class MoviesController < ApplicationController
   def show
     @movie = Movie.find(params[:id])
     @reviews = @movie.reviews.page(params[:page]).per(5).order("created_at DESC")
+    @all_reviews = @movie.reviews
     # --- 平均値を求める処理 ---
     @scores_array = []
     @movie.reviews.each do |review|
       @scores_array << review.score unless review.score == nil
     end
     if @scores_array.length > 0
-      # scores_array_except_nil = []
-      # @scores_array.each do |score|
-      #   scores_array_except_nil << score unless score == nil
-      # end
-      # scores_count_except_nil = scores_array.length
       @review_ave = (@scores_array.sum) / (@scores_array.length)
     end
 
