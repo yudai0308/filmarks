@@ -7,7 +7,7 @@ class Movie < ApplicationRecord
   has_many :countrys, through: :movies_countrys
   has_many :movies_countrys, dependent: :destroy
   has_many :genres, through: :movies_genres
-  has_many :movies_genres, dependent: :destro
+  has_many :movies_genres, dependent: :destroy
   has_many :awards, through: :movies_awards
   has_many :movies_awards, dependent: :destroy
 
