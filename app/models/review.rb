@@ -7,7 +7,6 @@ class Review < ApplicationRecord
   belongs_to  :movie
 
   validates :comment,
-            :score ,
             :user_id ,
             :movie_id,
             :status,
