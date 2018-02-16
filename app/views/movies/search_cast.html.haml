@@ -56,7 +56,12 @@
                   = button_tag  type: "submit", class: "fun__btn2", "data-fan-id": "#{cast.id}", "data-fan-url": "/members/#{cast.id}/users_members" do
                     = image_tag "btn_fan.svg", alt: "fun_btn-image"
               .cast__lists-content-movie
-                - movies = cast.movies.order('time DESC')
+                - movies = []
+                - lists = MoviesMember.where(member_id: cast.id).group(:movie_id)
+                - lists.each do |list|
+                  - movie_id = list.movie_id
+                  - movie = Movie.find_by(id: movie_id)
+                  - movies << movie
                 - 3.times do |i|
                   - if movies[i]
                     =link_to  movie_path(movies[i].id) do
