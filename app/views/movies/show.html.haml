@@ -59,7 +59,10 @@
                 %li=link_to "恋愛", root_path
                 %li 、
                 %li=link_to "ミュージカル", root_path
-            .movie-detail__review-rate{"data-review-rate": "#{@review_ave}"}
+            -if @movie.reviews && @scores_array.sum > 1
+              .movie-detail__review-rate{"data-review-rate": "#{@review_ave}"}
+            -else
+              .movie-detail__review-rate{"data-review-rate": "0"}
             .movie-detail__story
               %h3.movie-detail__story-term あらすじ
               %p.movie-detail__story-body
