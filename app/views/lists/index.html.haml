@@ -111,13 +111,13 @@
               - @countries.each do |country|
                 - if i <= 15
                   .countries-list
-                    = link_to lists_country_path(country.id) do
+                    = link_to lists_countries_path(country.id) do
                       %li.countries-list-name
                         %span
                           = country.name
                 - else
                   .countries-list.hidden
-                    = link_to lists_country_path(country.id) do
+                    = link_to lists_countries_path(country.id) do
                       %li.countries-list-name
                         %span
                           = country.name

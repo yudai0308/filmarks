@@ -24,7 +24,7 @@
               %ul.countries-lists.clearfix
               - @countries.each do |country|
                 .countries-list
-                  = link_to lists_country_path(country.id) do
+                  = link_to lists_countries_path(country.id) do
                     %li.countries-list-name
                       %span
                         = country.name

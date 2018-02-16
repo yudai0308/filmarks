@@ -1,0 +1,25 @@
+.search-detail
+  .search-detail__wrapper
+    .search-detail__header
+      .search-detail__header-index.clearfix
+        %ul.top-navi
+          %li
+            = link_to "Filmarks映画情報", root_path
+          %li
+            &nbsp;>&nbsp;&nbsp;
+          %li
+            = link_to "映画製作国", root_path
+          %li
+            &nbsp;>&nbsp;&nbsp;
+          %li
+            製作国(その他)
+      .search-detail__header-title
+        %p.title__heading
+          製作国(その他)の映画 #{@all_movie_count}作品
+        %p.title__heading-sub
+          その他製作国の映画をご紹介。気になる作品は、評価・レビューをチェックするのがおすすめです！
+    .search-detail__body
+      .search-detail__body-main.clearfix
+        = render partial: "sidebar_other"
+        = render partial: "movie-list-content"
+      = render partial: "share/barnner_contents"
