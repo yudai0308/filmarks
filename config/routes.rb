@@ -25,7 +25,7 @@ Rails.application.routes.draw do
       get "index"
       get "user"
       get "award"
-      get "/country/other" => "countries#other"
+      get "/country/others" => "countries#others"
     end
     resources :countries, only: [:index], path: '/country/:country_id'
     resources :genres, only: [:show]

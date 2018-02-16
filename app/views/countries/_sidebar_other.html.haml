@@ -1,0 +1,16 @@
+.sidebar
+  .sidebar__container
+    %h2.c-heading-2
+      製作国を探す
+    .sidebar__main
+      %nav.c-side-menu
+        %ul
+          - @country_index_other.each do |country|
+            - if params[:country_id] != nil && "#{country[0].id}" == params[:country_id]
+              %li.c-side-menu__items{id:"country_id#{country[0].id}"}
+                %h3.c-side-menu__items_title.active
+                  = link_to "#{country[0].name}(#{country[2]})", lists_countries_path(country[0].id)
+            - else
+              %li.c-side-menu__items{id:"country_id#{country[0].id}"}
+                %h3.c-side-menu__items_title
+                  = link_to "#{country[0].name}(#{country[2]})", lists_countries_path(country[0].id)
