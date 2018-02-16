@@ -24,9 +24,27 @@ orders_csv.each do |row|
   Member.create(name: row[1], status: row[2], created_at: row[3], updated_at: row[4])
 end
 
-orders_csv = CSV.readlines("db/movies.csv")
+orders_csv = CSV.readlines("db/movies_awards.csv")
 orders_csv.shift
 orders_csv.each do |row|
-  Movie.create(title: row[1], subtitle: row[2], image: row[3], time: row[4], story: row[5], production: row[6], release: row[7], created_at: row[8], updated_at: row[9],)
+  Movie.create(movie_id: row[1], award_id: row[2], created_at: row[3], updated_at: row[4])
+end
+
+orders_csv = CSV.readlines("db/movies_countries.csv")
+orders_csv.shift
+orders_csv.each do |row|
+  Movie.create(movie_id: row[1], country_id: row[2], created_at: row[3], updated_at: row[4])
+end
+
+orders_csv = CSV.readlines("db/movies_genres.csv")
+orders_csv.shift
+orders_csv.each do |row|
+  Movie.create(movie_id: row[1], genre_id: row[2], created_at: row[3], updated_at: row[4])
+end
+
+orders_csv = CSV.readlines("db/movies_members.csv")
+orders_csv.shift
+orders_csv.each do |row|
+  Movie.create(movie_id: row[1], member_id: row[2], created_at: row[3], updated_at: row[4])
 end
 

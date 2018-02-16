@@ -17,7 +17,7 @@
             .movie-actions.clearfix
               %a.post-review-btn
                 =fa_icon "pencil", class: "fa-2x"
-                %p 1000
+                %p #{@movie.reviews.length}
               - if @movie.clip_user(current_user.id)
                 = link_to "#", class: "clip-movie-btn1", "data-clip-id": "#{@movie.id}", "data-clip-url": "/movies/#{@movie.id}/clips/#{@clip.id}" do
                   =fa_icon "paperclip", class: "fa-2x fa-flip-horizontal"
@@ -59,8 +59,10 @@
                 %li=link_to "恋愛", root_path
                 %li 、
                 %li=link_to "ミュージカル", root_path
-            .movie-detail__review-rate{"data-review-rate": "40"}
-            -# 実際のレートは変数０〜５０を代入  変数によって星の数が変わる
+            -if @movie.reviews && @scores_array.sum > 1
+              .movie-detail__review-rate{"data-review-rate": "#{@review_ave}"}
+            -else
+              .movie-detail__review-rate{"data-review-rate": "0"}
             .movie-detail__story
               %h3.movie-detail__story-term あらすじ
               %p.movie-detail__story-body
@@ -93,4 +95,4 @@
                   %iframe{width: "360", height: "200", src: "https://www.youtube.com/embed/tlyqz57sHgM", frameborder: "0", allow: "autoplay; encrypted-media"}
 
   .movie-detail__low-content
-    =render partial:"reviews/index", locals: {movie: @movie, reviews: @reviews}
+    =render partial: "reviews/movie_detail_low_content", locals: {movie: @movie, reviews: @reviews}

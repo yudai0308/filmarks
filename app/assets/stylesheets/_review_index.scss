@@ -6,7 +6,6 @@
 
     .review-content__body {
       width: 640px;
-      height: 2000px;
       float: left;
 
       .review-content__header {
@@ -45,7 +44,9 @@
       }
       .review-content__main {
         width: 640px;
-        height: 1000px;
+        & span {
+          font-size: 14px;
+        }
 
         .mark-card {
           background-color: #fff;
@@ -78,23 +79,10 @@
               & time {
                 font-size: 12px;
               }
-              .user-review-rate__wrapper {
-                width: 110px;
+              .user-review-rate {
+                width: 528px;
                 height: 30px;
                 line-height: 30px;
-
-                .user-review-rate__star {
-                  float: left;
-                }
-                .user-review-rate__ave {
-                  color: #ffd400;
-                  width: 15px;
-                  height: 30px;
-                  font-size: 20px;
-                  font-weight: 600;
-                  margin-left: 5px;
-                  float: left;
-                }
               }
             }
           }
@@ -151,18 +139,22 @@
         }
       }
       .review-content__pagenate {
+        background-color: #fff;
+        border: 1px solid #eee;
+        width: 640px;
+        height: 50px;
+        text-align: center;
+        line-height: 50px;
       }
     }
 
     .review-content__side {
       background-color: #CECEF6;
       width: 320px;
-      height: 2000px;
+      height: 726px;
+      height: 800px;
       margin-left: 40px;
       float: left;
-
-      .review-content__recomend {
-      }
     }
   }
 }
