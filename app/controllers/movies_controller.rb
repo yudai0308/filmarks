@@ -9,15 +9,15 @@ class MoviesController < ApplicationController
     # --- 平均値を求める処理 ---
     @scores_array = []
     @movie.reviews.each do |review|
-      @scores_array << review.score
+      @scores_array << review.score unless review.score == nil
     end
-    if @scores_array.sum > 0
-      scores_array_except_nil = []
-      @scores_array.each do |score|
-        scores_array_except_nil << score unless score == nil
-      end
-      scores_count_except_nil = scores_array_except_nil.length
-      @review_ave = @scores_array.sum / scores_count_except_nil
+    if @scores_array.length > 0
+      # scores_array_except_nil = []
+      # @scores_array.each do |score|
+      #   scores_array_except_nil << score unless score == nil
+      # end
+      # scores_count_except_nil = scores_array.length
+      @review_ave = (@scores_array.sum) / (@scores_array.length)
     end
 
     @clip = Clip.find_by(movie_id: params[:id], user_id: current_user.id)

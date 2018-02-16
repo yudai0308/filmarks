@@ -6,9 +6,14 @@
     .review-infos
       =link_to "#{review.user.nickname}の感想・評価"
       %time.review-date{datetime: "#{review.created_at}"} #{review.created_at}
-      .user-review-rate{"data-review-rate": "#{review.score}"}
-        %span{class: "user-rate user-rate-#{review.score}"}
-        %spna{class: "user-review-rate-ave"} #{(review.score).to_f / 10}
+      -if review.score == nil
+        .user-review-rate{"data-review-rate": "0"}
+          %span{class: "user-rate user-rate-0"}
+          %spna{class: "user-review-rate-ave"} -
+      -else
+        .user-review-rate{"data-review-rate": "#{review.score}"}
+          %span{class: "user-rate user-rate-#{review.score}"}
+          %spna{class: "user-review-rate-ave"} #{(review.score).to_f / 10}
   .mark-card__body
     #{review.comment}
   .mark-card__reactions
