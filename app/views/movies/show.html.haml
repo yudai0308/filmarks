@@ -1,108 +1,115 @@
 .movie-detail
-  .movie-detail__wrapper
+  .movie-detail__top-content
+    .movie-detail__wrapper
 
-    .movie-detail__header
-      %ul.top-navi
-        %li=link_to "Filmarks映画情報", root_path
-        %li >
-        %li=link_to "アメリカ映画", root_path
-        %li >
-        %li #{@movie.title}の映画情報・感想・評価
+      .movie-detail__header
+        %ul.top-navi
+          %li=link_to "Filmarks映画情報", root_path
+          %li >
+          %li=link_to "アメリカ映画", root_path
+          %li >
+          %li #{@movie.title}の映画情報・感想・評価
 
-    .movie-detail__body
-      .movie-detail__body-wrapper.clearfix
-        .movie-detail__left
-          = image_tag @movie.image
-          .movie-actions.clearfix
-            %a.post-review-btn
-              =fa_icon "pencil", class: "fa-2x"
-              %p 1000
-            %a.clip-movie-btn
-              =fa_icon "paperclip", class: "fa-2x fa-flip-horizontal"
-              %p 1000
-          .movie-detail__links--youtube
-            %a{href: `JavaScript: youtube_search("#{@movie.title}", "予告")`}
-              =fa_icon "youtube", class: "youtube-icon"
-              %span 予告編を検索
-          .sns-links
-            .fb-share-button{"data-href": "http://www.lalaland.movie/", "data-layout": "button_count", "data-size": "small", "data-mobile-iframe": "false"}
-              %a.fb-xfbml-parse-ignore{target: "_blank", href: "https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Ftamakolovestory.com%2F&amp;src=sdkpreparse"} シェア
-            .tweeter-share-button
-              %a.twitter-share-button{href: "https://twitter.com/share?ref_src=twsrc%5Etfw", "data-url": "http://www.lalaland.movie/", "data-lang": "ja", "data-show-count": "false"} Tweet
-              %script{async: "", src: "https://platform.twitter.com/widgets.js", charset: "utf-8"}
+      .movie-detail__body
+        .movie-detail__body-wrapper.clearfix
+          .movie-detail__left
+            = image_tag @movie.image
+            .movie-actions.clearfix
+              %a.post-review-btn
+                =fa_icon "pencil", class: "fa-2x"
+                %p #{@movie.reviews.length}
+              - if @movie.clip_user(current_user.id)
+                = link_to "#", class: "clip-movie-btn1", "data-clip-id": "#{@movie.id}", "data-clip-url": "/movies/#{@movie.id}/clips/#{@clip.id}" do
+                  =fa_icon "paperclip", class: "fa-2x fa-flip-horizontal"
+                  %p #{@movie.users.length}
+              - else
+                = link_to "#", class: "clip-movie-btn2", "data-clip-id": "#{@movie.id}", "data-clip-url": "/movies/#{@movie.id}/clips" do
+                  =fa_icon "paperclip", class: "fa-2x fa-flip-horizontal"
+                  %p #{@movie.users.length}
+            .movie-detail__links--youtube
+              %a{href: `JavaScript: youtube_search("#{@movie.title}", "予告")`}
+                =fa_icon "youtube", class: "youtube-icon"
+                %span 予告編を検索
+            .sns-links
+              .fb-share-button{"data-href": "http://www.lalaland.movie/", "data-layout": "button_count", "data-size": "small", "data-mobile-iframe": "false"}
+                %a.fb-xfbml-parse-ignore{target: "_blank", href: "https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Ftamakolovestory.com%2F&amp;src=sdkpreparse"} シェア
+              .tweeter-share-button
+                %a.twitter-share-button{href: "https://twitter.com/share?ref_src=twsrc%5Etfw", "data-url": "http://www.lalaland.movie/", "data-lang": "ja", "data-show-count": "false"} Tweet
+                %script{async: "", src: "https://platform.twitter.com/widgets.js", charset: "utf-8"}
 
-        .movie-detail__main
-          %h2.movie-detail__title
-            %span #{@movie.title}
-            %small
-              （
-              =link_to "#{@movie.production}", root_path
-              製作の映画）
-          .movie-detail__other-info
-            %ul
-              %li 上映日：2017年02月24日／
-              %li
-                製作国：
-                =link_to "アメリカ", root_path
-                ／
-              %li 上映時間：#{@movie.time}分
-          .movie-detail__genre
-            %h3.movie-detail__genre-title
-              ジャンル：
-            %ul
-              %li=link_to "恋愛", root_path
-              %li 、
-              %li=link_to "ミュージカル", root_path
-          .movie-detail__review-rate{"data-review-rate": "40"}
-          -# 実際のレートは変数０〜５０を代入  変数によって星の数が変わる
-          .movie-detail__story
-            %h3.movie-detail__story-term あらすじ
-            %p.movie-detail__story-body
-              #{@movie.story}
-          .movie-detail__people-list
-            .movie-detail__people-list-others__wrapper.clearfix
-              .movie-detail__people-list-others
-                %h3 監督
-                %ul
-                  %li.p-movie-detail__people-list-desc
-                    =link_to "デイミアン・チャゼル", root_path, class: "member-label"
-              .movie-detail__people-list-others
-                %h3 脚本
-                %ul
-                  %li.p-movie-detail__people-list-desc
-                    =link_to "デイミアン・チャゼル", root_path, class: "member-label"
-              .movie-detail__people-list-casts
-                %h3 出演者
-                %ul
-                  %li.p-movie-detail__people-list-desc
-                    =link_to "ライアン・ゴズリング", root_path, class: "member-label"
-                    =link_to "エマ・ストーン", root_path, class: "member-label"
-                    =link_to "J・K・シモンズ", root_path, class: "member-label"
-                    =link_to "フィン・ウィットロック", root_path, class: "member-label"
-                    =link_to "ローズマリー・デウィット", root_path, class: "member-label"
-                    =link_to "ミーガン・フェイ", root_path, class: "member-label"
-                    =link_to "ジェイソン・フックス", root_path, class: "member-label"
-              .movie-detail__trailer
-                %h3 予告編
-                %iframe{width: "360", height: "200", src: "https://www.youtube.com/embed/tlyqz57sHgM", frameborder: "0", allow: "autoplay; encrypted-media"}
+          .movie-detail__main
+            %h2.movie-detail__title
+              %span #{@movie.title}
+              %small
+                （
+                =link_to "#{@movie.production}", root_path
+                製作の映画）
+            .movie-detail__other-info
+              %ul
+                %li 上映日：2017年02月24日／
+                %li
+                  製作国：
+                  =link_to "アメリカ", root_path
+                  ／
+                %li 上映時間：#{@movie.time}分
+            .movie-detail__genre
+              %h3.movie-detail__genre-title
+                ジャンル：
+              %ul
+                %li=link_to "恋愛", root_path
+                %li 、
+                %li=link_to "ミュージカル", root_path
+            .movie-detail__review-rate{"data-review-rate": "#{@review_ave}"}
+            .movie-detail__story
+              %h3.movie-detail__story-term あらすじ
+              %p.movie-detail__story-body
+                #{@movie.story}
+            .movie-detail__people-list
+              .movie-detail__people-list-others__wrapper.clearfix
+                .movie-detail__people-list-others
+                  %h3 監督
+                  %ul
+                    %li.p-movie-detail__people-list-desc
+                      =link_to "デイミアン・チャゼル", root_path, class: "member-label"
+                .movie-detail__people-list-others
+                  %h3 脚本
+                  %ul
+                    %li.p-movie-detail__people-list-desc
+                      =link_to "デイミアン・チャゼル", root_path, class: "member-label"
+                .movie-detail__people-list-casts
+                  %h3 出演者
+                  %ul
+                    %li.p-movie-detail__people-list-desc
+                      =link_to "ライアン・ゴズリング", root_path, class: "member-label"
+                      =link_to "エマ・ストーン", root_path, class: "member-label"
+                      =link_to "J・K・シモンズ", root_path, class: "member-label"
+                      =link_to "フィン・ウィットロック", root_path, class: "member-label"
+                      =link_to "ローズマリー・デウィット", root_path, class: "member-label"
+                      =link_to "ミーガン・フェイ", root_path, class: "member-label"
+                      =link_to "ジェイソン・フックス", root_path, class: "member-label"
+                .movie-detail__trailer
+                  %h3 予告編
+                  %iframe{width: "360", height: "200", src: "https://www.youtube.com/embed/tlyqz57sHgM", frameborder: "0", allow: "autoplay; encrypted-media"}
 
-
-    .movie-detail__low-content
-      .review-timeline
-      .side-content
-
-
-
-
-
-
-
-
-
-
-
-
-
+  .movie-detail__low-content
+    .review-content__wrapper.clearfix
+      .review-content__body
+        .review-content__header
+          .review-content__header-title
+            =fa_icon "user"
+            「#{@movie.title}」に投稿された感想・評価
+          .review-content__header-status
+            %ul.review-content__header-status__list
+              %li=link_to "全ての感想・評価"
+              %li=link_to "ネタバレなし"
+              %li=link_to "ネタバレ"
+        .review-content__main
+          -@reviews.each do |review|
+            =render partial:"reviews/index", locals: {review: review}
+        .review-content__pagenate
+          =paginate(@reviews)
+      .review-content__side
+        .review-content__recomend
 
 
 

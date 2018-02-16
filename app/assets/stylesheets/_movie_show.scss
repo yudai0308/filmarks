@@ -1,185 +1,194 @@
 .movie-detail {
   z-index: 3;
 
-  &__wrapper {
-    width: 1000px;
-    margin: 0 auto;
+  .movie-detail__top-content {
+    border-bottom: 2px solid #eee;
 
-    a {
-      text-decoration: none;
-    }
-
-    .movie-detail__header {
-      height: 18px;
-      padding: 16px 0px;
-      font-size: 14px;
-
-      li {
-        list-style: none;
-        display: inline-block;
-      }
-    }
-
-    .movie-detail__body {
+    .movie-detail__wrapper {
+      width: 1000px;
       margin: 0 auto;
+      padding-bottom: 40px;
 
-      a:hover {
-        opacity: 0.7;
-        cursor: pointer;
+      a {
+        text-decoration: none;
       }
 
-      .movie-detail__left {
-        width: 260px;
-        float: left;
+      .movie-detail__header {
+        height: 18px;
+        padding: 16px 0px;
+        font-size: 14px;
 
-        .movie-actions {
-
-          .post-review-btn {
-            background-color: #fef298;
-            color: #1C1C1C;
-            width: 129px;
-            height: 65px;
-            margin-right: 1px;
-            border-radius: 4px;
-            text-align:center;
-            cursor: pointer;
-            float: left;
-
-            .fa-pencil {
-              margin-top: 5px;
-            }
-          }
-
-          .clip-movie-btn {
-            background-color: #ffe100;
-            color: #1C1C1C;
-            width: 129px;
-            height: 65px;
-            margin-left: 1px;
-            border-radius: 4px;
-            text-align:center;
-            cursor: pointer;
-            float: left;
-
-            .fa-paperclip {
-              margin-top: 5px;
-            }
-          }
-        }
-
-        .movie-detail__links--youtube {
-          font-size: 15px;
-          margin: 15px 0px ;
-          & a {
-            color: DimGray;
-          }
-
-          .youtube-icon {
-            font-size: 20px;
-          }
-        }
-        .sns-links {
-          .tweeter-share-button {
-            padding-top: 5px;
-          }
+        li {
+          list-style: none;
+          display: inline-block;
         }
       }
 
-      .movie-detail__main {
-        width: 700px;
-        padding-left: 40px;
-        float: left;
+      .movie-detail__body {
+        margin: 0 auto;
 
-        .movie-detail__title span {
-          font-size: 24px;
-          font-weight: 900px;
+        a:hover {
+          opacity: 0.7;
+          cursor: pointer;
         }
 
-        .movie-detail__other-info {
-          margin-top: 10px;
-          font-size: 12px;
-          & ul li {
-            list-style: none;
-            display: inline-block;
+        .movie-detail__left {
+          width: 260px;
+          float: left;
+
+          .movie-actions {
+
+            .post-review-btn {
+              background-color: #ffe100;
+              color: #1C1C1C;
+              width: 129px;
+              height: 65px;
+              margin-right: 1px;
+              border-radius: 4px;
+              text-align:center;
+              cursor: pointer;
+              float: left;
+
+              .fa-pencil {
+                margin-top: 5px;
+              }
+            }
+
+            .clip-movie-btn1 {
+              background-color: #ffe100;
+              color: #1C1C1C;
+              width: 129px;
+              height: 65px;
+              margin-left: 1px;
+              border-radius: 4px;
+              text-align:center;
+              cursor: pointer;
+              float: left;
+
+              .fa-paperclip {
+                margin-top: 5px;
+              }
+            }
+            .clip-movie-btn2 {
+              background-color: #ffe100;
+              color: #1C1C1C;
+              width: 129px;
+              height: 65px;
+              margin-left: 1px;
+              border-radius: 4px;
+              text-align:center;
+              cursor: pointer;
+              float: left;
+
+              .fa-paperclip {
+                margin-top: 5px;
+              }
+            }
+          }
+
+          .movie-detail__links--youtube {
+            font-size: 15px;
+            margin: 15px 0px ;
+            & a {
+              color: DimGray;
+            }
+
+            .youtube-icon {
+              font-size: 20px;
+            }
+          }
+          .sns-links {
+            .tweeter-share-button {
+              padding-top: 5px;
+            }
           }
         }
-        .movie-detail__genre {
-          margin-top :3px;
-          font-size: 12px;
 
-          & h3, ul {
-            display: inline-block;
+        .movie-detail__main {
+          width: 700px;
+          padding-left: 40px;
+          float: left;
+
+          .movie-detail__title span {
+            font-size: 24px;
+            font-weight: 900px;
           }
 
-          & ul li {
-            list-style: none;
-            display: inline-block;
-          }
-        }
-        .movie-detail__review-rate {
-          width: 150px;
-          height: 30px;
-          margin-top: 20px;
-        }
-        .movie-detail__story {
-          height: 130px;
-          margin-top: 20px;
-
-          &-term {
-            margin: 25px 0px 5px 0px;
-            font-weight: 900;
-
-          }
-          &-body {
-            font-size: 14px;
-          }
-        }
-        .movie-detail__people-list {
-          padding-top: 20px;
-
-          h3 {
-            font-size: 14px;
-            font-weight: 900;
-            margin: 6px 0px;
-          }
-
-          .member-label {
+          .movie-detail__other-info {
+            margin-top: 10px;
             font-size: 12px;
-            display: inline-block;
-            padding: 5px 10px;
-            border-radius: 3px;
-            background-color: #eee;
-            color: black;
-            margin: 0px 10px 10px 0px;
-          }
-
-          .movie-detail__people-list-others__wrapper {
-
-            .movie-detail__people-list-others {
-              margin-right: 20px;
-              display: inline-block;
-            }
-            .movie-detail__people-list-casts {
-              margin-right: 20px;
+            & ul li {
+              list-style: none;
               display: inline-block;
             }
           }
-        }
-        .movie-detail__trailer {
-          margin: 10px 0px;
+          .movie-detail__genre {
+            margin-top :3px;
+            font-size: 12px;
+
+            & h3, ul {
+              display: inline-block;
+            }
+
+            & ul li {
+              list-style: none;
+              display: inline-block;
+            }
+          }
+          .movie-detail__review-rate {
+            width: 700px;
+            height: 30px;
+            margin-top: 20px;
+          }
+          .movie-detail__story {
+            margin-top: 20px;
+
+            &-term {
+              margin: 25px 0px 5px 0px;
+              font-weight: 900;
+
+            }
+            &-body {
+              font-size: 14px;
+            }
+          }
+          .movie-detail__people-list {
+            padding-top: 20px;
+
+            h3 {
+              font-size: 14px;
+              font-weight: 900;
+              margin: 6px 0px;
+            }
+
+            .member-label {
+              font-size: 12px;
+              display: inline-block;
+              padding: 5px 10px;
+              border-radius: 3px;
+              background-color: #eee;
+              color: black;
+              margin: 0px 10px 10px 0px;
+            }
+
+            .movie-detail__people-list-others__wrapper {
+
+              .movie-detail__people-list-others {
+                margin-right: 20px;
+                display: inline-block;
+              }
+              .movie-detail__people-list-casts {
+                margin-right: 20px;
+                display: inline-block;
+              }
+            }
+          }
+          .movie-detail__trailer {
+            margin: 10px 0px;
+          }
         }
       }
     }
-
-    // .movie-detail__low-content {
-    //   background-color: Plum;
-    //   height: 1000px;
-
-    //   .review-timeline{
-    //   }
-    //   .side-content{
-    //   }
-    // }
   }
 }
 

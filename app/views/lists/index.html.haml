@@ -104,38 +104,146 @@
           .contents-block__title
             =link_to country_lists_path do
               %span 製作国
-          .contents-block__content.clearfix
-            .contents-block__content-category
-              %ul.countries-lists
+          .contents-block__content
+            .contents-block__content-category.clearfix
+              %ul.countries-lists.clearfix
+              - i = 0
               - @countries.each do |country|
-                = link_to lists_country_path(country.id) do
-                  %li.countries-lists-name
-                    %span
-                      = country.name
+                - if i <= 15
+                  .countries-list
+                    = link_to lists_country_path(country.id) do
+                      %li.countries-list-name
+                        %span
+                          = country.name
+                - else
+                  .countries-list.hidden
+                    = link_to lists_country_path(country.id) do
+                      %li.countries-list-name
+                        %span
+                          = country.name
+                - i = i + 1
+              .category-list__hidden.readmore.arrow-down
+                もっと見る
         .contents-block
           .contents-block__title
             =link_to genre_lists_path do
               %span ジャンル
-          .contents-block__content.clearfix
-            .contents-block__content-category
+          .contents-block__content
+            .contents-block__content-category.clearfix
+              %ul.genre-lists
               - @genres.each do |genre|
-                %ul.genre-lists
-                  = link_to lists_genre_path(genre.id) do
-                    %li.genre-lists-name
-                      %span
-                        = genre.name
+                = link_to lists_genre_path(genre.id) do
+                  %li.genre-list-name
+                    %span
+                      = genre.name
         .contents-block
           .contents-block__title
-            =link_to  do
+            =link_to award_lists_path do
               %span 映画賞
-          .contents-block__content.clearfix
-            .contents-block__content-category
+          .contents-block__content
+            .contents-block__content-category.clearfix
+              %ul.award-lists
+              -i = 0
               - @awards.each do |award|
-                %ul.award-lists
-                  = link_to  do
-                    %li.award-lists-name
-                      %span
-                        = award.name
-
-
-
+                - if i <= 9
+                  .award-list
+                    = link_to  do
+                      %li.award-list-name
+                        %span
+                          = award.name
+                - else
+                  .award-list.hidden
+                    = link_to  do
+                      %li.award-list-name
+                        %span
+                          = award.name
+                - i = i +1
+              .category-list__hidden.readmore.arrow-down
+                もっと見る
+        .contents-block
+          .contents-block__title
+            =link_to year_lists_path do
+              %span 製作年
+          .contents-block__content
+            .contents-block__content-category.clearfix
+              %dl.category__year
+                - age_first = (@movies_age.first.time/10.to_f).floor*10
+                - age_last = (@movies_age.last.time/10.to_f).floor*10
+                - list_count = 0
+                - age_first.step age_last,-10 do |num|
+                  - movies = Movie.where("time >= ?", num).where("time < ?", num + 10)
+                  - years = movies.group(:time).order('time DESC')
+                  - if movies.count != 0
+                    - if list_count <= 3
+                      .category__year-list.clearfix
+                        %dt
+                          = link_to do
+                            %span
+                              = "#{ num }年代"
+                        %dd
+                          - years.each do |year|
+                            = link_to do
+                              %span
+                                = "#{ year.time }年"
+                    - else
+                      .category__year-list.hidden.clearfix
+                        %dt
+                          = link_to do
+                            %span
+                              = "#{ num }年代"
+                        %dd
+                          - years.each do |year|
+                            = link_to do
+                              %span
+                                = "#{ year.time }年"
+                    - list_count = list_count + 1
+                .category-list__hidden.readmore.arrow-down
+                  もっと見る
+        .contents-block-sub
+          .contents-block__title
+            =link_to do
+              %span 新作レンタル
+          .contents-block__content
+            .contents-block__content-category.clearfix
+              - @movies_rental.each do |movie|
+                =link_to movie_path(movie.id) do
+                  .contents-block__image__list
+                    = image_tag "#{ movie.image }", alt: "#{ movie.title }", width: "90px", height: "120px"
+          .contents-block-sub__link
+            .contents-block-sub__link-btn
+              =link_to "もっと見る　>"
+        .contents-block-sub.margin
+          .contents-block__title
+            =link_to do
+              %span レンタル予定の映画
+          .contents-block__content
+            .contents-block__content-category.clearfix
+              - @movies_rental.each do |movie|
+                =link_to movie_path(movie.id) do
+                  .contents-block__image__list
+                    = image_tag "#{ movie.image }", alt: "#{ movie.title }", width: "90px", height: "120px"
+          .contents-block-sub__link
+            .contents-block-sub__link-btn
+              =link_to "もっと見る　>"
+        .contents-block-sub.margin
+          .contents-block__title
+            =link_to do
+              %span #タグ
+          .contents-block__content
+            .contents-block__content-category
+              = link_to  do
+                .tag-list
+                  %span
+                    = '#映画'
+              = link_to  do
+                .tag-list
+                  %span
+                    = '#記録'
+              = link_to  do
+                .tag-list
+                  %span
+                    = '#DVD'
+          .contents-block-sub__link
+            .contents-block-sub__link-btn
+              =link_to "もっと見る　>"
+      = render partial: "share/barnner_contents"

@@ -52,7 +52,19 @@
         }
 
       }
-      .fun__btn{
+      .fun__btn1{
+        float:left;
+        border:none;
+        cursor: pointer;
+        height: 36px;
+        width: 107px;
+        padding: 0;
+        margin-left: 26px;
+        outline: none;
+        img{
+        }
+      }
+      .fun__btn2{
         float:left;
         border:none;
         cursor: pointer;

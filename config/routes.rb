@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   # root "movies#show"
   devise_for :users
   resources :movies, only: [:index, :show] do
+    resources :clips
     resources :reviews, only: [:index, :create] do
       resources :tags, only: [:index, :create]
     end
@@ -22,10 +23,19 @@ Rails.application.routes.draw do
       get "year"
       get "tag"
       get "index"
+      get "user"
+      get "award"
     end
     resources :countrys, only: [:show]
     resources :genres, only: [:show]
     resources :years, only: [:show]
     resources :tags, only: [:show]
+  end
+  resources :users do
+    resources :relationships , only: [:create, :destroy]
+  end
+
+  resources :members do
+    resources :users_members
   end
 end

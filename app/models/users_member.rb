@@ -1,4 +1,4 @@
 class UsersMember < ApplicationRecord
-  has_many :users
-  has_many :members
+  belongs_to :user
+  belongs_to :member
 end

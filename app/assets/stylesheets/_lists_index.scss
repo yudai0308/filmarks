@@ -100,7 +100,20 @@
       }
     }
     &__content-category{
-      background-color: gray;
+        .hidden{
+          display: none;
+        }
+        .category-list__hidden{
+          height: 30px;
+          float: right;
+          cursor: pointer;
+          margin-right: 10px;
+          color: #00c4a5;
+          clear: both;
+          line-height: 30px;
+          position: relative;
+          margin-left: auto;
+        }
       li{
         width: 168px;
         padding: 11px;
@@ -113,11 +126,149 @@
             border-bottom: 1px solid black;
           }
         }
-        &.award-lists-name{
+        &.award-list-name{
           width: 280px;
         }
       }
-
+      .category__year-list{
+        border-bottom: 1px solid #eee;
+        dt{
+          margin: auto 0;
+          float: left;
+          clear:both;
+          width: 160px;
+          padding: 12px 0;
+          text-align: center;
+          a{
+            color: black;
+          }
+        }
+        dd{
+          float: left;
+          width: 800px;
+          text-align: center;
+          a{
+            width: 136px;
+            padding: 12px;
+            display: block;
+            float: left;
+            color: black;
+          }
+        }
+        span:hover{
+          border-bottom: 1px solid black;
+        }
+      }
+    }
+  }
+  .contents-block-sub{
+    float:left;
+    width: 322px;
+    background: white;
+    margin: 0 auto 20px;
+    border: 1px solid #eee;
+    &.margin{
+      margin-left: 14px;
+    }
+    .contents-block__content{
+      border-bottom: 1px solid #eee;
+    }
+    .contents-block__content-category{
+      width: 285px;
+      margin: 15px auto 15px;
+      a{
+        line-height: 45px;
+        color: black;
+      }
+      .tag-list{
+        height: 45px;
+        border-bottom: 1px solid #eee;
+        span:hover{
+          border-bottom: 1px solid black;
+        }
+      }
+    }
+    &__link{
+      width: 322px;
+      height: 77px;
+      box-sizing:border-box;
+      padding-top: 21px;
+      &-btn{
+        width: 290px;
+        height: 36px;
+        background-color: gray;
+        text-align: center;
+        border-radius: 3px;
+        margin: auto;
+        &:hover{
+          opacity: 0.5;
+        }
+        a{
+          text-align: center;
+          line-height: 36px;
+          color: white;
+          font-size: 12px;
+        }
+      }
+    }
+  }
+  .arrow-down::before{
+    content: '';
+    width: 6px;
+    height: 6px;
+    border: 0px;
+    border-top: solid 1px #5bc0de;
+    border-right: solid 1px #5bc0de;
+    -ms-transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    transform: rotate(135deg);
+    position: absolute;
+    top: 15px;
+    left: -15px;
+    margin-top: -4px;
+  }
+  .arrow-up::before{
+    content: '';
+    width: 6px;
+    height: 6px;
+    border: 0px;
+    border-top: solid 1px #5bc0de;
+    border-right: solid 1px #5bc0de;
+    -ms-transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    transform: rotate(-45deg);
+    position: absolute;
+    top: 15px;
+    left: -15px;
+    margin-top: -4px;
+  }
+  .category__award-list{
+    border-bottom: 1px solid #eee;
+    span:hover{
+    border-bottom: 1px solid black;
+    }
+    dt{
+      margin: auto 0;
+      float: left;
+      clear:both;
+      width: 250px;
+      padding: 12px 0;
+      a{
+        color: black;
+      }
+    }
+    dd{
+      float: left;
+      width: 713px;
+      border-left: 1px solid #eee;
+      a{
+        width: 300px;
+        padding: 12px;
+        display: block;
+        float: left;
+        color: black;
+      }
     }
   }
 }
+

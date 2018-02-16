@@ -14,7 +14,7 @@ $(function() {
             <textarea class="review-editer__review-input review-textarea" placeholder="レビューを入力" name="review[comment]"></textarea>
           </div>
           <div class="review-editer__tags-wrapper">
-            <textarea class="review-editer__tags-input review-textarea" placeholder="# タグを入力" name="tag[name]"></textarea>
+            <textarea class="review-editer__tags-input review-textarea" placeholder="# タグを入力" name="tags[name]"></textarea>
           </div>
           <div class="review-editer__bottons-secondary">
             <div class="review-editer__status-wrapper">
@@ -78,11 +78,11 @@ $(function() {
   });
 
   // ----- フォーカスが外れた時、全てのタグに # をつける -----
-  $(document).on("blur", ".review-editer__tags-input", function() {
+  $(document).on("keydown", ".review-editer__tags-input", function() {
     var tags = $(".review-editer__tags-input").val().replace(/　/g, " ").split(" ");
     var tagsWithSharp = tags.map(function(ele) {
       if(ele.match(/^#+.*/)) {
-        ele.replace(/^#+(.*)/, "@")
+        ele = ele.replace(/^#+(.*)/, "$1")
       }
       return "#" + ele
     });
@@ -116,8 +116,3 @@ $(function() {
     });
   });
 });
-
-
-
-
-

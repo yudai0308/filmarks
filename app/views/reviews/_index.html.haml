@@ -1,0 +1,24 @@
+.mark-card
+  .mark-card__header.clearfix
+    .user-image
+      =link_to do
+        =image_tag("img_people-placehold", size: "50x50")
+    .review-infos
+      =link_to "#{review.user.nickname}の感想・評価"
+      %time.review-date{datetime: "#{review.created_at}"} #{review.created_at}
+      .user-review-rate{"data-review-rate": "#{review.score}"}
+        %span{class: "user-rate user-rate-#{review.score}"}
+        %spna{class: "user-review-rate-ave"} #{(review.score).to_f / 10}
+  .mark-card__body
+    #{review.comment}
+  .mark-card__reactions
+    .reactions__button.reactions__button--likes
+      =link_to do
+        =fa_icon "heart"
+        %p いいね！
+      %span 0
+    .reactions__button.reactions__button--comment
+      =link_to do
+        =fa_icon "comment"
+        %p コメントする
+      %span 0

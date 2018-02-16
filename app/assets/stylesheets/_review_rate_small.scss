@@ -1,29 +1,28 @@
-$maxWidth: 160px;
-$starUnit: $maxWidth / 50;
-$starHeight: 30px;
+$maxWidthSmall: 90px;
+$starUnitSmall: $maxWidthSmall / 50;
+$starHeightSmall: 15px;
 
-.review-rate-ave {
+.user-review-rate-ave {
   position: relative;
   color: #ffa500;
-  font-size: 30px;
-  font-weight: 900;
-  margin-left: 10px;
-  bottom: 3px;
+  font-size: 18px;
+  font-weight: 500;
+  margin-left: 5px;
 }
 
-.rate {
+.user-rate {
   position: relative;
   display: inline-block;
-  width: $maxWidth;
-  height: $starHeight;
-  font-size: $starHeight;
+  width: $maxWidthSmall;
+  height: $starHeightSmall;
+  font-size: $starHeightSmall;
   &:before, &:after {
     top: 0;
     left: 0;
     position: absolute;
     display: inline-block;
-    height: $starHeight;
-    line-height: $starHeight;
+    height: $starHeightSmall;
+    line-height: $starHeightSmall;
   }
   &:before {
     color: #ddd;
@@ -42,7 +41,7 @@ $starHeight: 30px;
 }
 
 @for $i from 0 through 50 {
-  .rate-#{$i}:after {
-    width: $starUnit * $i;
+  .user-rate-#{$i}:after {
+    width: $starUnitSmall * $i;
   }
 }
