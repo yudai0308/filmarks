@@ -44,6 +44,9 @@
       }
       .review-content__main {
         width: 640px;
+        & span {
+          font-size: 14px;
+        }
 
         .mark-card {
           background-color: #fff;

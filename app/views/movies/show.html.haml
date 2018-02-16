@@ -107,16 +107,12 @@
               %li=link_to "ネタバレなし"
               %li=link_to "ネタバレ"
         .review-content__main
+          -if @reviews.length == 0
+            %span この映画にはまだレビューが投稿されていません。
           -@reviews.each do |review|
             =render partial:"reviews/index", locals: {review: review}
-        .review-content__pagenate
-          =paginate(@reviews)
+        -if @reviews.length > 1
+          .review-content__pagenate
+            =paginate(@reviews)
       .review-content__side
         .review-content__recomend
-
-
-
-
-
-
-
