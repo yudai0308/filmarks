@@ -107,7 +107,7 @@
           .contents-block__content
             .contents-block__content-category.clearfix
               %ul.countries-lists.clearfix
-              - i = 0
+              - i = 1
               - @countries.each do |country|
                 - if i <= 15
                   .countries-list
@@ -122,8 +122,9 @@
                         %span
                           = country.name
                 - i = i + 1
-              .category-list__hidden.readmore.arrow-down
-                もっと見る
+              - if i > 10
+                .category-list__hidden.readmore.arrow-down
+                  もっと見る
         .contents-block
           .contents-block__title
             =link_to genre_lists_path do
@@ -143,7 +144,7 @@
           .contents-block__content
             .contents-block__content-category.clearfix
               %ul.award-lists
-              -i = 0
+              -i = 1
               - @awards.each do |award|
                 - if i <= 9
                   .award-list
@@ -158,8 +159,9 @@
                         %span
                           = award.name
                 - i = i +1
-              .category-list__hidden.readmore.arrow-down
-                もっと見る
+              - if i > 10
+                .category-list__hidden.readmore.arrow-down
+                  もっと見る
         .contents-block
           .contents-block__title
             =link_to year_lists_path do
@@ -167,13 +169,12 @@
           .contents-block__content
             .contents-block__content-category.clearfix
               %dl.category__year
-                - age_first = (@movies_age.first.time/10.to_f).floor*10
-                - age_last = (@movies_age.last.time/10.to_f).floor*10
-                - list_count = 0
+                - age_first = (@movies_age.first/10.to_f).floor*10
+                - age_last = (@movies_age.last/10.to_f).floor*10
+                - list_count = 1
                 - age_first.step age_last,-10 do |num|
-                  - movies = Movie.where("time >= ?", num).where("time < ?", num + 10)
-                  - years = movies.group(:time).order('time DESC')
-                  - if movies.count != 0
+                  - movies = Movie.where("production >= ?", num).where("production < ?", num + 10).group(:production)
+                  - if movies.length != 0
                     - if list_count <= 3
                       .category__year-list.clearfix
                         %dt
@@ -181,10 +182,10 @@
                             %span
                               = "#{ num }年代"
                         %dd
-                          - years.each do |year|
+                          - movies.each do |movie|
                             = link_to do
                               %span
-                                = "#{ year.time }年"
+                                = "#{ movie.production }"
                     - else
                       .category__year-list.hidden.clearfix
                         %dt
@@ -192,13 +193,14 @@
                             %span
                               = "#{ num }年代"
                         %dd
-                          - years.each do |year|
+                          - movies.each do |movie|
                             = link_to do
                               %span
-                                = "#{ year.time }年"
+                                = "#{ movie.production }"
                     - list_count = list_count + 1
-                .category-list__hidden.readmore.arrow-down
-                  もっと見る
+                - if list_count > 4
+                  .category-list__hidden.readmore.arrow-down
+                    もっと見る
         .contents-block-sub
           .contents-block__title
             =link_to do
