@@ -13,7 +13,7 @@
       -if reviews.length == 0
         %span この映画にはまだレビューが投稿されていません。
       -reviews.each do |review|
-        =render partial: "reviews/index", locals: {review: review}
+        =render partial: "reviews/reviews_list", locals: {review: review}
     -if all_reviews.length > 5
       .review-content__pagenate
         =paginate(reviews)

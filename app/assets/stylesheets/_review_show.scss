@@ -1,0 +1,20 @@
+.review-comment {
+  .review-comment__wrapper.clearfix {
+    width: 1000px;
+    height: 1000px;
+    margin: 0 auto;
+    .revireview-comment__main {
+      background-color: Linen;
+      width: 640px;
+      height: 500px;
+      float: left;
+    }
+    .review-comment__side {
+      background-color: Khaki;
+      width: 320px;
+      height: 300px;
+      margin-left: 40px;
+      float: left;
+    }
+  }
+}

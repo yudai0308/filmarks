@@ -28,7 +28,7 @@
         %p いいね！
       %span 0
     .reactions__button.reactions__button--comment
-      =link_to do
+      =link_to movie_review_path(params[:id], review.id) do
         =fa_icon "comment"
         %p コメントする
       %span 0

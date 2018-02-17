@@ -2,7 +2,7 @@
   .movie-list-content__tab
     おすすめ順
   .movie-list-content__index.clearfix
-    - @movies.each do |movie|
+    - @movies.each_with_index do |movie, i|
       .list-content
         =link_to movie_path(movie.id) do
           .list-content__image
@@ -16,7 +16,7 @@
             .list-content__mark
               =fa_icon "pencil", class: "fa-2x"
               %p.mark__count
-                10
+                #{movie.reviews.length}
           - if movie.clip_user(current_user.id)
             - @clip = movie.clips.find_by(user_id: current_user.id)
             =link_to "#", class: "clip-movie-btn3", "data-clip-id": "#{movie.id}", "data-clip-url": "/movies/#{movie.id}/clips/#{@clip.id}" do
@@ -34,6 +34,9 @@
             .list-content__score
               =fa_icon "star",class: "far fa-star"
               %p.score__rate
-                4
+                -if @movies_infos_array[i][:reviews_count] >= 1
+                  %span #{(@movies_infos_array[i][:score_ave]).to_f / 10}
+                -else
+                  %span -
   .movie-list-content__search
     = paginate(@movies)

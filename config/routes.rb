@@ -5,8 +5,9 @@ Rails.application.routes.draw do
   devise_for :users
   resources :movies, only: [:index, :show] do
     resources :clips
-    resources :reviews, only: [:index, :create] do
+    resources :reviews, only: [:show, :create] do
       resources :tags, only: [:index, :create]
+      resources :comment, only: [:create]
     end
     collection do
       get "search"
