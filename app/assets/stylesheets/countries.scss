@@ -1,0 +1,98 @@
+.search-detail{
+  .movie-list-content {
+    width: 680px;
+    float: left;
+
+    &__tab {
+      color: #aaa;
+      background-color: #fff;
+      width: 630px;
+      height: 23px;
+      margin: 0px 0px 20px 20px;
+      border: 1px solid #eee;
+      padding: 20px 15px 15px;
+    }
+    &__index{
+      float: left;
+      width: 680px;
+      .list-content{
+        background-color: white;
+        margin-left: 20px;
+        margin-bottom: 20px;
+        float:left;
+        &__image{
+          width: 150px;
+          height: 200px;
+          img{
+          margin: auto;
+          }
+        }
+        &__title{
+          font-size: 10px;
+          width: 140px;
+          height: 25px;
+          padding: 7px 5px;
+          text-align: center;
+          text-decoration: none;
+          span{
+            color: #333;
+            font-weight: 800;
+          }
+        }
+        &__mark{
+          height: 45px;
+          width:  33.333%;
+          float: left;
+          color: #d7bc43;
+          background-color: #fef298;
+          text-align: center;
+          padding-top: 5px;
+          .fa-2x{
+            font-size: 18px;
+          }
+          p{
+            font-size: 12px;
+          }
+        }
+        &__clip{
+          font-size: 18px;
+          height: 48px;
+          width:  33.333%;
+          float: left;
+          color: #d7bc43;
+          background-color: #fef298;
+          text-align: center;
+          padding-top: 2px;
+          .fa-flip-horizontal{
+            font-size: 18px;
+          }
+          p{
+            font-size: 12px;
+          }
+        }
+        &__score{
+          height: 49px;
+          width:  33.333%;
+          float: left;
+          color: #ffd400;
+          font-size: 18px;
+          text-align: center;
+          padding-top: 1px;
+          p{
+            font-size: 12px;
+          }
+        }
+      }
+    }
+    nav{
+      background-color: #fff;
+      width: 660px;
+      height: 50px;
+      font-size: 14px;
+      text-align: center;
+      line-height: 50px;
+      margin: 20px 0px 20px 20px;
+      clear: both;
+    }
+  }
+}

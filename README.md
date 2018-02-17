@@ -52,8 +52,8 @@
 
 |Column|Type|Options|
 |------|----|-------|
-|comment    |text    |null: false             |
-|score      |intege  |index: true,null: false |
+|comment    |text    |null: false|
+|score      |intege  |index: true|
 |user_id    |references |null: false, index: true, foreign_key: true|
 |movie_id   |references |null: false, index: true, foreign_key: true|
 |status     |integer |null: false|

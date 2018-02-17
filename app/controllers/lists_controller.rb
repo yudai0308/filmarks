@@ -1,19 +1,24 @@
 class ListsController < ApplicationController
+
   def now
     @movies = Movie.page(params[:page]).per(36).order("created_at DESC")
+    set_movies_infos
   end
 
   def comming
     @movies = Movie.page(params[:page]).per(36).order("created_at DESC")
+    set_movies_infos
   end
 
   def upcomming
     @movies = Movie.page(params[:page]).per(36).order("created_at DESC")
+    set_movies_infos
   end
 
   def trend
     # reviews = Review.pluck(:movie_id, :score)
     @movies = Movie.page(params[:page]).per(36).order("created_at DESC")
+    set_movies_infos
   end
 
   def country
@@ -51,4 +56,20 @@ class ListsController < ApplicationController
     @users = User.all.limit(50)
   end
 
+  private
+
+  def set_movies_infos
+    @movies_infos_array = []
+    @movies.each do |movie|
+      scores_array = []
+      movie.reviews.each do |review|
+        scores_array << review.score unless review.score == nil
+      end
+      if scores_array.length > 0
+        score_ave = (scores_array.sum) / (scores_array.length)
+      end
+      movie_infos = {reviews_count: scores_array.length, score_ave: score_ave}
+      @movies_infos_array << movie_infos
+    end
+  end
 end
