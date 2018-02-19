@@ -40,14 +40,12 @@ class Scraping_test
 
     # movie情報のスクレイピング
     links.each do |link|
-      get_movie_info("https://filmarks.com" + link)
-      break
-    end
-
+     movie = get_movie_info("https://filmarks.com" + link)
     # member情報のスクレイピング
-    links.each do |link|
-      get_movie_members("https://filmarks.com" + link)
-      break
+     members = get_movie_members("https://filmarks.com" + link)
+     movie.members << members
+     genres = get_movie_genres("https://filmarks.com" + link)
+     movie.genres << genres
     end
   end
 
@@ -72,6 +70,7 @@ class Scraping_test
                         production: production,
                         release:    release).first_or_initialize
     movie.save
+    return movie
   end
 
   # release の情報取得と編集
@@ -125,34 +124,34 @@ class Scraping_test
     members = []
     member_first.each do |mem|
       case mem.search(".p-content-detail__people-list-term").inner_text
-      when "監督" then
-        directors = mem.search(".p-content-detail__people-list-desc")
-        directors.each do |director|
-          director_name = director.search(".c-label").inner_text if director.search(".c-label")
-          member = Member.where(status: "0", name: director_name).first_or_initialize
-          member.save
-          members << member
-      end
-
-      when "脚本" then
-        wrighters = mem.search(".p-content-detail__people-list-desc")
-        wrighters.each do |wrighter|
-          wrighter_name = wrighter.search(".c-label").inner_text if wrighter.search(".c-label")
-          member = Member.where(status: "1", name: wrighter_name).first_or_initialize
-          member.save
-          members << member
-       end
-
-      when "原作" then
-        originalworks = mem.search(".p-content-detail__people-list-desc")
-        originalworks.each do |originalwork|
-          originalwork_name = originalwork.search(".c-label").inner_text if originalwork.search(".c-label")
-          member = Member.where(status: "3", name: originalwork_name).first_or_initialize
-          member.save
-          members << member
+        when "監督" then
+          directors = mem.search(".p-content-detail__people-list-desc")
+          directors.each do |director|
+            director_name = director.search(".c-label").inner_text if director.search(".c-label")
+            member = Member.where(status: "0", name: director_name).first_or_initialize
+            member.save
+            members << member
         end
+
+        when "脚本" then
+          wrighters = mem.search(".p-content-detail__people-list-desc")
+          wrighters.each do |wrighter|
+            wrighter_name = wrighter.search(".c-label").inner_text if wrighter.search(".c-label")
+            member = Member.where(status: "1", name: wrighter_name).first_or_initialize
+            member.save
+            members << member
+        end
+
+        when "原作" then
+          originalworks = mem.search(".p-content-detail__people-list-desc")
+          originalworks.each do |originalwork|
+            originalwork_name = originalwork.search(".c-label").inner_text if originalwork.search(".c-label")
+            member = Member.where(status: "3", name: originalwork_name).first_or_initialize
+            member.save
+            members << member
+        end
+     end
     end
-  end
     # キャストのスクレイピング
     member_second = page.search(".p-content-detail__people-list-casts")
     casts = member_second.search(".p-content-detail__people-list-desc")
@@ -163,11 +162,20 @@ class Scraping_test
                 cast.save
           members << cast
     end
-    men = Hash.new { |h, k| h[k] = [] }
-     members.each do |i|
-      men[:id].push(i.id)
+    return members
+    #ここまでが def self.get_movie_members(link)
+  end
+  def self.get_movie_genres(link)
+    genres = []
+    agent = Mechanize.new
+    page = agent.get(link)
+    genre = page.search('.p-content-detail__genre li a') if page.search('.p-content-detail__genre li a')
+    genre.each do |list|
+      genre_name = list.inner_text if list.inner_text
+      genre = Genre.where(name: genre_name).first_or_initialize
+      genre.save
+      genres << genre
     end
-
- end
+    return genres
+  end
 end
-

@@ -148,13 +148,13 @@
               - @awards.each do |award|
                 - if i <= 9
                   .award-list
-                    = link_to  do
+                    = link_to lists_award_path(award.id, name: award.name) do
                       %li.award-list-name
                         %span
                           = award.name
                 - else
                   .award-list.hidden
-                    = link_to  do
+                    = link_to lists_award_path(award.id) do
                       %li.award-list-name
                         %span
                           = award.name
