@@ -32,7 +32,7 @@ Rails.application.routes.draw do
     resources :genres, only: [:show]
     resources :years, only: [:show]
     resources :tags, only: [:show]
-    resources :awrds, only: [:show]
+    resources :awards, only: [:show]
   end
   resources :users do
     resources :relationships , only: [:create, :destroy]

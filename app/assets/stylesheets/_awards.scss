@@ -1,0 +1,23 @@
+.search-detail{
+  .sidebar__main{
+    .main_award{
+      .sub_award{
+        .c-side-menu__items{
+          border-bottom: none;
+          border-top: none;
+          &_title{
+            .award_subname{
+              line-height: 29px;
+              display: block;
+              padding: 0 0px 0 15px;
+            }
+            a:after{
+                content: "";
+                float: none;
+            }
+          }
+        }
+      }
+    }
+  }
+}
