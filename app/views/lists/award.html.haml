@@ -23,9 +23,10 @@
             .contents-block__content-category.clearfix
               %dl.category__award
                 - @awards.each do |award|
+                  - id = Award.find_by(name: award).id
                   .category__award-list.clearfix
                     %dt
-                      = link_to lists_award_path(award.id, title: award.name ) do
+                      = link_to lists_award_path(id:id, name: award ) do
                         %span
                           = "#{ award }"
                       %dd
