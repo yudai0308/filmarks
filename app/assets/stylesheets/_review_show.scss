@@ -1,15 +1,145 @@
-.review-comment {
-  .review-comment__wrapper.clearfix {
+.review-detail-page {
+  &__wrapper {
+    background-color: SandyBrown;
     width: 1000px;
     height: 1000px;
     margin: 0 auto;
-    .revireview-comment__main {
+
+    .review-detail-page__main {
       background-color: Linen;
       width: 640px;
       height: 500px;
       float: left;
+
+      .review-comments-area {
+        padding: 20px;
+        border: 1px solid #eee;
+
+        .review-contents__main {
+          float: left;
+
+          .review-body{
+            width: 400px;
+            float: left;
+
+            &__head{
+              .user_image {
+                float: left;
+                margin-right: 10px;
+                & img {
+                border-radius: 3px;
+                }
+              }
+              .review-infos {
+                float: left;
+                & h1 {
+                  font-weight: 600;
+                }
+                & time {
+                  color: #7e7e7e;
+                  font-size: 12px;
+                }
+              }
+            }
+            &__title {
+              font-weight: 600;
+              & a {
+                color: #000;
+                font-size: 16px;
+              }
+              & span {
+                font-size: 14px;
+              }
+            }
+            &__rate {
+              margin-bottom: 18px;
+            }
+            &__text {
+            }
+          }
+          .review-movie-contents {
+            width: 150px;
+            margin-left: 48px;
+            float: left;
+
+            .review-movie-img {
+              width: 150px;
+              height: 210px;
+            }
+            .movie-actions {
+
+              .post-review-btn {
+                background-color: #ffe100;
+                color: #1C1C1C;
+                width: 74px;
+                height: 50px;
+                margin-right: 1px;
+                border-radius: 4px;
+                text-align:center;
+                cursor: pointer;
+                float: left;
+
+                .fa-pencil {
+                  font-size: 21px;
+                  margin-top: 5px;
+                }
+                & p {
+                  font-size: 14px;
+                  font-weight: 600;
+                }
+              }
+
+              .clip-movie-btn1 {
+                background-color: #ffe100;
+                color: #1C1C1C;
+                width: 74px;
+                height: 50px;
+                margin-left: 1px;
+                border-radius: 4px;
+                text-align:center;
+                cursor: pointer;
+                float: left;
+
+                .fa-paperclip {
+                  font-size: 21px;
+                  margin-top: 5px;
+                }
+                & p {
+                  font-size: 14px;
+                  font-weight: 600;
+                }
+              }
+              .clip-movie-btn2 {
+                background-color: #ffe100;
+                color: #1C1C1C;
+                width: 74px;
+                height: 50px;
+                margin-left: 1px;
+                border-radius: 4px;
+                text-align:center;
+                cursor: pointer;
+                float: left;
+
+                .fa-paperclip {
+                  font-size: 21px;
+                  margin-top: 5px;
+                }
+                & p {
+                  font-size: 14px;
+                  font-weight: 600;
+                }
+              }
+            }
+          }
+        }
+        .comment-contents {
+          background-color: yellow;
+          height: 100px;
+          padding: 20px;
+        }
+      }
     }
-    .review-comment__side {
+    .review-detail-page__side {
       background-color: Khaki;
       width: 320px;
       height: 300px;
@@ -18,3 +148,4 @@
     }
   }
 }
+

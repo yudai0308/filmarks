@@ -105,7 +105,16 @@ $(function() {
   $(document).on("click", ".review-editer__botton--post", function(e) {
     e.preventDefault();
     var formData = new FormData($(".post_review_form").get()[0]);
-    var postURL = window.location.href + "/reviews"
+    var currentPageURL = window.location.href
+    var moviePageReg = /\/movies\/\d+$/;
+    var reviewPageReg = /\/movies\/\d+\/reviews\/\d+$/;
+    if(currentPageURL.match(moviePageReg)) {
+      var postURL = currentPageURL + "/reviews"
+      console.log(postURL);
+    } else if(currentPageURL.match(reviewPageReg)) {
+      var postURL = currentPageURL.replace(/(\/movies\/\d+\/reviews)\/\d+/, "$1")
+      console.log(postURL);
+    };
 
     $.ajax({
       url: postURL,
@@ -113,6 +122,12 @@ $(function() {
       data: formData,
       processData: false,
       contentType: false
+    })
+    .done(function(data) {
+      alert("レビューを投稿しました。")
+    })
+    .fail(function() {
+      alert("送信に失敗しました。")
     });
   });
 });

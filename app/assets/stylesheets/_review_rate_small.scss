@@ -1,5 +1,5 @@
-$maxWidthSmall: 85px;
-$starUnitSmall: $maxWidthSmall / 50;
+$maxWidthSmall: 75px;
+$starUnitSmall: 1.45px;
 $starHeightSmall: 15px;
 
 .user-review-rate-ave {
@@ -28,7 +28,7 @@ $starHeightSmall: 15px;
     color: #ddd;
     font-family: FontAwesome;
     content: "\f005 \f005 \f005 \f005 \f005";
-    letter-spacing: 5px;
+    letter-spacing: 2px;
   }
   &:after {
     color: #ffa500;
@@ -36,7 +36,7 @@ $starHeightSmall: 15px;
     white-space: nowrap;
     font-family: FontAwesome;
     content: "\f005 \f005 \f005 \f005 \f005";
-    letter-spacing: 5px;
+    letter-spacing: 2px;
   }
 }
 

@@ -2,7 +2,11 @@ class ReviewsController < ApplicationController
 
   before_action :set_movie
 
-  def index
+  def show
+    @movie = Movie.find(params[:movie_id])
+    @review = Review.find(params[:id])
+    @user = @review.user
+    @comment = @review.comments
   end
 
   def create
