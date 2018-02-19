@@ -1,4 +1,4 @@
-class Scraping_movie
+class Scraping_test
   def self.select_year
     # 年代の選択
     while true do
@@ -41,11 +41,13 @@ class Scraping_movie
     # movie情報のスクレイピング
     links.each do |link|
       get_movie_info("https://filmarks.com" + link)
+      break
     end
 
     # member情報のスクレイピング
     links.each do |link|
       get_movie_members("https://filmarks.com" + link)
+      break
     end
   end
 
@@ -120,7 +122,7 @@ class Scraping_movie
     agent = Mechanize.new
     page = agent.get(link)
     member_first = page.search(".p-content-detail__people-list-others")
-
+    members = []
     member_first.each do |mem|
       case mem.search(".p-content-detail__people-list-term").inner_text
       when "監督" then
@@ -129,24 +131,28 @@ class Scraping_movie
           director_name = director.search(".c-label").inner_text if director.search(".c-label")
           member = Member.where(status: "0", name: director_name).first_or_initialize
           member.save
-        end
+          members << member
+      end
+
       when "脚本" then
         wrighters = mem.search(".p-content-detail__people-list-desc")
         wrighters.each do |wrighter|
           wrighter_name = wrighter.search(".c-label").inner_text if wrighter.search(".c-label")
           member = Member.where(status: "1", name: wrighter_name).first_or_initialize
           member.save
-        end
+          members << member
+       end
+
       when "原作" then
         originalworks = mem.search(".p-content-detail__people-list-desc")
         originalworks.each do |originalwork|
           originalwork_name = originalwork.search(".c-label").inner_text if originalwork.search(".c-label")
           member = Member.where(status: "3", name: originalwork_name).first_or_initialize
           member.save
+          members << member
         end
-      end
     end
-
+  end
     # キャストのスクレイピング
     member_second = page.search(".p-content-detail__people-list-casts")
     casts = member_second.search(".p-content-detail__people-list-desc")
@@ -154,7 +160,14 @@ class Scraping_movie
     casts.each do |cast|
       cast_name = cast.search(".c-label").inner_text if cast.search(".c-label").inner_text
       cast = Member.where(status: "2", name: cast_name).first_or_initialize
-      cast.save
+                cast.save
+          members << cast
     end
-  end
+    men = Hash.new { |h, k| h[k] = [] }
+     members.each do |i|
+      men[:id].push(i.id)
+    end
+
+ end
 end
+
