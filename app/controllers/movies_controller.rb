@@ -5,6 +5,8 @@ class MoviesController < ApplicationController
 
   def show
     @movie = Movie.find(params[:id])
+    @review = Review.new
+    @tag = Tag.new
     @reviews = @movie.reviews.page(params[:page]).per(5).order("created_at DESC")
     @all_reviews = @movie.reviews
     # --- 平均値を求める処理 ---

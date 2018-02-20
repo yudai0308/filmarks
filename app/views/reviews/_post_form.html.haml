@@ -1,0 +1,24 @@
+=form_for [movie, review] do |f|
+  .review-background
+  .review-window
+    .review-editer__header レビュー
+    .review-editer__score.clearfix
+      .review-editer__score-rate -
+      =f.range_field :score, in: 9..9, step: 1, class: "review-editer__score-slider"
+    .review-editer__input-wrapper
+      =f.text_area :comment, placeholder: "レビューを入力", class: "review-editer__review-input review-textarea"
+    .review-editer__tags-wrapper
+      =form_for tag, url: movie_reviews_path(movie) do |f|
+        =f.text_area :name, placeholder: "# タグを入力", class: "review-editer__tags-input review-textarea"
+    .review-editer__bottons-secondary
+      .review-editer__status-wrapper
+        =f.hidden_field :status, value: "0", class: "review-status"
+        %a.review-editer__status-botton
+          %i.fa.fa-warning
+          %p ネタバレ
+        %p.review-editer__secret-note
+          レビューが映画の内容のネタバレに
+          %br/
+          あたる場合はチェックしてください。
+    .review-editer__bottons-primary
+      =f.submit "投稿", class: "review-editer__botton--post"

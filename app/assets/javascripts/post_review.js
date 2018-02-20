@@ -39,16 +39,13 @@ $(function() {
 
   // ----- レビューウィンドウの表示 -----
   $(".post-review-btn").on("click", function() {
-    var reviewURL = window.location.href + "/reviews"
-    var reviewHTML = buildReviewHTML(reviewURL);
-    $(".post-review-btn").after(reviewHTML)
+    $(".new_review").css({"display": "inline"})
     $(".review-editer__score-slider").attr("max", 50);
   });
 
   // ----- レビューウィンドウを閉じる -----
   $(document).on("click", ".review-background", function() {
-    $(".review-background").remove();
-    $(".review-window").remove();
+    $(".new_review").css({"display": "none"})
   });
 
   // ----- スコアレンジをドラッグ中の処理 -----
@@ -102,32 +99,32 @@ $(function() {
   });
 
   // ----- データ送信 -----
-  $(document).on("click", ".review-editer__botton--post", function(e) {
-    e.preventDefault();
-    var formData = new FormData($(".post_review_form").get()[0]);
-    var currentPageURL = window.location.href
-    var moviePageReg1 = /\/movies\/\d+$/;
-    var moviePageReg2 = /\/movies\/\d+\?.*/;
-    var reviewPageReg1 = /\/movies\/\d+\/reviews\/\d+$/;
-    var reviewPageReg2 = /\/movies\/\d+\/reviews\/\d+\?.*/;
-    if(currentPageURL.match(moviePageReg1)) {
-      var postURL = currentPageURL + "/reviews"
-    } else if(currentPageURL.match(reviewPageReg1)) {
-      var postURL = currentPageURL.replace(/(\/movies\/\d+\/reviews)\/\d+/, "$1")
-    };
+  // $(document).on("click", ".review-editer__botton--post", function(e) {
+  //   e.preventDefault();
+  //   var formData = new FormData($(".post_review_form").get()[0]);
+  //   var currentPageURL = window.location.href
+  //   var moviePageReg1 = /\/movies\/\d+$/;
+  //   var moviePageReg2 = /\/movies\/\d+\?.*/;
+  //   var reviewPageReg1 = /\/movies\/\d+\/reviews\/\d+$/;
+  //   var reviewPageReg2 = /\/movies\/\d+\/reviews\/\d+\?.*/;
+  //   if(currentPageURL.match(moviePageReg1)) {
+  //     var postURL = currentPageURL + "/reviews"
+  //   } else if(currentPageURL.match(reviewPageReg1)) {
+  //     var postURL = currentPageURL.replace(/(\/movies\/\d+\/reviews)\/\d+/, "$1")
+  //   };
 
-    $.ajax({
-      url: postURL,
-      type: "POST",
-      data: formData,
-      processData: false,
-      contentType: false
-    })
-    .done(function(data) {
-      alert("レビューを投稿しました。")
-    })
-    .fail(function() {
-      alert("送信に失敗しました。")
-    });
-  });
+  //   $.ajax({
+  //     url: postURL,
+  //     type: "POST",
+  //     data: formData,
+  //     processData: false,
+  //     contentType: false
+  //   })
+  //   .done(function(data) {
+  //     alert("レビューを投稿しました。")
+  //   })
+  //   .fail(function() {
+  //     alert("送信に失敗しました。")
+  //   });
+  // });
 });
