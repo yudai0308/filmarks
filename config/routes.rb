@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     end
     collection do
       get "search"
+      get "clip"
     end
   end
   resource :lists, only: [:index] do
@@ -32,13 +33,21 @@ Rails.application.routes.draw do
     resources :genres, only: [:show]
     resources :years, only: [:show]
     resources :tags, only: [:show]
-    resources :awrds, only: [:show]
+    resources :awards, only: [:show]
   end
   resources :users do
     resources :relationships , only: [:create, :destroy]
+    collection do
+      get "review"
+      get "followers"
+      get "following"
+    end
   end
 
   resources :members do
     resources :users_members
+    collection do
+      get "fan"
+    end
   end
 end

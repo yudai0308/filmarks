@@ -23,15 +23,16 @@
             .contents-block__content-category.clearfix
               %dl.category__award
                 - @awards.each do |award|
+                  - id = Award.find_by(name: award).id
                   .category__award-list.clearfix
                     %dt
-                      = link_to do
+                      = link_to lists_award_path(id:id, name: award ) do
                         %span
                           = "#{ award }"
                       %dd
                         - award_lists = Award.where(name: award)
                         - award_lists.each do |list|
-                          = link_to lists_year_path(list.id) do
+                          = link_to lists_award_path(list.id) do
                             %span
                               = list.subname
       = render partial: "share/barnner_contents"

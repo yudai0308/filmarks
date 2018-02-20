@@ -1,0 +1,21 @@
+.sidebar
+  .sidebar__container
+    %h2.c-heading-2
+      ジャンルで探す
+    .sidebar__main
+      %nav.c-side-menu
+        %ul
+          - @genre_index.each do |genre|
+            -if "#{genre.id}" == params[:id]
+              %li.c-side-menu__items{id:"genre_id#{genre.id}"}
+                %h3.c-side-menu__items_title.active
+                  = link_to "#{genre.name}(#{genre.movies.count})", lists_genre_path(genre.id)
+            -else
+              %li.c-side-menu__items{id:"genre_id#{genre.id}"}
+                %h3.c-side-menu__items_title
+                  = link_to "#{genre.name}(#{genre.movies.count})", lists_genre_path(genre.id)
+  .sidebar-banner__contents
+    .barnner__content
+      = image_tag "banner1.jpeg", alt: "banner_ad"
+    .barnner__content
+      %iframe{:allow => "autoplay; encrypted-media", :allowfullscreen => "", :frameborder => "0", :height => "250", :src => "https://www.youtube.com/embed/JXJ0ADlG8bg", :width => "300"}

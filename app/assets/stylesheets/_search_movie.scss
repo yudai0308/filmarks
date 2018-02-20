@@ -49,13 +49,10 @@
             .c-side-menu__items{
               border: 1px solid #eee;
               &_title{
+                padding: 0px 15px;
                 a{
                   color: #7e7e7e;
                   line-height: 49px;
-                  display: block;
-                  height: 49px;
-                  width: 288px;
-                  padding: 0px 15px;
                 }
                 a:after{
                   content: ">";

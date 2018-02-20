@@ -22,20 +22,19 @@
           .contents-block__content
             .contents-block__content-category.clearfix
               %dl.category__year
-                - age_first = (@movies_age.first.time/10.to_f).floor*10
-                - age_last = (@movies_age.last.time/10.to_f).floor*10
+                - age_first = (@movies_age.first/10.to_f).floor*10
+                - age_last = (@movies_age.last/10.to_f).floor*10
                 - age_first.step age_last,-10 do |num|
-                  - movies = Movie.where("time >= ?", num).where("time < ?", num + 10)
-                  - years = movies.group(:time).order('time DESC')
-                  - if movies.count != 0
+                  - movies = Movie.where("production >= ?", num).where("production < ?", num + 10).group(:production)
+                  - if movies.length != 0
                     .category__year-list.clearfix
                       %dt
                         = link_to do
                           %span
                             = "#{ num }年代"
                       %dd
-                        - years.each do |year|
+                        - movies.each do |movie|
                           = link_to do
                             %span
-                              = "#{ year.time }年"
+                              = "#{ movie.production }"
       = render partial: "share/barnner_contents"

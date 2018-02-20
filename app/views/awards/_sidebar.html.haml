@@ -1,0 +1,48 @@
+.sidebar
+  .sidebar__container
+    %h2.c-heading-2
+      映画賞で探す
+    .sidebar__main
+      %nav.c-side-menu
+        %ul.main_award
+          - @award_index.each do |award|
+            - award_name = award[0]
+            - movies_count = award[1]
+            - award_lists = award[2]
+            - if award_name == @search_name
+              %li.c-side-menu__items{id:"award_name#{award_name}"}
+                %h3.c-side-menu__items_title.active
+                  = link_to "#{award_name}(#{movies_count})", lists_award_path(name: award_name)
+              %ul.sub_award
+                - award_lists.each do |list|
+                  - award_subname = list.subname
+                  - movies_count_sub = list.movies.count
+                  - if award_subname == @search_subname
+                    %li.c-side-menu__items{id:"award_name#{award_subname}"}
+                      %h3.c-side-menu__items_title.sub.active
+                        = link_to "#{ award_subname }(#{ movies_count_sub })", lists_award_path(list.id), class: "award_subname"
+                  - else
+                    %li.c-side-menu__items{id:"award_name#{award_subname}"}
+                      %h3.c-side-menu__items_title.sub
+                        = link_to "#{ award_subname }(#{ movies_count_sub })", lists_award_path(list.id), class: "award_subname"
+            -else
+              %li.c-side-menu__items{id:"award_name#{award_name}"}
+                %h3.c-side-menu__items_title
+                  = link_to "#{award_name}(#{movies_count})", lists_award_path(name: award_name)
+              %ul.sub_award
+                - award_lists.each do |list|
+                  - award_subname = list.subname
+                  - movies_count_sub = list.movies.count
+                  - if award_subname == @search_subname
+                    %li.c-side-menu__items{id:"award_name#{award_subname}"}
+                      %h3.c-side-menu__items_title.sub
+                        = link_to "#{ award_subname }(#{ movies_count_sub })", lists_award_path(list.id), class: "award_subname"
+                  - else
+                    %li.c-side-menu__items{id:"award_name#{award_subname}"}
+                      %h3.c-side-menu__items_title.sub
+                        = link_to "#{ award_subname }(#{ movies_count_sub })", lists_award_path(list.id), class: "award_subname"
+  .sidebar-banner__contents
+    .barnner__content
+      = image_tag "banner1.jpeg", alt: "banner_ad"
+    .barnner__content
+      %iframe{:allow => "autoplay; encrypted-media", :allowfullscreen => "", :frameborder => "0", :height => "250", :src => "https://www.youtube.com/embed/JXJ0ADlG8bg", :width => "300"}
