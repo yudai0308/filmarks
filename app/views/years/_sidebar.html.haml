@@ -1,0 +1,49 @@
+.sidebar
+  .sidebar__container
+    %h2.c-heading-2
+      製作年で探す
+    .sidebar__main
+      %nav.c-side-menu
+        %ul.main_year
+          - age_first = (@movies_age.first/10.to_f).floor*10
+          - age_last = (@movies_age.last/10.to_f).floor*10
+          - age_first.step age_last,-10 do |num|
+            - movies = Movie.where("production >= ?", num).where("production < ?", num + 10)
+            - movies_count = movies.length
+            - production_lists = movies.group(:production).order('production DESC')
+            - if movies.length != 0
+              - if params[:age_id].to_i == num
+                %li.c-side-menu__items
+                  %h3.c-side-menu__items_title.active
+                    = link_to "#{ num }年代(#{ movies_count })", lists_years_path("#{ num }s")
+                %ul.sub_year
+                  - production_lists.each do |list|
+                    - movies_count_sub = movies.where("production = ?", list.production).count
+                    - if params[:id].to_i == list.production.to_i
+                      %li.c-side-menu__items
+                        %h3.c-side-menu__items_title.sub.active
+                          = link_to "#{ list.production }(#{ movies_count_sub })", lists_year_path("#{ num }s", list.production.to_i), class: "year_subname"
+                    - else
+                      %li.c-side-menu__items
+                        %h3.c-side-menu__items_title.sub
+                          = link_to "#{ list.production }(#{ movies_count_sub })", lists_year_path("#{ num }s", list.production.to_i), class: "year_subname"
+              - else
+                %li.c-side-menu__items
+                  %h3.c-side-menu__items_title
+                    = link_to "#{ num }年代(#{ movies_count })", lists_years_path("#{ num }s")
+                %ul.sub_year
+                  - production_lists.each do |list|
+                    - movies_count_sub = movies.where("production = ?", list.production).count
+                    - if params[:id].to_i == list.production.to_i
+                      %li.c-side-menu__items.hidden
+                        %h3.c-side-menu__items_title.sub
+                          = link_to "#{ list.production }(#{ movies_count_sub })", lists_year_path("#{ num }s", list.production.to_i), class: "year_subname"
+                    - else
+                      %li.c-side-menu__items.hidden
+                        %h3.c-side-menu__items_title.sub
+                          = link_to "#{ list.production }(#{ movies_count_sub })", lists_year_path("#{ num }s", list.production.to_i), class: "year_subname"
+  .sidebar-banner__contents
+    .barnner__content
+      = image_tag "banner1.jpeg", alt: "banner_ad"
+    .barnner__content
+      %iframe{:allow => "autoplay; encrypted-media", :allowfullscreen => "", :frameborder => "0", :height => "250", :src => "https://www.youtube.com/embed/JXJ0ADlG8bg", :width => "300"}

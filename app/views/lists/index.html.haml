@@ -178,23 +178,23 @@
                     - if list_count <= 3
                       .category__year-list.clearfix
                         %dt
-                          = link_to do
+                          = link_to lists_years_path("#{ num }s") do
                             %span
                               = "#{ num }年代"
                         %dd
                           - movies.each do |movie|
-                            = link_to do
+                            = link_to lists_year_path("#{ num }s", movie.production.to_i) do
                               %span
                                 = "#{ movie.production }"
                     - else
                       .category__year-list.hidden.clearfix
                         %dt
-                          = link_to do
+                          = link_to lists_years_path("#{ num }s") do
                             %span
                               = "#{ num }年代"
                         %dd
                           - movies.each do |movie|
-                            = link_to do
+                            = link_to lists_year_path("#{ num }s", movie.production.to_i) do
                               %span
                                 = "#{ movie.production }"
                     - list_count = list_count + 1
