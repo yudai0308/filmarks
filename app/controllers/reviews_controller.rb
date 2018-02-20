@@ -2,7 +2,11 @@ class ReviewsController < ApplicationController
 
   before_action :set_movie
 
-  def index
+  def show
+    @movie = Movie.find(params[:movie_id])
+    @review = Review.find(params[:id])
+    @comment = Comment.new
+    @comments = @review.comments.page(params[:page]).per(5).order("created_at DESC")
   end
 
   def create

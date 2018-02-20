@@ -1,54 +1,67 @@
-.review-comment
-  .review-comment__wrapper.clearfix
-    .revireview-comment__main
-      .review-detail
-        .review-detail__main
-          .review-detail__main__header.clearfix
-            .user_image
-              =link_to do
-                =image_tag("img_people-placehold", size: "50x50")
-            .review-infos
-              %p #{@user}の感想・評価
-              %time.review-date{datetime: "#{@review.created_at}"} #{@review.created_at}
-          .review-detail__main__title
-          .review-detail__main__rate
-        .review-detail__side
-    .review-comment__side
+-# .review-detail-page
+.review-detail-page__wrapper.clearfix
+  .review-detail-page__main
+    .review-contents__main.clearfix
+      .review-body
+        .review-body__head.clearfix
+          .user_image
+            =link_to do
+              =image_tag("img_people-placehold", size: "50x50")
+          .review-infos
+            %h1 #{@review.user.nickname}の感想・評価
+            %time{datetime: "#{@review.created_at}"} #{@review.created_at}
+        .review-body__title
+          =link_to "映画 #{@movie.title}", movie_path(@movie)
+          %span（#{@movie.production}制作の映画）
+        .review-body__rate
+          -if @review.score == nil
+            .user-review-rate{"data-review-rate": "0"}
+              %span{class: "user-rate user-rate-0"}
+              %spna{class: "user-review-rate-ave"} -
+          -else
+            .user-review-rate{"data-review-rate": "#{@review.score}"}
+              %span{class: "user-rate user-rate-#{@review.score}"}
+              %spna{class: "user-review-rate-ave"} #{(@review.score).to_f / 10}
+        .review-body__text
+          #{@review.comment}
+      .review-movie-contents
+        .review-movie-image
+          =image_tag(@movie.image, size: "150x210")
+        .movie-actions.clearfix
+          %a.post-review-btn
+            =fa_icon "pencil", class: "fa-2x"
+            %p #{@movie.reviews.length}
+          - if @movie.clip_user(current_user.id)
+            = link_to "#", class: "clip-movie-btn1", "data-clip-id": "#{@movie.id}", "data-clip-url": "/movies/#{@movie.id}/clips/#{@clip.id}" do
+              =fa_icon "paperclip", class: "fa-2x fa-flip-horizontal"
+              %p #{@movie.users.length}
+          - else
+            = link_to "#", class: "clip-movie-btn2", "data-clip-id": "#{@movie.id}", "data-clip-url": "/movies/#{@movie.id}/clips" do
+              =fa_icon "paperclip", class: "fa-2x fa-flip-horizontal"
+              %p #{@movie.users.length}
+    .comment-contents
+      .comment-contents__wrapper
+        .comment-contents__count
+          =fa_icon "comment"
+          #{@review.comments.length}件
+        %ul.comment-contents__main
+          -if @comments.length > 0
+            -@comments.each do |comment|
+              =render partial: "comments/comments_index", locals: {comment: comment}
+      -if @review.comments.length > 5
+        .comment-contents__paginate
+          =paginate(@comments)
+      .comment-post-form.clearfix
+        =form_for [@movie, @review, @comment] do |f|
+          =f.hidden_field :status, value: "0", class: "comment-status"
+          %a.comment-post-form__status
+            =fa_icon "warning"
+            %p ネタバレ
+          =f.text_area :comment, placeholder: "コメントする", class: "comment-post-form__text"
+          =f.submit "投稿", class: "comment-post-form__submit"
+  .review-detail-page__side
 
 
 
 
--# .mark-card
--#   .mark-card__header.clearfix
--#     .user-image
--#       =link_to do
--#         =image_tag("img_people-placehold", size: "50x50")
--#     .review-infos
--#       =link_to "#{review.user.nickname}の感想・評価"
--#       %time.review-date{datetime: "#{review.created_at}"} #{review.created_at}
--#       -if review.score == nil
--#         .user-review-rate{"data-review-rate": "0"}
--#           %span{class: "user-rate user-rate-0"}
--#           %spna{class: "user-review-rate-ave"} -
--#       -else
--#         .user-review-rate{"data-review-rate": "#{review.score}"}
--#           %span{class: "user-rate user-rate-#{review.score}"}
--#           %spna{class: "user-review-rate-ave"} #{(review.score).to_f / 10}
--#   .mark-card__body
--#     #{review.comment}
--#   .mark-card__tags
--#     %ul
--#       -review.tags.each do |tag|
--#         %li
--#           =link_to "#{tag.name}"
--#   .mark-card__reactions
--#     .reactions__button.reactions__button--likes
--#       =link_to do
--#         =fa_icon "heart"
--#         %p いいね！
--#       %span 0
--#     .reactions__button.reactions__button--comment
--#       =link_to do
--#         =fa_icon "comment"
--#         %p コメントする
--#       %span 0
+

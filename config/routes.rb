@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     resources :clips
     resources :reviews, only: [:show, :create] do
       resources :tags, only: [:index, :create]
-      resources :comment, only: [:create]
+      resource :comments, only: [:create]
     end
     collection do
       get "search"
