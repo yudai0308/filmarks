@@ -1,0 +1,26 @@
+.search-detail{
+  .sidebar__main{
+    .main_year{
+      .hidden{
+        display: none;
+      }
+      .sub_year{
+        .c-side-menu__items{
+          border-bottom: none;
+          border-top: none;
+          &_title{
+            .year_subname{
+              line-height: 29px;
+              display: block;
+              padding: 0 0px 0 15px;
+            }
+            a:after{
+                content: "";
+                float: none;
+            }
+          }
+        }
+      }
+    }
+  }
+}

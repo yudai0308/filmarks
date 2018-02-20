@@ -31,7 +31,7 @@ Rails.application.routes.draw do
     end
     resources :countries, only: [:index], path: '/country/:country_id'
     resources :genres, only: [:show]
-    resources :years, only: [:show]
+    resources :years, only: [:index,:show], path: '/year/:age_id'
     resources :tags, only: [:show]
     resources :awards, only: [:show]
   end

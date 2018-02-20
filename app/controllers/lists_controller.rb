@@ -52,8 +52,7 @@ class ListsController < ApplicationController
     @movies_rental = Movie.order('production DESC').limit(10).order("RAND()").limit(3)
   end
   def user
-    # ↓フォロワー数で取得？
-    @users = User.all.limit(50)
+    @users = User.joins(:passive_relationships).group(:followed_id).order('count(follower_id) desc')
   end
 
   private
