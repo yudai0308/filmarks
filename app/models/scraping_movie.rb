@@ -40,12 +40,12 @@ class Scraping_movie
 
     # movie情報のスクレイピング
     links.each do |link|
-      get_movie_info("https://filmarks.com" + link)
-    end
-
+     movie = get_movie_info("https://filmarks.com" + link)
     # member情報のスクレイピング
-    links.each do |link|
-      get_movie_members("https://filmarks.com" + link)
+     members = get_movie_members("https://filmarks.com" + link)
+     movie.members << members
+     genres = get_movie_genres("https://filmarks.com" + link)
+     movie.genres << genres
     end
   end
 
@@ -70,6 +70,7 @@ class Scraping_movie
                         production: production,
                         release:    release).first_or_initialize
     movie.save
+    return movie
   end
 
   # release の情報取得と編集
@@ -120,33 +121,37 @@ class Scraping_movie
     agent = Mechanize.new
     page = agent.get(link)
     member_first = page.search(".p-content-detail__people-list-others")
-
+    members = []
     member_first.each do |mem|
       case mem.search(".p-content-detail__people-list-term").inner_text
-      when "監督" then
-        directors = mem.search(".p-content-detail__people-list-desc")
-        directors.each do |director|
-          director_name = director.search(".c-label").inner_text if director.search(".c-label")
-          member = Member.where(status: "0", name: director_name).first_or_initialize
-          member.save
+        when "監督" then
+          directors = mem.search(".p-content-detail__people-list-desc")
+          directors.each do |director|
+            director_name = director.search(".c-label").inner_text if director.search(".c-label")
+            member = Member.where(status: "0", name: director_name).first_or_initialize
+            member.save
+            members << member
         end
-      when "脚本" then
-        wrighters = mem.search(".p-content-detail__people-list-desc")
-        wrighters.each do |wrighter|
-          wrighter_name = wrighter.search(".c-label").inner_text if wrighter.search(".c-label")
-          member = Member.where(status: "1", name: wrighter_name).first_or_initialize
-          member.save
-        end
-      when "原作" then
-        originalworks = mem.search(".p-content-detail__people-list-desc")
-        originalworks.each do |originalwork|
-          originalwork_name = originalwork.search(".c-label").inner_text if originalwork.search(".c-label")
-          member = Member.where(status: "3", name: originalwork_name).first_or_initialize
-          member.save
-        end
-      end
-    end
 
+        when "脚本" then
+          wrighters = mem.search(".p-content-detail__people-list-desc")
+          wrighters.each do |wrighter|
+            wrighter_name = wrighter.search(".c-label").inner_text if wrighter.search(".c-label")
+            member = Member.where(status: "1", name: wrighter_name).first_or_initialize
+            member.save
+            members << member
+        end
+
+        when "原作" then
+          originalworks = mem.search(".p-content-detail__people-list-desc")
+          originalworks.each do |originalwork|
+            originalwork_name = originalwork.search(".c-label").inner_text if originalwork.search(".c-label")
+            member = Member.where(status: "3", name: originalwork_name).first_or_initialize
+            member.save
+            members << member
+        end
+     end
+    end
     # キャストのスクレイピング
     member_second = page.search(".p-content-detail__people-list-casts")
     casts = member_second.search(".p-content-detail__people-list-desc")
@@ -154,7 +159,26 @@ class Scraping_movie
     casts.each do |cast|
       cast_name = cast.search(".c-label").inner_text if cast.search(".c-label").inner_text
       cast = Member.where(status: "2", name: cast_name).first_or_initialize
-      cast.save
+                cast.save
+          members << cast
     end
+    return members
+    #ここまでが def self.get_movie_members(link)
+  end
+  def self.get_movie_genres(link)
+    genres = []
+    agent = Mechanize.new
+    page = agent.get(link)
+    genre = page.search('.p-content-detail__genre') if page.search('.p-content-detail__genre')
+    genre_name = []
+     genre.each do |list|
+       genre_name = list.search("li a").inner_text if list.search("li a").inner_text
+       binding.pry
+       genre = Genre.where(name: genre_name).first_or_initialize
+       genre.save
+       genres << genre
+     end
+    return genres
   end
 end
+
