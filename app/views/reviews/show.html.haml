@@ -1,4 +1,5 @@
 .review-detail-page__wrapper.clearfix
+  =render partial: "header", locals: {movie: @movie, review: @review}
   .review-detail-page__main
     .review-contents__main.clearfix
       .review-body

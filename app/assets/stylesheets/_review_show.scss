@@ -1,3 +1,14 @@
+.review-detail__header {
+  height: 18px;
+  padding: 16px 0px;
+  font-size: 14px;
+
+  li {
+    list-style: none;
+    display: inline-block;
+  }
+}
+
 .review-detail-page__wrapper {
   width: 1000px;
   margin: 0 auto;
