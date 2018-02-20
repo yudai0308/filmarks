@@ -8,11 +8,12 @@
           %li
             &nbsp;>&nbsp;&nbsp;
           %li
-            = link_to "映画製作年代・製作年", root_path
+            = link_to "映画製作年代・製作年", year_lists_path
           %li
             &nbsp;>&nbsp;&nbsp;
           %li
-            #{@search_age_name}年代製作の映画
+            = link_to lists_years_path(@search_age_name) do
+              #{@search_age_name}年代製作の映画
           - if @search_year_name != nil
             %li
               &nbsp;>&nbsp;&nbsp;
