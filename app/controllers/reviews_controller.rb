@@ -5,8 +5,8 @@ class ReviewsController < ApplicationController
   def show
     @movie = Movie.find(params[:movie_id])
     @review = Review.find(params[:id])
-    @user = @review.user
-    @comment = @review.comments
+    @comment = Comment.new
+    @comments = @review.comments.page(params[:page]).per(5).order("created_at DESC")
   end
 
   def create

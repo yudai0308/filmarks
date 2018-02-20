@@ -1,0 +1,11 @@
+%li
+  .comment-content__header.clearfix
+    .user-image
+      =link_to do
+        =image_tag("img_people-placehold", size: "30x30")
+    .comment-infos
+      =link_to "#{comment.user.nickname}"
+      %time{datetime: "#{comment.created_at}"} #{comment.created_at}
+  .comment-content__text
+    #{comment.comment}
+

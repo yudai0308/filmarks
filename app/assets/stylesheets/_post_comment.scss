@@ -1,0 +1,99 @@
+.comment-contents {
+  background-color: #fff;
+  clear: both;
+
+  .comment-contents__wrapper{
+    padding: 20px 20px 0px 20px;
+    border-right: 1px solid #eee;
+    border-left: 1px solid #eee;
+
+    .comment-contents__count {
+      color: #aaa;
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+    .comment-contents__main {
+
+      li {
+        padding-bottom: 10px;
+        margin-bottom: 20px;
+        border-bottom: 1px solid #eee;
+
+        .comment-content__header {
+          .user-image {
+            margin-right: 10px;
+            float: left;
+            & a img {
+              border-radius: 3px;
+            }
+          }
+          .comment-infos {
+            height: 36px;
+            line-height: 18px;
+            float: left;
+            & a {
+              font-size: 16px;
+              font-weight: 500;
+            }
+            & time {
+              font-size: 12px;
+              display: block;
+            }
+          }
+        }
+      }
+      .comment-content__text {
+        margin-top: 10px;
+      }
+    }
+  }
+  .comment-contents__paginate {
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    border-right: 1px solid #eee;
+    border-left: 1px solid #eee;
+  }
+  .comment-post-form {
+    background-color: #555;
+    padding: 10px 20px;
+  }
+  .comment-post-form__status {
+    background-color: #eee;
+    color: Dimgray;
+    width: 50px;
+    height: 30px;
+    font-size: 10px;
+    padding: 3px 0px;
+    margin-right: 10px;
+    text-align: center;
+    border-radius: 5px;
+    cursor: pointer;
+    float: left;
+
+    .fa-warning {
+      font-size: 18px;
+    }
+  }
+  .comment-post-form__text {
+    width: 444px;
+    height: 18px;
+    min-height: 18px;
+    padding: 8px;
+    margin-right: 10px;
+    border: 1px solid #555;
+    font-size: 14px;
+    border-radius: 3px;
+    resize: vertical;
+    float: left;
+  }
+  .comment-post-form__submit {
+    color: #fff;
+    background-color: #00c4a5;
+    width: 60px;
+    height: 36px;
+    border-radius: 3px;
+    border: none;
+    float: left;
+  }
+}
