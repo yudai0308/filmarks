@@ -1,5 +1,7 @@
 class ListsController < ApplicationController
 
+  before_action :build_review_and_tag_model
+
   def now
     @movies = Movie.page(params[:page]).per(36).order("created_at DESC")
     set_movies_infos
@@ -56,6 +58,11 @@ class ListsController < ApplicationController
   end
 
   private
+
+  def build_review_and_tag_model
+    @review = Review.new
+    @tag = Tag.new
+  end
 
   def set_movies_infos
     @movies_infos_array = []

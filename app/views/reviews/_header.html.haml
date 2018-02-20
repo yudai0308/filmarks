@@ -1,0 +1,9 @@
+.review-detail__header
+  %ul.top-navi
+    %li=link_to "Filmarks映画情報", root_path
+    %li >
+    %li=link_to "アメリカ映画", root_path
+    %li >
+    %li=link_to "#{movie.title}の映画情報・感想・評価", movie_path(movie)
+    %li >
+    %li #{review.user.nickname}の感想・評価

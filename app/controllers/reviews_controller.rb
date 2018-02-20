@@ -10,15 +10,15 @@ class ReviewsController < ApplicationController
   end
 
   def create
-
     @review = Review.new(review_params)
     if @review.score == 9
       @review.score = nil
     end
     @review.save
 
-    tags = Tag.new(tags_params)[:name] if Tag.new(tags_params)[:name]
-    tags_array = tags.split(/\s/)
+    tags = Tag.new(tags_params) if Tag.new(tags_params)
+    tags.name = params[:tag][:name]
+    tags_array = tags.name.split(/\s/)
     tags_array.each do |tag|
       if tag =~ /^#.+/
         tag_for_record = Tag.new(tags_params)
@@ -29,23 +29,22 @@ class ReviewsController < ApplicationController
       end
     end
 
-    render :js => "window.location = '/movies/#{params[:movie_id]}'"
+    redirect_to movie_path(params[:movie_id])
   end
 
   private
 
   def review_params
-    params.require(
-            :review).permit(
-                      :comment,
-                      :score,
-                      :status).merge(
-                                user_id: current_user.id,
-                                movie_id: params[:movie_id])
+    params.require( :review
+          ).permit( :comment,
+                    :score,
+                    :status,
+           ).merge( user_id: current_user.id,
+                    movie_id: params[:movie_id])
   end
 
   def tags_params
-    params.require(:tags).permit(:name)
+    params.require(:tag).permit(:name)
   end
 
   def set_movie
