@@ -12,6 +12,7 @@
             %span
               = movie.title
         .list-content__wrapper.clearfix
+          =render partial: "reviews/post_form", locals: {movie: movie, review: @review, tag: @tag}
           =link_to "#" do
             .list-content__mark
               =fa_icon "pencil", class: "fa-2x"
