@@ -6,6 +6,8 @@ class Review < ApplicationRecord
   belongs_to  :user
   belongs_to  :movie
 
+  accepts_nested_attributes_for :tags
+
   validates :comment,
             :user_id ,
             :movie_id,

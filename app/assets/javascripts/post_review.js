@@ -106,14 +106,14 @@ $(function() {
     e.preventDefault();
     var formData = new FormData($(".post_review_form").get()[0]);
     var currentPageURL = window.location.href
-    var moviePageReg = /\/movies\/\d+$/;
-    var reviewPageReg = /\/movies\/\d+\/reviews\/\d+$/;
-    if(currentPageURL.match(moviePageReg)) {
+    var moviePageReg1 = /\/movies\/\d+$/;
+    var moviePageReg2 = /\/movies\/\d+\?.*/;
+    var reviewPageReg1 = /\/movies\/\d+\/reviews\/\d+$/;
+    var reviewPageReg2 = /\/movies\/\d+\/reviews\/\d+\?.*/;
+    if(currentPageURL.match(moviePageReg1)) {
       var postURL = currentPageURL + "/reviews"
-      console.log(postURL);
-    } else if(currentPageURL.match(reviewPageReg)) {
+    } else if(currentPageURL.match(reviewPageReg1)) {
       var postURL = currentPageURL.replace(/(\/movies\/\d+\/reviews)\/\d+/, "$1")
-      console.log(postURL);
     };
 
     $.ajax({

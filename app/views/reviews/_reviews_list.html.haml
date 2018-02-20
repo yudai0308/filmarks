@@ -31,4 +31,4 @@
       =link_to movie_review_path(params[:id], review.id) do
         =fa_icon "comment"
         %p コメントする
-      %span 0
+      %span #{review.comments.length}
