@@ -9,6 +9,7 @@ class MoviesController < ApplicationController
     @tag = Tag.new
     @reviews = @movie.reviews.page(params[:page]).per(5).order("created_at DESC")
     @all_reviews = @movie.reviews
+
     # --- 平均値を求める処理 ---
     @scores_array = []
     @movie.reviews.each do |review|
@@ -16,6 +17,22 @@ class MoviesController < ApplicationController
     end
     if @scores_array.length > 0
       @review_ave = (@scores_array.sum) / (@scores_array.length)
+    end
+
+    # --- 年代のリンク作成 ---
+    year = @movie.production.delete("年").to_i
+    if year >= 2010
+      @year_url = "/lists/year/2010s/#{year}"
+    elsif year >= 2000
+      @year_url = "/lists/year/2000s/#{year}"
+    elsif year >= 1990
+      @year_url = "/lists/year/1990s/#{year}"
+    elsif year >= 1980
+      @year_url = "/lists/year/1980s/#{year}"
+    elsif year >= 1970
+      @year_url = "/lists/year/1970s/#{year}"
+    elsif year >= 1960
+      @year_url = "/lists/year/1960s/#{year}"
     end
 
     @clip = Clip.find_by(movie_id: params[:id], user_id: current_user.id)

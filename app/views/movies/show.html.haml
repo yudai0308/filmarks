@@ -7,7 +7,7 @@
         %ul.top-navi
           %li=link_to "Filmarks映画情報", root_path
           %li >
-          %li=link_to "アメリカ映画", root_path
+          %li=link_to "#{@movie.countrys[0].name}", lists_countries_path(@movie.countrys[0].id)
           %li >
           %li #{@movie.title}の映画情報・感想・評価
 
@@ -43,23 +43,40 @@
               %span #{@movie.title}
               %small
                 （
-                =link_to "#{@movie.production}", root_path
+                =link_to "#{@movie.production}", @year_url
                 製作の映画）
             .movie-detail__other-info
               %ul
-                %li 上映日：2017年02月24日／
+                %li
+                  上映日：
+                  -if @movie.release
+                    #{@movie.release.strftime("%Y年%m月%d日") }
+                    %span &nbsp;／
+                  -else
+                    %span -
                 %li
                   製作国：
-                  =link_to "アメリカ", root_path
+                  -if @movie.countrys
+                    -@movie.countrys.each do |country|
+                      =link_to "#{country.name}", lists_countries_path(country.id)
+                      %span &nbsp;
+                  -else
+                    %span -
                   ／
-                %li 上映時間：#{@movie.time}分
+                %li
+                  上映時間：
+                  -if @movie.time
+                    #{@movie.time}分
+                  -else
+                    %span -
             .movie-detail__genre
               %h3.movie-detail__genre-title
                 ジャンル：
-              %ul
-                %li=link_to "恋愛", root_path
-                %li 、
-                %li=link_to "ミュージカル", root_path
+                -if @movie.genres
+                  -@movie.genres.each do |genre|
+                    =link_to "#{genre.name}", lists_genre_path(genre.id)
+                -else
+                  %span -
             -if @movie.reviews && @scores_array.sum > 1
               .movie-detail__review-rate{"data-review-rate": "#{@review_ave}"}
             -else
@@ -70,30 +87,31 @@
                 #{@movie.story}
             .movie-detail__people-list
               .movie-detail__people-list-others__wrapper.clearfix
-                .movie-detail__people-list-others
-                  %h3 監督
-                  %ul
-                    %li.p-movie-detail__people-list-desc
-                      =link_to "デイミアン・チャゼル", root_path, class: "member-label"
-                .movie-detail__people-list-others
-                  %h3 脚本
-                  %ul
-                    %li.p-movie-detail__people-list-desc
-                      =link_to "デイミアン・チャゼル", root_path, class: "member-label"
-                .movie-detail__people-list-casts
-                  %h3 出演者
-                  %ul
-                    %li.p-movie-detail__people-list-desc
-                      =link_to "ライアン・ゴズリング", root_path, class: "member-label"
-                      =link_to "エマ・ストーン", root_path, class: "member-label"
-                      =link_to "J・K・シモンズ", root_path, class: "member-label"
-                      =link_to "フィン・ウィットロック", root_path, class: "member-label"
-                      =link_to "ローズマリー・デウィット", root_path, class: "member-label"
-                      =link_to "ミーガン・フェイ", root_path, class: "member-label"
-                      =link_to "ジェイソン・フックス", root_path, class: "member-label"
-                .movie-detail__trailer
-                  %h3 予告編
-                  %iframe{width: "360", height: "200", src: "https://www.youtube.com/embed/tlyqz57sHgM", frameborder: "0", allow: "autoplay; encrypted-media"}
+                -if @movie.members
+                  .movie-detail__people-list-others
+                    %h3 監督
+                    %ul
+                      -@movie.members.each do |member|
+                        -if member.status == 0
+                          %li.p-movie-detail__people-list-desc
+                            =link_to "#{member.name}", root_path, class: "member-label"
+                  .movie-detail__people-list-others
+                    %h3 脚本
+                    %ul
+                      -@movie.members.each do |member|
+                        -if member.status == 1
+                          %li.p-movie-detail__people-list-desc
+                            =link_to "#{member.name}", root_path, class: "member-label"
+                  .movie-detail__people-list-casts
+                    %h3 出演者
+                    %ul
+                      -@movie.members.each do |member|
+                        -if member.status == 2
+                          %li.p-movie-detail__people-list-desc
+                            =link_to "#{member.name}", root_path, class: "member-label"
+                -# .movie-detail__trailer
+                -#   %h3 予告編
+                -#   %iframe{width: "360", height: "200", src: "https://www.youtube.com/embed/tlyqz57sHgM", frameborder: "0", allow: "autoplay; encrypted-media"}
 
   .movie-detail__low-content
     =render partial: "reviews/movie_detail_low_content", locals: {movie: @movie, reviews: @reviews, all_reviews: @all_reviews}
