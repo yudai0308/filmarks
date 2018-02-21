@@ -5,31 +5,70 @@
     .sidebar__main
       %nav.c-side-menu
         %ul
-          %li.c-side-menu__items
-            %h3.c-side-menu__items_title
-              = link_to "上映中の映画", now_lists_path
-          %li.c-side-menu__items
-            %h3.c-side-menu__items_title
-              = link_to "公開予定の映画", comming_lists_path
-          %li.c-side-menu__items
-            %h3.c-side-menu__items_title
-              = link_to "今週公開の映画", upcomming_lists_path
-          %li.c-side-menu__items
-            %h3.c-side-menu__items_title
-              = link_to "今話題のおすすめ映画", trend_lists_path
-          %li.c-side-menu__items
-            %h3.c-side-menu__items_title
-              = link_to "制作年（年代）", root_path
-          %li.c-side-menu__items
-            %h3.c-side-menu__items_title
-              = link_to "制作国", root_path
-          %li.c-side-menu__items
-            %h3.c-side-menu__items_title
-              = link_to "ジャンル", root_path
-          %li.c-side-menu__items
-            %h3.c-side-menu__items_title
-              = link_to "タグ", root_path
-
+          - if params[:action] == "now"
+            %li.c-side-menu__items
+              %h3.c-side-menu__items_title.active
+                = link_to "上映中の映画", now_lists_path
+          - else
+            %li.c-side-menu__items
+              %h3.c-side-menu__items_title
+                = link_to "上映中の映画", now_lists_path
+          - if params[:action] == "comming"
+            %li.c-side-menu__items
+              %h3.c-side-menu__items_title.active
+                = link_to "公開予定の映画", comming_lists_path
+          - else
+            %li.c-side-menu__items
+              %h3.c-side-menu__items_title
+                = link_to "公開予定の映画", comming_lists_path
+          - if params[:action] == "upcomming"
+            %li.c-side-menu__items
+              %h3.c-side-menu__items_title.active
+                = link_to "今週公開の映画", upcomming_lists_path
+          - else
+            %li.c-side-menu__items
+              %h3.c-side-menu__items_title
+                = link_to "今週公開の映画", upcomming_lists_path
+          - if params[:action] == "trend"
+            %li.c-side-menu__items
+              %h3.c-side-menu__items_title.active
+                = link_to "今話題のおすすめ映画", trend_lists_path
+          - else
+            %li.c-side-menu__items
+              %h3.c-side-menu__items_title
+                = link_to "今話題のおすすめ映画", trend_lists_path
+          - if params[:action] == "year"
+            %li.c-side-menu__items
+              %h3.c-side-menu__items_title.active
+                = link_to "制作年（年代）", year_lists_path
+          - else
+            %li.c-side-menu__items
+              %h3.c-side-menu__items_title
+                = link_to "制作年（年代）", year_lists_path
+          - if params[:action] == "country"
+            %li.c-side-menu__items
+              %h3.c-side-menu__items_title.active
+                = link_to "制作国", country_lists_path
+          - else
+            %li.c-side-menu__items
+              %h3.c-side-menu__items_title
+                = link_to "制作国", country_lists_path
+          - if params[:action] == "genre"
+            %li.c-side-menu__items
+              %h3.c-side-menu__items_title.active
+                = link_to "ジャンル", genre_lists_path
+          - else
+            %li.c-side-menu__items
+              %h3.c-side-menu__items_title
+                = link_to "ジャンル", genre_lists_path
+          - if params[:action] == "tag"
+            %li.c-side-menu__items
+              %h3.c-side-menu__items_title.active
+                = link_to "タグ", tag_lists_path
+          - else
+            %li.c-side-menu__items
+              %h3.c-side-menu__items_title
+                = link_to "タグ", tag_lists_path
   .sidebar-banner__contents
     .barnner__content
       = image_tag "banner1.jpeg", alt: "banner_ad"
