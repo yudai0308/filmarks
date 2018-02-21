@@ -1,6 +1,17 @@
 class MoviesController < ApplicationController
 
+  before_action :build_review_and_tag_model
+
   def index
+    user = current_user
+    @user_actions = user.active_relationships.map{
+      |user|[
+        user.followed.reviews,
+        user.followed.clips,
+        user.followed.users_members
+      ]
+    }.flatten.sort_by! { |a| a[:created_at] }.reverse
+    # @user_actions_page = @user_actions.page(params[:page]).per(10)
   end
 
   def show
@@ -36,4 +47,12 @@ class MoviesController < ApplicationController
       render action:'search_movie'
     end
   end
+
+  private
+
+  def build_review_and_tag_model
+    @review = Review.new
+    @tag = Tag.new
+  end
+
 end

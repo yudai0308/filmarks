@@ -3,4 +3,164 @@
     %h1 タイムライン
   .timeline-contents__wrapper.clearfix
     .timeline__main-contents
+      - @user_actions.each do |user_action|
+        .timeline__main-content
+          - if user_action.class == Review
+            .timeline__main-content__wrapper.clearfix
+              .timeline__main-content-left
+                .user-info.clearfix
+                  .user-info__lists-content-thumbnail
+                    = image_tag "img_people-placehold.svg", alt: "image"
+                  .user-info__lists-content-info
+                    = link_to user_path(user_action.user.id) do
+                      %p.user_name
+                        = "#{ user_action.user.nickname }の感想・レビュー"
+                    %p.action_time
+                      = "#{user_action.created_at.strftime("%Y年%m月%d日 %H時%M分")}"
+                .movie-info
+                  =link_to "#{user_action.movie.title}", movie_path(user_action.movie.id)
+                  %span
+                    = "(#{user_action.movie.production}製作映画)"
+                  -if user_action.score == nil
+                    .user-review-rate{"data-review-rate": "0"}
+                      %span{class: "user-rate user-rate-0"}
+                      %spna{class: "user-review-rate-ave"} -
+                  -else
+                    .user-review-rate{"data-review-rate": "#{user_action.score}"}
+                      %span{class: "user-rate user-rate-#{user_action.score}"}
+                      %spna{class: "user-review-rate-ave"} #{(user_action.score).to_f / 10}
+                .review-info
+                  .review-info__comment
+                    #{user_action.comment}
+                  .review-info__tags
+                    %ul
+                      - user_action.tags.each do |tag|
+                        %li
+                          =link_to "#{tag.name}"
+              .timeline__main-content-right
+                .list-content
+                  =link_to movie_path(user_action.movie.id) do
+                    .list-content__image
+                      = image_tag "#{ user_action.movie.image }", alt: "#{ user_action.movie.title }", width: "150px", height: "200px"
+                  .list-content__wrapper.clearfix
+                    =render partial: "reviews/post_form", locals: {movie: user_action.movie, review: @review, tag: @tag}
+                    =link_to "#" do
+                      .list-content__mark
+                        =fa_icon "pencil", class: "fa-2x"
+                        %p.mark__count
+                          #{user_action.movie.reviews.length}
+                    - if user_action.movie.clip_user(current_user.id)
+                      - @clip = user_action.movie.clips.find_by(user_id: current_user.id)
+                      =link_to "#", class: "clip-movie-btn3", "data-clip-id": "#{user_action.movie.id}", "data-clip-url": "/movies/#{user_action.movie.id}/clips/#{@clip.id}" do
+                        .list-content__clip
+                          =fa_icon "paperclip", class: "fa-2x fa-flip-horizontal"
+                          %p.clip__count
+                            #{user_action.movie.users.length}
+                    - else
+                      =link_to "#", class: "clip-movie-btn4", "data-clip-id": "#{user_action.movie.id}", "data-clip-url": "/movies/#{user_action.movie.id}/clips" do
+                        .list-content__clip
+                          =fa_icon "paperclip", class: "fa-2x fa-flip-horizontal"
+                          %p.clip__count
+                            #{user_action.movie.users.length}
+            .timeline__main-content__reactions
+              .reactions__button.reactions__button--likes
+                =link_to do
+                  =fa_icon "heart"
+                  %p いいね！
+                %span 0
+              .reactions__button.reactions__button--comment
+                =link_to movie_review_path(user_action.movie.id, user_action.id) do
+                  =fa_icon "comment"
+                  %p コメントする
+                %span #{user_action.comments.length}
+          - elsif user_action.class == Clip
+            .timeline__main-content__wrapper.clearfix
+              .timeline__main-content-left
+                .user-info.clearfix
+                  .user-info__lists-content-thumbnail
+                    = image_tag "img_people-placehold.svg", alt: "image", width: "30x", height: "30px"
+                  .user-info__lists-content-info
+                    = link_to user_path(user_action.user.id) do
+                      %p.user_name
+                        = "#{ user_action.user.nickname }"
+                    %p.action_time
+                      = "#{user_action.created_at.strftime("%Y年%m月%d日 %H時%M分")}"
+                .action-info
+                  =link_to  "『#{ user_action.movie.title }』" , movie_path(user_action.movie.id)
+                  %span をClip ！
+              .timeline__main-content-right
+                .list-content
+                  =link_to movie_path(user_action.movie.id) do
+                    .list-content__image
+                      = image_tag "#{ user_action.movie.image }", alt: "#{ user_action.movie.title }", width: "45x", height: "67px"
+
+          - elsif user_action.class == UsersMember
+            .timeline__main-content__wrapper.clearfix
+              .timeline__main-content-left
+                .user-info.clearfix
+                  .user-info__lists-content-thumbnail
+                    = image_tag "img_people-placehold.svg", alt: "image", width: "30x", height: "30px"
+                  .user-info__lists-content-info
+                    = link_to user_path(user_action.user.id) do
+                      %p.user_name
+                        = "#{ user_action.user.nickname }"
+                    %p.action_time
+                      = "#{user_action.created_at.strftime("%Y年%m月%d日 %H時%M分")}"
+                .action-info
+                  =link_to  "『#{ user_action.member.name }』" ,"#"
+                  %span をFun ！
+              .timeline__main-content-right
+                .list-content
+                  =link_to "#" do
+                    .list-content__image
+                      = image_tag "img_people-placehold.svg", alt: "image"
+
     .timeline__side-bar
+      .barnner__content
+        = image_tag "banner1.jpeg", alt: "banner_ad"
+      .filmaga-content
+        .filmaga-content__title
+          FILMAGA
+        %ul
+          %li.filmaga-content__info.clearfix
+            .filmaga-content__info-image
+              = image_tag "img_people-placehold.svg", alt: "image"
+            .filmaga-content__info-detail
+              %p 3月開催！アニメの祭典、神秘の映像、世界のおすすめ映画が集結＜国内映画イベントまとめ＞
+              .filmaga-content__info-detail-tag
+                映画祭・イベント
+          %li.filmaga-content__info.clearfix
+            .filmaga-content__info-image
+              = image_tag "img_people-placehold.svg", alt: "image"
+            .filmaga-content__info-detail
+              %p 【試写会プレゼント】アカデミー賞外国語映画賞ノミネート！ロシアの鬼才の最高傑作『ラブレス』
+              .filmaga-content__info-detail-tag
+                試写会
+          %li.filmaga-content__info.clearfix
+            .filmaga-content__info-image
+              = image_tag "img_people-placehold.svg", alt: "image"
+            .filmaga-content__info-detail
+              %p 【決定】映画『グレイテスト・ショーマン』初日満足度ランキング1位獲得
+              .filmaga-content__info-detail-tag
+                映画ランキング
+          %li.filmaga-content__info.clearfix
+            .filmaga-content__info-image
+              = image_tag "img_people-placehold.svg", alt: "image"
+            .filmaga-content__info-detail
+              %p 【マトリクスチャート診断】いまの気分にぴったりのミュージカル映画を紹介！
+              .filmaga-content__info-detail-tag
+                まとめ
+          %li.filmaga-content__info.clearfix
+            .filmaga-content__info-image
+              = image_tag "img_people-placehold.svg", alt: "image"
+            .filmaga-content__info-detail
+              %p 【試写会プレゼント】世界で最も有名なパンケーキ屋さんに隠されたサクセスストーリー。Prime Original『しろときいろ 〜ハワイと私のパンケーキ物語〜』
+              .filmaga-content__info-detail-tag
+                試写会
+        .filmaga-content__more
+          .filmaga-content__more-btn
+            もっとみる
+
+
+      .barnner__content
+        %iframe{:allow => "autoplay; encrypted-media", :allowfullscreen => "", :frameborder => "0", :height => "250", :src => "https://www.youtube.com/embed/JXJ0ADlG8bg", :width => "300"}
