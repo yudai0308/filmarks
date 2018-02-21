@@ -7,8 +7,9 @@
         %ul.top-navi
           %li=link_to "Filmarks映画情報", root_path
           %li >
-          %li=link_to "#{@movie.countrys[0].name}", lists_countries_path(@movie.countrys[0].id)
-          %li >
+          -if @movie.countrys.length > 0
+            %li=link_to "#{@movie.countrys[0].name}", lists_countries_path(@movie.countrys[0].id)
+            %li >
           %li #{@movie.title}の映画情報・感想・評価
 
       .movie-detail__body
@@ -48,61 +49,54 @@
             .movie-detail__other-info
               %ul
                 %li
-                  上映日：
-                  -if @movie.release
-                    #{@movie.release.strftime("%Y年%m月%d日") }
+                  -if @movie.release != nil
+                    上映日：#{@movie.release.strftime("%Y年%m月%d日") }
                     %span &nbsp;／
-                  -else
-                    %span -
                 %li
-                  製作国：
-                  -if @movie.countrys
+                  -if @movie.countrys.length > 0
+                    製作国：
                     -@movie.countrys.each do |country|
                       =link_to "#{country.name}", lists_countries_path(country.id)
-                      %span &nbsp;
-                  -else
-                    %span -
-                  ／
+                      %span &nbsp;／
                 %li
-                  上映時間：
-                  -if @movie.time
-                    #{@movie.time}分
-                  -else
-                    %span -
+                  -if @movie.time != nil
+                    上映時間：#{@movie.time}分
             .movie-detail__genre
               %h3.movie-detail__genre-title
-                ジャンル：
-                -if @movie.genres
+                -if @movie.genres.length > 0
+                  ジャンル：
                   -@movie.genres.each do |genre|
                     =link_to "#{genre.name}", lists_genre_path(genre.id)
-                -else
-                  %span -
             -if @movie.reviews && @scores_array.sum > 1
               .movie-detail__review-rate{"data-review-rate": "#{@review_ave}"}
             -else
               .movie-detail__review-rate{"data-review-rate": "0"}
             .movie-detail__story
-              %h3.movie-detail__story-term あらすじ
-              %p.movie-detail__story-body
-                #{@movie.story}
+              -if @movie.story != nil
+                %h3.movie-detail__story-term あらすじ
+                %p.movie-detail__story-body
+                  #{@movie.story}
             .movie-detail__people-list
               .movie-detail__people-list-others__wrapper.clearfix
-                -if @movie.members
-                  .movie-detail__people-list-others
+
+                .movie-detail__people-list-others
+                  -if @movie.members.where(status: 0).length > 0
                     %h3 監督
                     %ul
                       -@movie.members.each do |member|
                         -if member.status == 0
                           %li.p-movie-detail__people-list-desc
                             =link_to "#{member.name}", root_path, class: "member-label"
-                  .movie-detail__people-list-others
+                .movie-detail__people-list-others
+                  -if @movie.members.where(status: 1).length > 0
                     %h3 脚本
                     %ul
                       -@movie.members.each do |member|
                         -if member.status == 1
                           %li.p-movie-detail__people-list-desc
                             =link_to "#{member.name}", root_path, class: "member-label"
-                  .movie-detail__people-list-casts
+                .movie-detail__people-list-casts
+                  -if @movie.members.where(status: 2).length > 0
                     %h3 出演者
                     %ul
                       -@movie.members.each do |member|
