@@ -7,7 +7,7 @@
         %ul.top-navi
           %li=link_to "Filmarks映画情報", root_path
           %li >
-          %li=link_to "#{@movie.countrys[0].name}", root_path
+          %li=link_to "#{@movie.countrys[0].name}", lists_countries_path(@movie.countrys[0].id)
           %li >
           %li #{@movie.title}の映画情報・感想・評価
 
@@ -43,7 +43,7 @@
               %span #{@movie.title}
               %small
                 （
-                =link_to "#{@movie.production}", root_path
+                =link_to "#{@movie.production}", @year_url
                 製作の映画）
             .movie-detail__other-info
               %ul
@@ -58,7 +58,7 @@
                   製作国：
                   -if @movie.countrys
                     -@movie.countrys.each do |country|
-                      =link_to "#{country.name}"
+                      =link_to "#{country.name}", lists_countries_path(country.id)
                       %span &nbsp;
                   -else
                     %span -
@@ -74,7 +74,7 @@
                 ジャンル：
                 -if @movie.genres
                   -@movie.genres.each do |genre|
-                    =link_to "#{genre.name}", root_path
+                    =link_to "#{genre.name}", lists_genre_path(genre.id)
                 -else
                   %span -
             -if @movie.reviews && @scores_array.sum > 1
