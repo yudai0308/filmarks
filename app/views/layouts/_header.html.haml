@@ -46,20 +46,21 @@
               %span
                 = "No user"
             %span.fa.fa-angle-double-down
-          .l-header-authenticated-info__my-links
-            %ul#more_list{style: "display:none;"}
-              %li.p-header-my-menu__item
-                %a{href: user_path(current_user) } マイページ
-              %li.p-header-my-menu__item
-                %a{href: "#"} プロフィールを編集する
-              %li.p-header-my-menu__item
-                %a{href: "#"} ソーシャル連携
-              %li.p-header-my-menu__item
-                %a{href: "#"} メール設定
-              %li.p-header-my-menu__item
-                %a{href: "#"} パスワード設定
-              %li.p-header-my-menu__item
-                %a{href: "#"} ログアウト
+          -if user_signed_in?
+            .l-header-authenticated-info__my-links
+              %ul#more_list{style: "display:none;"}
+                %li.p-header-my-menu__item
+                  %a{href: user_path(current_user) } マイページ
+                %li.p-header-my-menu__item
+                  %a{href: "#"} プロフィールを編集する
+                %li.p-header-my-menu__item
+                  %a{href: "#"} ソーシャル連携
+                %li.p-header-my-menu__item
+                  %a{href: "#"} メール設定
+                %li.p-header-my-menu__item
+                  %a{href: "#"} パスワード設定
+                %li.p-header-my-menu__item
+                  %a{href: "#"} ログアウト
 
   .l-header-banner
     .l-header-banner__image
