@@ -44,8 +44,16 @@ class Scraping_movie
     # member情報のスクレイピング
      members = get_movie_members("https://filmarks.com" + link)
      movie.members << members
+    # genre関係のスクレイピング
      genres = get_movie_genres("https://filmarks.com" + link)
      movie.genres << genres
+    # country関連のスクレイピング
+     countrys = get_movie_countrys("https://filmarks.com" + link)
+     movie.countrys << countrys
+    # award関連のスクレイピング
+     awards = get_movie_awards("https://filmarks.com" + link)
+     movie.awards << awards
+
     end
   end
 
@@ -169,16 +177,48 @@ class Scraping_movie
     genres = []
     agent = Mechanize.new
     page = agent.get(link)
-    genre = page.search('.p-content-detail__genre') if page.search('.p-content-detail__genre')
+    genre = page.search('.p-content-detail__genre li a') if page.search('.p-content-detail__genre li a')
     genre_name = []
      genre.each do |list|
-       genre_name = list.search("li a").inner_text if list.search("li a").inner_text
-       binding.pry
+       genre_name = list.inner_text if list.inner_text
        genre = Genre.where(name: genre_name).first_or_initialize
        genre.save
        genres << genre
      end
     return genres
   end
+
+  def self.get_movie_countrys(link)
+    countrys = []
+    agent = Mechanize.new
+    page = agent.get(link)
+    country = page.search('.p-content-detail__other-info li a') if page.search('.p-content-detail__other-info li a')
+    country_name = []
+     country.each do |list|
+       country_name = list.inner_text if list.inner_text
+       country = Country.where(name: country_name).first_or_initialize
+       country.save
+       countrys << country
+     end
+    return countrys
+  end
+  #ここからaward
+  def self.get_movie_awards(link)
+    awards = []
+    agent = Mechanize.new
+    page = agent.get(link)
+    award_lists = page.search('.p-content-detail-related-info-content__award li') if page.search('.p-content-detail-related-info-content__award li')
+      award_lists.each do |main_list|
+      award_name = main_list.search('h3 a').inner_text
+      award_subname_lists = main_list.search('li')
+        award_subname_lists.each do |sub|
+        subname = sub.inner_text if sub.inner_text
+        award = Award.where(name: award_name).where(subname: subname).first_or_initialize
+        award.save
+        awards << award
+        end
+      end
+      return awards
+    end
 end
 
