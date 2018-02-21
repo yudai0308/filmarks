@@ -44,8 +44,16 @@ class Scraping_movie
     # member情報のスクレイピング
      members = get_movie_members("https://filmarks.com" + link)
      movie.members << members
+    # genre関係のスクレイピング
      genres = get_movie_genres("https://filmarks.com" + link)
      movie.genres << genres
+    # country関連のスクレイピング
+     countrys = get_movie_countrys("https://filmarks.com" + link)
+     movie.countrys << countrys
+    # award関連のスクレイピング
+     # awards = get_movie_awards("https://filmarks.com" + link)
+     # movie.awards << awards
+
     end
   end
 
@@ -169,16 +177,61 @@ class Scraping_movie
     genres = []
     agent = Mechanize.new
     page = agent.get(link)
-    genre = page.search('.p-content-detail__genre') if page.search('.p-content-detail__genre')
+    genre = page.search('.p-content-detail__genre li a') if page.search('.p-content-detail__genre li a')
     genre_name = []
      genre.each do |list|
-       genre_name = list.search("li a").inner_text if list.search("li a").inner_text
-       binding.pry
+       genre_name = list.inner_text if list.inner_text
        genre = Genre.where(name: genre_name).first_or_initialize
        genre.save
        genres << genre
      end
     return genres
+  end
+
+  def self.get_movie_countrys(link)
+    countrys = []
+    agent = Mechanize.new
+    page = agent.get(link)
+    country = page.search('.p-content-detail__other-info li a') if page.search('.p-content-detail__other-info li a')
+    country_name = []
+     country.each do |list|
+       country_name = list.inner_text if list.inner_text
+       country = Country.where(name: country_name).first_or_initialize
+       country.save
+       countrys << country
+     end
+    return countrys
+  end
+  #ここからaward
+  def self.info_awards
+    awards = []
+    agent = Mechanize.new
+    page = agent.get(link)
+    mains = page.search('.p-content-detail-related-info__title a')
+
+    mains.each do |main|
+      name = main.inner_text
+      # url = main.get_attribute('href')
+      main = { name: name}
+      awards << main
+    end
+    info_subtitle(lists)
+  end
+
+  def self.info_subtitle(lists)
+    agent = Mechanize.new
+    page = agent.get(link)
+    subs = page.search('.p-content-detail-related-info__desc li')
+    subs.each do |sub|
+      subname = sub.inner_text
+      # url_sub = sub.get_attribute('href')
+      lists.each do |list|
+          award = Award.where(name: list[:name], subname: subname).first_or_initialize
+          award.save
+          awards << award
+      end
+    end
+    return awards
   end
 end
 
