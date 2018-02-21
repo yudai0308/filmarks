@@ -51,8 +51,8 @@ class Scraping_movie
      countrys = get_movie_countrys("https://filmarks.com" + link)
      movie.countrys << countrys
     # award関連のスクレイピング
-     # awards = get_movie_awards("https://filmarks.com" + link)
-     # movie.awards << awards
+     awards = get_movie_awards("https://filmarks.com" + link)
+     movie.awards << awards
 
     end
   end
@@ -203,35 +203,22 @@ class Scraping_movie
     return countrys
   end
   #ここからaward
-  def self.info_awards
+  def self.get_movie_awards(link)
     awards = []
     agent = Mechanize.new
     page = agent.get(link)
-    mains = page.search('.p-content-detail-related-info__title a')
-
-    mains.each do |main|
-      name = main.inner_text
-      url = main.get_attribute('href')
-      main = { name: name}
-      awards << main
-    end
-    info_subtitle(lists)
-  end
-
-  def self.info_subtitle(lists)
-    agent = Mechanize.new
-    page = agent.get(link)
-    subs = page.search('.p-content-detail-related-info__desc li')
-    subs.each do |sub|
-      subname = sub.inner_text
-      url_sub = sub.get_attribute('href')
-      lists.each do |list|
-          award = Award.where(name: list[:name], subname: subname).first_or_initialize
-          award.save
-          awards << award
+    award_lists = page.search('.p-content-detail-related-info-content__award li') if page.search('.p-content-detail-related-info-content__award li')
+      award_lists.each do |main_list|
+      award_name = main_list.search('h3 a').inner_text
+      award_subname_lists = main_list.search('li')
+        award_subname_lists.each do |sub|
+        subname = sub.inner_text if sub.inner_text
+        award = Award.where(name: award_name).where(subname: subname).first_or_initialize
+        award.save
+        awards << award
+        end
       end
+      return awards
     end
-    return awards
-  end
 end
 
