@@ -88,11 +88,13 @@
                 .action-info
                   =link_to  "『#{ user_action.movie.title }』" , movie_path(user_action.movie.id)
                   %span をClip ！
-              .timeline__main-content-right
-                .list-content
+              .timeline__main-content-right.clearfix
+                .list-content.clearfix
                   =link_to movie_path(user_action.movie.id) do
                     .list-content__image
-                      = image_tag "#{ user_action.movie.image }", alt: "#{ user_action.movie.title }", width: "45x", height: "67px"
+                      = image_tag "#{ user_action.movie.image }", alt: "#{ user_action.movie.title }", width: "50px", height: "70px"
+                      .list-content__clip-small
+                        =fa_icon "paperclip", class: "fa-2x fa-flip-horizontal"
 
           - elsif user_action.class == UsersMember
             .timeline__main-content__wrapper.clearfix
@@ -111,10 +113,10 @@
                   %span をFun ！
               .timeline__main-content-right
                 .list-content
-                  =link_to "#" do
+                  = link_to "#" do
                     .list-content__image
                       = image_tag "img_people-placehold.svg", alt: "image"
-
+                      .fun-image
     .timeline__side-bar
       .barnner__content
         = image_tag "banner1.jpeg", alt: "banner_ad"
@@ -158,8 +160,9 @@
               .filmaga-content__info-detail-tag
                 試写会
         .filmaga-content__more
-          .filmaga-content__more-btn
-            もっとみる
+          = link_to "#" do
+            .filmaga-content__more-btn
+              もっとみる >
 
 
       .barnner__content

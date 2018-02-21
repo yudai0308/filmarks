@@ -84,6 +84,7 @@
           .list-content{
             background-color: white;
             float:left;
+            position: relative;
             &__mark{
               height: 45px;
               width:  74px;
@@ -118,6 +119,34 @@
                 font-size: 12px;
               }
             }
+            &__clip-small{
+              background-color: yellow;
+              height: 26px;
+              width: 26px;
+              border-radius: 13px;
+              line-height: 26px;
+              text-align: center;
+              position: absolute;
+              top: 55px;
+              left: 35px;
+              .fa-2x{
+                font-size: 18px;
+                font-weight: 400;
+                color: black;
+              }
+            }
+            .fun-image{
+              width: 25px;
+              height: 25px;
+              border-radius: 50%;
+              position: relative;
+              background-image: url("btn_fan.svg");
+              background-position: 30%;
+              position: absolute;
+              top: 40px;
+              left: 35px;
+            }
+
           }
         }
         &__reactions {
@@ -224,6 +253,7 @@
           padding: 19px 20px;
           border-left: 1px solid #eee;
           border-right: 1px solid #eee;
+
           &-btn{
             box-sizing: border-box;
             height: 36px;
@@ -234,6 +264,9 @@
             color: white;
             font-size: 12px;
             line-height: 36px;
+            &:hover{
+              opacity: 0.5;
+            }
           }
         }
       }

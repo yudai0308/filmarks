@@ -11,7 +11,7 @@ class MoviesController < ApplicationController
         user.followed.users_members
       ]
     }.flatten.sort_by! { |a| a[:created_at] }.reverse
-    # @user_actions_page = @user_actions.page(params[:page]).per(10)
+    # @user_actions_page = @user_actions.per(30)
   end
 
   def show
