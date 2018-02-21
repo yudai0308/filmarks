@@ -126,13 +126,13 @@
             margin-top :3px;
             font-size: 12px;
 
-            & h3, ul {
+            & h3 {
               display: inline-block;
             }
 
-            & ul li {
-              list-style: none;
+            & a {
               display: inline-block;
+              margin-right: 8px;
             }
           }
           .movie-detail__review-rate {
@@ -179,7 +179,10 @@
               }
               .movie-detail__people-list-casts {
                 margin-right: 20px;
-                display: inline-block;
+                & ul li {
+                  list-style: none;
+                  display: inline-block;
+                }
               }
             }
           }
