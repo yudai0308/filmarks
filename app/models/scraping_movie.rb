@@ -224,6 +224,7 @@ class Scraping_movie
     subs = page.search('.p-content-detail-related-info__desc li')
     subs.each do |sub|
       subname = sub.inner_text
+      
       # url_sub = sub.get_attribute('href')
       lists.each do |list|
           award = Award.where(name: list[:name], subname: subname).first_or_initialize
