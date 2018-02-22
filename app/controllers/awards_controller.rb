@@ -10,7 +10,7 @@ before_action :build_review_and_tag_model
       award = @award_all_list.where(name: @search_name)
       movies = award.map{|award|award.movies}.flatten
       @movies = Kaminari.paginate_array(movies).page(params[:page]).per(36)
-      @movies_count = @movies.count
+      @movies_count = movies.count
     else
       award = @award_all_list.find_by(id: params[:id])
       @search_name = "#{ award.name }"
