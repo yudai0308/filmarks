@@ -58,21 +58,13 @@
                   = link_to href: "" do
                     = image_tag "btn_follow.svg", alt: "follow-image"
               .user__lists-content-movies.clearfix
-                = image_tag "img_cover-placehold.svg", width: "89", heigth: "126"
-                = image_tag "img_cover-placehold.svg", width: "89", heigth: "126"
-                = image_tag "img_cover-placehold.svg", width: "89", heigth: "126"
-
-
-              / ここから下はまだ
-              /
-                - movies = user.movies.order('time DESC')
+                - clips = user.clips.order("created_at DESC")
                 - 3.times do |i|
-                  - if movies[i]
-                    =link_to href: "" do
-                      = image_tag "#{ movies[i].image }", width: "89", heigth: "126", class: "movie-image"
+                  - if clips[i]
+                    =link_to movie_path(clips[i].movie.id) do
+                      = image_tag "#{ clips[i].movie.image }", width: "89", heigth: "126", class: "movie-image"
                   - else
                     = image_tag "img_cover-placehold.svg", width: "89", heigth: "126"
-
           .search__lists-page
             = paginate(@users)
       = render partial: "share/barnner_contents"
