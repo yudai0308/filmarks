@@ -198,11 +198,14 @@
       }
     }
     .timeline__side-bar{
-      background-color: #F3E2A9;
       width: 320px;
       height: 1500px;
       margin-left: 40px;
       float: left;
+      .barnner__content{
+        width: 300px;
+        margin: auto;
+      }
       .filmaga-content{
         margin-bottom: 20px;
         border: 1px solid #eee;
@@ -228,11 +231,23 @@
           &-image{
             float: left;
             margin-right: 9px;
+            img{
+              border-radius: 5px;
+            }
           }
           &-detail{
             float: left;
             font-size:12px;
             width: 224px;
+            color: black;
+            span{
+              color: black;
+              font-size: 14px;
+              &:hover{
+                border-bottom: 1px solid #000;
+                color: #00c4a5;
+              }
+            }
             &-tag{
               box-sizing: border-box;
               height: 23px;
