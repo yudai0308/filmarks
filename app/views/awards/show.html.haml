@@ -15,11 +15,11 @@
             #{@search_name}映画
       .search-detail__header-title
         %p.title__heading
-          #{ @search_name } #{ @search_subname } 受賞映画作品 #{@search_movies_count}作品
+          #{ @search_name } #{ @search_subname } 受賞映画作品 #{@movies_count}作品
         %p.title__heading-sub
-          - if @search_movies_count !=0
+          - if @movies_count !=0
             #{ @search_name } #{ @search_subname } 受賞作品。これまでに
-            - movie = @search_movies[0]
+            - movie = @movies[0]
             - if movie.members.find_by(status:'0') != nil
               - director = movie.members.find_by(status:'0')
               %span
@@ -27,8 +27,8 @@
             - else
               %span
                 = "、#{movie.title}"
-            - if @search_movies[1] != nil
-              - movie = @search_movies[1]
+            - if @movies[1] != nil
+              - movie = @movies[1]
               - if movie.members.find_by(status:'2') != nil
                 - cast = movie.members.find_by(status:'2')
                 %span
@@ -36,8 +36,8 @@
               - else
                 %span
                   = "、#{movie.title}"
-            - if @search_movies[2] != nil
-              - movie = @search_movies[2]
+            - if @movies[2] != nil
+              - movie = @movies[2]
               %span
                 = "、#{movie.title}"
             %span
@@ -47,5 +47,5 @@
     .search-detail__body
       .search-detail__body-main.clearfix
         = render partial: "sidebar"
-        = render partial: "movie-list-content"
+        = render partial: "lists/lists_content"
       = render partial: "share/barnner_contents"
