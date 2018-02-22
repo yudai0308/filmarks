@@ -3,11 +3,12 @@ class CountriesController < ApplicationController
   before_action :build_review_and_tag_model
 
   def index
-    @search_country = Country.find(params[:country_id])
+    countries = Country.all
+    @search_country = countries.find(params[:country_id])
     @movies = @search_country.movies.order('time DESC').page(params[:page]).per(36)
     @popular_movies = @movies.limit(3)
-    @country_index = Country.limit(20)
-    @country_index_other = Country.offset(20).map{|country| [country,country.movies,country.movies.count]}
+    @country_index = countries.limit(20)
+    @country_index_other = countries.offset(20).map{|country| [country,country.movies,country.movies.count]}
     set_movies_infos(@movies)
   end
 
