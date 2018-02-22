@@ -4,14 +4,25 @@ class MoviesController < ApplicationController
 
   def index
     user = current_user
-    @user_actions = user.active_relationships.map{
+    user_actions = []
+    user_actions << user.reviews
+    user_actions << user.clips
+    user_actions << user.users_members
+    current_user_actions = user_actions.flatten
+
+    other_user_actions = user.active_relationships.map{
       |user|[
         user.followed.reviews,
         user.followed.clips,
         user.followed.users_members
       ]
-    }.flatten.sort_by! { |a| a[:created_at] }.reverse
-    # @user_actions_page = @user_actions.per(30)
+    }.flatten
+
+    users_actions = []
+    users_actions << current_user_actions
+    users_actions << other_user_actions
+
+    @user_actions = users_actions.flatten.sort_by! { |a| a[:created_at] }.reverse.first(30)
   end
 
   def show

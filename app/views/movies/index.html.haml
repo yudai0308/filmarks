@@ -119,51 +119,54 @@
                       .fun-image
     .timeline__side-bar
       .barnner__content
-        = image_tag "banner1.jpeg", alt: "banner_ad"
+        = image_tag "kagg.jpg", alt: "banner_ad"
       .filmaga-content
         .filmaga-content__title
           FILMAGA
         %ul
           %li.filmaga-content__info.clearfix
-            .filmaga-content__info-image
-              = image_tag "img_people-placehold.svg", alt: "image"
+            .filmaga-content__info-image.clearfix
+              = image_tag "https://d2wpnrzfh9jn5t.cloudfront.net/article/1/1778/thumbnail/14358.jpeg", alt: "image", size: "50x50"
             .filmaga-content__info-detail
-              %p 3月開催！アニメの祭典、神秘の映像、世界のおすすめ映画が集結＜国内映画イベントまとめ＞
+              = link_to "https://filmaga.filmarks.com/articles/1778" do
+                %span マーベル映画キャラクターざっくり紹介シリーズ！第3回「神様兄弟ソー＆ロキ・緑の巨人ハルク」【ネタバレあり】
               .filmaga-content__info-detail-tag
                 映画祭・イベント
           %li.filmaga-content__info.clearfix
             .filmaga-content__info-image
-              = image_tag "img_people-placehold.svg", alt: "image"
+              = image_tag "https://d2wpnrzfh9jn5t.cloudfront.net/article/1/1784/thumbnail/14367.jpeg", alt: "image", size: "50x50"
             .filmaga-content__info-detail
-              %p 【試写会プレゼント】アカデミー賞外国語映画賞ノミネート！ロシアの鬼才の最高傑作『ラブレス』
+              = link_to "https://filmaga.filmarks.com/articles/1784" do
+                %span プーさんやダンボのリアルな【実写ビジュアル】が続々！「D23 Expo Japan 2018」で日本初の衝撃情報飛び出す
               .filmaga-content__info-detail-tag
                 試写会
           %li.filmaga-content__info.clearfix
             .filmaga-content__info-image
-              = image_tag "img_people-placehold.svg", alt: "image"
+              = image_tag "https://d2wpnrzfh9jn5t.cloudfront.net/article/1/1765/thumbnail/14333.jpeg", alt: "image", size: "50x50"
             .filmaga-content__info-detail
-              %p 【決定】映画『グレイテスト・ショーマン』初日満足度ランキング1位獲得
+              = link_to "https://filmaga.filmarks.com/articles/1765" do
+                %span 3月開催！アニメの祭典、神秘の映像、世界のおすすめ映画が集結＜国内映画イベントまとめ＞
               .filmaga-content__info-detail-tag
                 映画ランキング
           %li.filmaga-content__info.clearfix
             .filmaga-content__info-image
-              = image_tag "img_people-placehold.svg", alt: "image"
+              = image_tag "https://d2wpnrzfh9jn5t.cloudfront.net/article/1/1748/thumbnail/14293.jpeg", alt: "image", size: "50x50"
             .filmaga-content__info-detail
-              %p 【マトリクスチャート診断】いまの気分にぴったりのミュージカル映画を紹介！
+              = link_to "https://filmaga.filmarks.com/articles/1748" do
+                %span 【試写会プレゼント】アカデミー賞外国語映画賞ノミネート！ロシアの鬼才の最高傑作『ラブレス』
               .filmaga-content__info-detail-tag
                 まとめ
           %li.filmaga-content__info.clearfix
             .filmaga-content__info-image
-              = image_tag "img_people-placehold.svg", alt: "image"
+              = image_tag "https://d2wpnrzfh9jn5t.cloudfront.net/article/1/1781/thumbnail/14352.jpeg", alt: "image", size: "50x50"
             .filmaga-content__info-detail
-              %p 【試写会プレゼント】世界で最も有名なパンケーキ屋さんに隠されたサクセスストーリー。Prime Original『しろときいろ 〜ハワイと私のパンケーキ物語〜』
+              = link_to "https://filmaga.filmarks.com/articles/1781" do
+                %span 【決定】映画『グレイテスト・ショーマン』初日満足度ランキング1位獲得
               .filmaga-content__info-detail-tag
                 試写会
         .filmaga-content__more
-          = link_to "#" do
+          = link_to "https://filmaga.filmarks.com/" do
             .filmaga-content__more-btn
               もっとみる >
-
-
       .barnner__content
-        %iframe{:allow => "autoplay; encrypted-media", :allowfullscreen => "", :frameborder => "0", :height => "250", :src => "https://www.youtube.com/embed/JXJ0ADlG8bg", :width => "300"}
+        = image_tag "dazn.gif", alt: "banner_ad"
