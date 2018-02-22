@@ -5,7 +5,6 @@
     background-color: white;
     height: 80px;
     border-bottom: solid 1px LightGrey;
-
     & h1 {
       text-align: center;
       font-size: 26px;
@@ -17,7 +16,6 @@
   .timeline-contents__wrapper.clearfix {
     width: 1000px;
     margin: 40px auto;
-
     .timeline__main-contents {
       width: 640px;
       float: left;
@@ -150,10 +148,11 @@
         }
         &__reactions {
           height: 21px;
-          padding-top: 20px;
-          border-top: 1px solid #eee;
           margin-top: 30px;
+          margin-bottom: 15px;
           font-size: 14px;
+          border-top: 1px solid #ddd;
+          padding-top: 10px;
           .reactions__button {
             color: #aaa;
             display: inline-block;
@@ -283,6 +282,51 @@
             }
           }
         }
+      }
+    }
+
+    .comment-contents__wrapper{
+        padding: 0;
+      .comment-post-form {
+        background-color: #555;
+        padding: 10px 20px;
+      }
+      .comment-post-form__status {
+        background-color: #eee;
+        color: Dimgray;
+        width: 50px;
+        height: 30px;
+        font-size: 10px;
+        padding: 3px 0px;
+        margin-right: 10px;
+        text-align: center;
+        border-radius: 5px;
+        cursor: pointer;
+        float: left;
+        .fa-warning {
+          font-size: 18px;
+        }
+      }
+      .comment-post-form__text {
+        width: 405px;
+        height: 18px;
+        min-height: 18px;
+        padding: 8px;
+        margin-right: 10px;
+        border: 1px solid #555;
+        font-size: 14px;
+        border-radius: 3px;
+        resize: vertical;
+        float: left;
+      }
+      .comment-post-form__submit {
+        color: #fff;
+        background-color: #00c4a5;
+        width: 60px;
+        height: 36px;
+        border-radius: 3px;
+        border: none;
+        float: left;
       }
     }
   }

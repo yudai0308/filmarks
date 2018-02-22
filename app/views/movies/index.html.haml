@@ -5,8 +5,8 @@
     .timeline-contents__wrapper.clearfix
       .timeline__main-contents
         - @user_actions.each do |user_action|
-          .timeline__main-content
-            - if user_action.class == Review
+          - if user_action.class == Review
+            .timeline__main-content
               .timeline__main-content__wrapper.clearfix
                 .timeline__main-content-left
                   .user-info.clearfix
@@ -63,7 +63,7 @@
                             =fa_icon "paperclip", class: "fa-2x fa-flip-horizontal"
                             %p.clip__count
                               #{user_action.movie.users.length}
-              .timeline__main-content__reactions
+              .timeline__main-content__reactions.clearfix
                 .reactions__button.reactions__button--likes
                   =link_to do
                     =fa_icon "heart"
@@ -72,9 +72,20 @@
                 .reactions__button.reactions__button--comment
                   =link_to movie_review_path(user_action.movie.id, user_action.id) do
                     =fa_icon "comment"
-                    %p コメントする
+                    %p コメント
                   %span #{user_action.comments.length}
-            - elsif user_action.class == Clip
+              .comment-contents
+                .comment-contents__wrapper
+                  .comment-post-form.clearfix
+                    =form_for [user_action.movie, user_action, Comment.new] do |f|
+                      =f.hidden_field :status, value: "0", class: "comment-status"
+                      %a.comment-post-form__status
+                        =fa_icon "warning"
+                        %p ネタバレ
+                      =f.text_area :comment, placeholder: "コメントする", class: "comment-post-form__text"
+                      =f.submit "投稿", class: "comment-post-form__submit"
+          - elsif user_action.class == Clip
+            .timeline__main-content
               .timeline__main-content__wrapper.clearfix
                 .timeline__main-content-left
                   .user-info.clearfix
@@ -97,7 +108,8 @@
                         .list-content__clip-small
                           =fa_icon "paperclip", class: "fa-2x fa-flip-horizontal"
 
-            - elsif user_action.class == UsersMember
+          - elsif user_action.class == UsersMember
+            .timeline__main-content
               .timeline__main-content__wrapper.clearfix
                 .timeline__main-content-left
                   .user-info.clearfix
