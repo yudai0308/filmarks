@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   root "movies#index"
   devise_for :users
+  resources :toppage, only: [:index]
   resources :movies, only: [:index, :show] do
     resources :clips
     resources :reviews, only: [:show, :create] do
