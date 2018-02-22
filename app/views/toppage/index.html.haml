@@ -1,0 +1,11 @@
+.top-page
+  .top-page-img
+    =image_tag "bg_hero"
+    .top-page-img__logo
+      =image_tag "logo_filmarks"
+    .top-page-img__iphone
+      =image_tag "bg_iphone"
+    .top-page-img__new-user.user-menu
+      =link_to "はじめての方はこちら 新規登録", new_user_registration_path
+    .top-page-img__login.user-menu
+      =link_to "会員の方はこちら ログイン", new_user_session_path

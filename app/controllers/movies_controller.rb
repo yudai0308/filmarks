@@ -25,6 +25,8 @@ class MoviesController < ApplicationController
 
       @user_actions = users_actions.flatten.sort_by! { |a| a[:created_at] }.reverse.first(30)
       @comment = Comment.new
+    else
+      redirect_to controller: :toppage, action: :index
     end
   end
 

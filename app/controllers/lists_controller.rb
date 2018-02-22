@@ -1,6 +1,7 @@
 class ListsController < ApplicationController
 
   before_action :build_review_and_tag_model
+  before_action :redirect_to_top
 
   def now
     @movies = Movie.page(params[:page]).per(36).order("created_at DESC")
@@ -58,6 +59,10 @@ class ListsController < ApplicationController
   end
 
   private
+
+  def redirect_to_top
+    redirect_to controller: :toppage, action: :index unless user_signed_in?
+  end
 
   def build_review_and_tag_model
     @review = Review.new
