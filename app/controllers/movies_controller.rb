@@ -60,7 +60,9 @@ class MoviesController < ApplicationController
       @year_url = "/lists/year/1960s/#{year}"
     end
 
-    @clip = Clip.find_by(movie_id: params[:id], user_id: current_user.id)
+    if user_signed_in?
+     @clip = Clip.find_by(movie_id: params[:id], user_id: current_user.id)
+    end
   end
 
   def search
