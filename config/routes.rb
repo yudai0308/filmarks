@@ -40,6 +40,7 @@ Rails.application.routes.draw do
       get "review"
       get "followers"
       get "following"
+      get "clip"
     end
   end
 
