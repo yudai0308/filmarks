@@ -3,6 +3,10 @@
   width: 1000px;
   margin: auto;
   padding: 40px 0;
+  .search-user__lists{
+    width: 1020px;
+    margin-left: -20px;
+  }
   .timeline__main-content{
     box-sizing: border-box;
     width: 480px;
@@ -178,6 +182,97 @@
           }
         }
       }
+    }
+  }
+  .movie-list-content {
+    &__tab {
+      color: #aaa;
+      background-color: #fff;
+      width: 1000px;
+      height: 23px;
+      margin: 0px 0px 20px 20px;
+      border: 1px solid #eee;
+      padding: 20px 15px 15px;
+    }
+    &__index{
+      .list-content{
+        background-color: white;
+        margin-left: 20px;
+        margin-bottom: 20px;
+        float:left;
+        &__image{
+          width: 140px;
+          height: 200px;
+          img{
+          margin: auto;
+          }
+        }
+        &__title{
+          font-size: 10px;
+          width: 130px;
+          height: 25px;
+          padding: 7px 5px;
+          text-align: center;
+          text-decoration: none;
+          span{
+            color: #333;
+            font-weight: 800;
+          }
+        }
+        &__mark{
+          height: 45px;
+          width:  33.333%;
+          float: left;
+          color: #d7bc43;
+          background-color: #fef298;
+          text-align: center;
+          padding-top: 5px;
+          .fa-2x{
+            font-size: 18px;
+          }
+          p{
+            font-size: 12px;
+          }
+        }
+        &__clip{
+          font-size: 18px;
+          height: 48px;
+          width:  33.333%;
+          float: left;
+          color: #d7bc43;
+          background-color: #fef298;
+          text-align: center;
+          padding-top: 2px;
+          cursor: pointer;
+          .fa-flip-horizontal{
+            font-size: 18px;
+          }
+          p{
+            font-size: 12px;
+          }
+        }
+        &__score{
+          height: 49px;
+          width:  33.333%;
+          float: left;
+          color: #ffd400;
+          font-size: 18px;
+          text-align: center;
+          padding-top: 1px;
+          p{
+            font-size: 12px;
+          }
+        }
+      }
+    }
+    &__search{
+      background-color: #fff;
+      width: 1000px;
+      font-size: 14px;
+      text-align: center;
+      line-height: 50px;
+      margin: 20px 0px 20px 20px;
+      clear: both;
     }
   }
 }

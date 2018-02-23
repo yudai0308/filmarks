@@ -71,3 +71,5 @@
               =fa_icon "comment"
               %p コメント
             %span #{user_action.comments.length}
+    .movie-list-content__search
+      = paginate(@user_actions)
