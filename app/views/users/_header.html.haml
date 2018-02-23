@@ -1,0 +1,43 @@
+.my-profile__wrapper
+  .aaa
+    .top-navi
+      %ul
+        %li
+          =link_to "Filmarks映画情報", root_path
+        %li
+          >
+        %li
+          #{current_user.nickname}さんの鑑賞した映画
+    .my-profile
+      .my-profile__img
+        =image_tag "img_people-placehold"
+      .my-profile__name
+        .my-profile__name__nick
+          #{current_user.nickname}
+        .my-profile__name__id
+          @#{current_user.Filmarks_ID}
+      .my-profile__edit
+        =link_to "プロフィールを編集する"
+.users-navi__wrapper
+  .iii
+    %ul.users-navi
+      %li.users-navi__review
+        =link_to review_user_path do
+          =fa_icon "pencil"
+          %p 10
+      %li.users-navi__clip
+        =link_to clip_user_path do
+          =fa_icon "paperclip", class: "fa-flip-horizontal"
+          %p 10
+      %li.users-navi__fan
+        =link_to do
+          =fa_icon "user-plus"
+          %p 10
+      %li.users-navi__followers
+        =link_to do
+          %p Followers
+          %p 10
+      %li.users-navi__following
+        =link_to do
+          %p Following
+          %p 10
