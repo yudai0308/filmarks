@@ -21,23 +21,54 @@
 .users-navi__wrapper
   .iii
     %ul.users-navi
-      %li.users-navi__review
-        =link_to review_user_path do
-          =fa_icon "pencil"
-          %p 10
-      %li.users-navi__clip
-        =link_to clip_user_path do
-          =fa_icon "paperclip", class: "fa-flip-horizontal"
-          %p 10
-      %li.users-navi__fan
-        =link_to fun_user_path do
-          =fa_icon "user-plus"
-          %p 10
-      %li.users-navi__followers
-        =link_to followers_user_path do
-          %p Followers
-          %p 10
-      %li.users-navi__following
-        =link_to following_user_path do
-          %p Following
-          %p 10
+
+      -if params[:action] == "review"
+        %li.users-navi__review.yellow-bg
+          =link_to review_user_path do
+            =fa_icon "pencil"
+            %p #{current_user.reviews.length}
+      -else
+        %li.users-navi__review
+          =link_to review_user_path do
+            =fa_icon "pencil"
+            %p #{current_user.reviews.length}
+      -if params[:action] == "clip"
+        %li.users-navi__clip.yellow-bg
+          =link_to clip_user_path do
+            =fa_icon "paperclip", class: "fa-flip-horizontal"
+            %p #{current_user.clips.length}
+      -else
+        %li.users-navi__clip
+          =link_to clip_user_path do
+            =fa_icon "paperclip", class: "fa-flip-horizontal"
+            %p #{current_user.clips.length}
+      -if params[:action] == "fan"
+        %li.users-navi__fan.yellow-bg
+          =link_to fan_user_path do
+            =fa_icon "user-plus"
+            %p 0
+      -else
+        %li.users-navi__fan
+          =link_to fan_user_path do
+            =fa_icon "user-plus"
+            %p 0
+      -if params[:action] == "followers"
+        %li.users-navi__followers.yellow-bg
+          =link_to followers_user_path do
+            %p Followers
+            %p #{current_user.followers.length}
+      -else
+        %li.users-navi__followers
+          =link_to followers_user_path do
+            %p Followers
+            %p #{current_user.followers.length}
+      -if params[:action] == "following"
+        %li.users-navi__following.yellow-bg
+          =link_to following_user_path do
+            %p Following
+            %p #{current_user.following.length}
+      -else
+        %li.users-navi__following
+          =link_to following_user_path do
+            %p Following
+            %p #{current_user.following.length}

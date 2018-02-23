@@ -26,7 +26,7 @@ class UsersController < ApplicationController
     @following = current_user.following.page(params[:page]).per(36)
   end
 
-  def fun
+  def fan
     @casts = current_user.members.page(params[:page]).per(36)
   end
 
