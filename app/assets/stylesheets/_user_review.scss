@@ -1,0 +1,130 @@
+
+.my-page__header {
+  background-color: #fff;
+
+  .my-profile__wrapper {
+    width: 100%;
+    height: 136px;
+    padding: 16px 0 30px 0;
+    border-bottom: 1px solid #eee;
+
+    .aaa {
+      width: 1000px;
+      margin: 0 auto;
+
+      .top-navi {
+        & ul li {
+          font-size: 12px;
+          list-style: none;
+          display: inline-block;
+          margin-bottom: 16px;
+        }
+      }
+      .my-profile {
+        height: 100px;
+        padding-bottom: 30px;
+
+        .my-profile__img img {
+          height: 100px;
+          width: 100px;
+          border-radius: 5px;
+          float: left;
+        }
+        .my-profile__name {
+          background-color: #BCF5A9;
+          width: 560px;
+          height: 100px;
+          margin-left: 20px;
+          float: left;
+
+          .my-profile__name__nick {
+            font-size: 18px;
+            font-weight: 900;
+            display: inline-block;
+          }
+          .my-profile__name__id {
+            font-size: 14px;
+            color: #7e7e7e;
+            display: inline-block;
+          }
+        }
+        .my-profile__edit {
+          background-color: #CEE3F6;
+          width: 320px;
+          height: 100px;
+          float: left;
+          & a {
+            background-color: #7e7e7e;
+            color: #fff;
+            width: 320px;
+            height: 36px;
+            border-radius: 5px;
+            line-height: 36px;
+            text-align: center;
+            display: block;
+          }
+        }
+      }
+    }
+  }
+  .users-navi__wrapper {
+    width: 100%;
+    border-bottom: 1px solid #eee;
+
+    .iii {
+      width: 1000px;
+      height: 76px;
+      margin: 0 auto;
+
+      .users-navi {
+        font-size: 0;
+
+        & li {
+          font-size: 16px;
+          display: inline-block;
+
+          & a {
+            width: 100px;
+            height: 76px;
+            display: block;
+            color: #333;
+            // line-height: 76px;
+            text-align: center;
+
+            & i {
+              font-size: 20px;
+            }
+          }
+        }
+
+        &__review {
+          background-color: #F7BE81;
+        }
+        &__clip {
+          background-color: #BEF781;
+        }
+        &__fan {
+          background-color: #A9F5F2;
+        }
+        &__followers {
+          background-color: #D0A9F5;
+        }
+        &__following {
+          background-color: #F5A9D0;
+        }
+
+        .navi-box {
+        }
+      }
+    }
+  }
+}
+
+
+
+
+
+
+
+
+

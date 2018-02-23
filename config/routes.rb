@@ -38,6 +38,8 @@ Rails.application.routes.draw do
     resources :relationships , only: [:create, :destroy]
     member do
       get "review"
+      get "clip"
+      get "fan"
       get "followers"
       get "following"
       get "clip"
