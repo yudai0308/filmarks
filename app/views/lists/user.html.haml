@@ -33,50 +33,5 @@
               = image_tag "banner1.jpeg", alt: "banner_ad"
             .barnner__content
               %iframe{:allow => "autoplay; encrypted-media", :allowfullscreen => "", :frameborder => "0", :height => "250", :src => "https://www.youtube.com/embed/JXJ0ADlG8bg", :width => "300"}
-        .search-user__lists.clearfix
-          - @users.each do |user|
-            .user__lists-content
-              .user__lists-content-info.clearfix
-                =link_to href: "" do
-                  .user__lists-content-thumbnail
-                    = image_tag "img_people-placehold.svg", alt: "image"
-                .user__lists-content-name
-                  = link_to href:"" do
-                    %span #{ user.nickname }
-                  %p #{ user.Filmarks_ID }
-              .user__lists-content-follow.clearfix
-                .user__lists-content-follow__info
-                  %p.info-name followers
-                  %p.info-count{id:"followers-count_userid#{user.id}"} #{ user.followers.count }
-                .user__lists-content-follow__info
-                  %p.info-name followings
-                  %p.info-count{id:"followings-count_userid#{user.id}"}  #{ user.following.count }
-                  / ユーザーのログインしているかどうか判断を追記要
-                - if user_signed_in?
-                  - if user != current_user
-                    .user__lists-content-follow__block
-                      = link_to href: "" do
-                        = image_tag "btn_dots.svg", alt: "・・・"
-                    - if user.followers.find_by(id: current_user.id)
-                      = link_to user_relationship_path(current_user.id,user.id), method: 'delete' do
-                        .user__lists-content-follow__btn.follow-btn
-                    - else
-                      = link_to user_relationships_path(current_user.id, params:{followed_id: user.id} ), method: 'post' do
-                        .user__lists-content-follow__btn.unfollow-btn
-              .user__lists-content-movies.clearfix
-                = image_tag "img_cover-placehold.svg", width: "89", heigth: "126"
-                = image_tag "img_cover-placehold.svg", width: "89", heigth: "126"
-                = image_tag "img_cover-placehold.svg", width: "89", heigth: "126"
-
-
-              / ここから下はまだ
-              /
-                - movies = user.movies.order('time DESC')
-                - 3.times do |i|
-                  - if movies[i]
-                    =link_to href: "" do
-                      = image_tag "#{ movies[i].image }", width: "89", heigth: "126", class: "movie-image"
-                  - else
-                    = image_tag "img_cover-placehold.svg", width: "89", heigth: "126"
-
+        = render partial: "lists/search_user_contents"
       = render partial: "share/barnner_contents"

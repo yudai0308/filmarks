@@ -9,7 +9,7 @@
           %li
             ユーザー検索結果
       .search-detail__header-title
-        「#{ params[:keyword] }」に関するユーザー検索結果 #{ @users_count }人
+        「#{ params[:keyword] }」に関するユーザー検索結果 #{ @users_length }人
     .search-detail__body
       .search-detail__body-main.clearfix
         .sidebar
@@ -33,38 +33,7 @@
               = image_tag "banner1.jpeg", alt: "banner_ad"
             .barnner__content
               %iframe{:allow => "autoplay; encrypted-media", :allowfullscreen => "", :frameborder => "0", :height => "250", :src => "https://www.youtube.com/embed/JXJ0ADlG8bg", :width => "300"}
-        .search-user__lists.clearfix
-          - @users.each do |user|
-            .user__lists-content
-              .user__lists-content-info.clearfix
-                =link_to href: "" do
-                  .user__lists-content-thumbnail
-                    = image_tag "img_people-placehold.svg", alt: "image"
-                .user__lists-content-name
-                  = link_to href:"" do
-                    %span #{ user.nickname }
-                  %p #{ user.Filmarks_ID }
-              .user__lists-content-follow.clearfix
-                .user__lists-content-follow__info
-                  %p.info-name followers
-                  %p.info-count 10
-                .user__lists-content-follow__info
-                  %p.info-name followings
-                  %p.info-count 5
-                .user__lists-content-follow__block
-                  = link_to href: "" do
-                    = image_tag "btn_dots.svg", alt: "・・・"
-                .user__lists-content-follow__btn
-                  = link_to href: "" do
-                    = image_tag "btn_follow.svg", alt: "follow-image"
-              .user__lists-content-movies.clearfix
-                - clips = user.clips.order("created_at DESC")
-                - 3.times do |i|
-                  - if clips[i]
-                    =link_to movie_path(clips[i].movie.id) do
-                      = image_tag "#{ clips[i].movie.image }", width: "89", heigth: "126", class: "movie-image"
-                  - else
-                    = image_tag "img_cover-placehold.svg", width: "89", heigth: "126"
-          .search__lists-page
-            = paginate(@users)
+        = render partial: "lists/search_user_contents"
+        .search__lists-page
+          = paginate(@users)
       = render partial: "share/barnner_contents"
