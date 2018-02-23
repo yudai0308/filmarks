@@ -49,7 +49,7 @@
                     Fanが
                     %strong  #{ cast.users.length }
                     人います
-                - if cast.fan_user(current_user.id)
+                - if user_signed_in? && cast.fan_user(current_user.id)
                   = button_tag  type: "submit", class: "fun__btn1", "data-fan-id": "#{cast.id}", "data-fan-url": "/members/#{cast.id}/users_members/#{cast.users_members.find_by(user_id: current_user.id).id}" do
                     = image_tag "btn_fan.svg", alt: "fun_btn-image"
                 - else
