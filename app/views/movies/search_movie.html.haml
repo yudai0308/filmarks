@@ -34,32 +34,5 @@
               = image_tag "banner1.jpeg", alt: "banner_ad"
             .barnner__content
               %iframe{:allow => "autoplay; encrypted-media", :allowfullscreen => "", :frameborder => "0", :height => "250", :src => "https://www.youtube.com/embed/JXJ0ADlG8bg", :width => "300"}
-        .search__lists.clearfix
-          - @movies.each do |movie|
-            .list-content
-              =link_to movie_path(movie.id) do
-                .list-content__image
-                  = image_tag "#{ movie.image }", alt: "#{ movie.title }", width: "150px", height: "200px"
-              .list-content__title
-                =link_to movie_path(movie.id) do
-                  %span
-                    = movie.title
-              .list-content__wrapper.clearfix
-                =link_to "#" do
-                  .list-content__mark
-                    =fa_icon "pencil", class: "fa-2x"
-                    %p.mark__count
-                      10
-                =link_to "#" do
-                  .list-content__clip
-                    =fa_icon "paperclip", class: "fa-2x fa-flip-horizontal"
-                    %p.clip__count
-                      10
-                =link_to "#" do
-                  .list-content__score
-                    =fa_icon "star",class: "far fa-star"
-                    %p.score__rate
-                      4
-          .search__lists-page
-            = paginate(@movies)
+        = render partial: "lists/lists_content"
       = render partial: "share/barnner_contents"

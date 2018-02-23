@@ -79,6 +79,7 @@ class MoviesController < ApplicationController
     else
       @movies_count = Movie.where('title LIKE(?)', "%#{params[:keyword]}%").count
       @movies = Movie.where('title LIKE(?)', "%#{params[:keyword]}%").page(params[:page]).per(36)
+      set_movies_infos(@movies)
       render action:'search_movie'
     end
   end
@@ -90,4 +91,18 @@ class MoviesController < ApplicationController
     @tag = Tag.new
   end
 
+  def set_movies_infos(movies)
+    @movies_infos_array = []
+    movies.each do |movie|
+      scores_array = []
+      movie.reviews.each do |review|
+        scores_array << review.score unless review.score == nil
+      end
+      if scores_array.length > 0
+        score_ave = (scores_array.sum) / (scores_array.length)
+      end
+      movie_infos = {reviews_count: scores_array.length, score_ave: score_ave}
+      @movies_infos_array << movie_infos
+    end
+  end
 end

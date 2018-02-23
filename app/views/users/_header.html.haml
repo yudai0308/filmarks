@@ -21,6 +21,7 @@
 .users-navi__wrapper
   .iii
     %ul.users-navi
+
       -if params[:action] == "review"
         %li.users-navi__review.yellow-bg
           =link_to review_user_path do
