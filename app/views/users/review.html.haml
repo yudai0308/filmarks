@@ -1,4 +1,73 @@
 .my-page
   .my-page__header
     =render partial: "header"
-  .my-page__reviews
+  .my-page__reviews.clearfix
+    - @user_actions.each do |user_action|
+      .timeline__main-content
+        .timeline__main-content__wrapper.clearfix
+          .timeline__main-content-left
+            .user-info.clearfix
+              .user-info__lists-content-thumbnail
+                = image_tag "img_people-placehold.svg", alt: "image"
+              .user-info__lists-content-info
+                = link_to user_path(user_action.user.id) do
+                  %p.user_name
+                    = "#{ user_action.user.nickname }の感想・レビュー"
+                %p.action_time
+                  = "#{user_action.created_at.strftime("%Y年%m月%d日 %H時%M分")}"
+            .movie-info
+              =link_to "#{user_action.movie.title}", movie_path(user_action.movie.id)
+              %span
+                = "(#{user_action.movie.production}製作映画)"
+              -if user_action.score == nil
+                .user-review-rate{"data-review-rate": "0"}
+                  %span{class: "user-rate user-rate-0"}
+                  %spna{class: "user-review-rate-ave"} -
+              -else
+                .user-review-rate{"data-review-rate": "#{user_action.score}"}
+                  %span{class: "user-rate user-rate-#{user_action.score}"}
+                  %spna{class: "user-review-rate-ave"} #{(user_action.score).to_f / 10}
+            .review-info
+              .review-info__comment
+                #{user_action.comment}
+              .review-info__tags
+                %ul
+                  - user_action.tags.each do |tag|
+                    %li
+                      =link_to "#{tag.name}"
+          .timeline__main-content-right
+            .list-content
+              =link_to movie_path(user_action.movie.id) do
+                .list-content__image
+                  = image_tag "#{ user_action.movie.image }", alt: "#{ user_action.movie.title }", width: "150px", height: "200px"
+              .list-content__wrapper.clearfix
+                =render partial: "reviews/post_form", locals: {movie: user_action.movie, review: @review, tag: @tag}
+                =link_to "#" do
+                  .list-content__mark
+                    =fa_icon "pencil", class: "fa-2x"
+                    %p.mark__count
+                      #{user_action.movie.reviews.length}
+                - if user_action.movie.clip_user(current_user.id)
+                  - @clip = user_action.movie.clips.find_by(user_id: current_user.id)
+                  =link_to "#", class: "clip-movie-btn3", "data-clip-id": "#{user_action.movie.id}", "data-clip-url": "/movies/#{user_action.movie.id}/clips/#{@clip.id}" do
+                    .list-content__clip
+                      =fa_icon "paperclip", class: "fa-2x fa-flip-horizontal"
+                      %p.clip__count
+                        #{user_action.movie.users.length}
+                - else
+                  =link_to "#", class: "clip-movie-btn4", "data-clip-id": "#{user_action.movie.id}", "data-clip-url": "/movies/#{user_action.movie.id}/clips" do
+                    .list-content__clip
+                      =fa_icon "paperclip", class: "fa-2x fa-flip-horizontal"
+                      %p.clip__count
+                        #{user_action.movie.users.length}
+        .timeline__main-content__reactions.clearfix
+          .reactions__button.reactions__button--likes
+            =link_to do
+              =fa_icon "heart"
+              %p いいね！
+            %span 0
+          .reactions__button.reactions__button--comment
+            =link_to movie_review_path(user_action.movie.id, user_action.id) do
+              =fa_icon "comment"
+              %p コメント
+            %span #{user_action.comments.length}
