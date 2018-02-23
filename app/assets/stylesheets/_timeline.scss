@@ -18,6 +18,7 @@
     margin: 40px auto;
     .timeline__main-contents {
       width: 640px;
+      min-height: 100px;
       float: left;
       .timeline__main-content{
         box-sizing: border-box;
@@ -197,7 +198,6 @@
     }
     .timeline__side-bar{
       width: 320px;
-      height: 1500px;
       margin-left: 40px;
       float: left;
       .barnner__content{
