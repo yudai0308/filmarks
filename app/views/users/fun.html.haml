@@ -1,0 +1,36 @@
+.my-page
+  .my-page__header
+    =render partial: "header"
+  .my-page__reviews.clearfix
+    .search-cast__lists.clearfix
+      - @casts.each do |cast|
+        .cast__lists-content
+          =link_to href: "" do
+            .cast__lists-content-thumbnail
+              = image_tag "img_people-placehold.svg", alt: "image"
+          .cast__lists-content-name
+            = link_to href:"" do
+              %span #{ cast.name }
+            %p 出身地:
+          .cast__lists-content-fun.clearfix
+            .cast__lists-content-fun__count
+              %span
+                Fanが
+                %strong  #{ cast.users.length }
+                人います
+            - if cast.fan_user(current_user.id)
+              = button_tag  type: "submit", class: "fun__btn1", "data-fan-id": "#{cast.id}", "data-fan-url": "/members/#{cast.id}/users_members/#{cast.users_members.find_by(user_id: current_user.id).id}" do
+                = image_tag "btn_fan.svg", alt: "fun_btn-image"
+            - else
+              = button_tag  type: "submit", class: "fun__btn2", "data-fan-id": "#{cast.id}", "data-fan-url": "/members/#{cast.id}/users_members" do
+                = image_tag "btn_fan.svg", alt: "fun_btn-image"
+          .cast__lists-content-movie
+            - movies = MoviesMember.where(member_id:cast.id).group('movie_id').map(&:movie)
+            - 3.times do |i|
+              - if movies[i]
+                =link_to  movie_path(movies[i].id) do
+                  = image_tag "#{ movies[i].image }", width: "89", heigth: "126", class: "movie-image"
+              - else
+                = image_tag "img_cover-placehold.svg", width: "89", heigth: "126"
+    .movie-list-content__search
+      = paginate(@casts)
