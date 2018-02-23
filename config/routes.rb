@@ -36,7 +36,7 @@ Rails.application.routes.draw do
   end
   resources :users do
     resources :relationships , only: [:create, :destroy]
-    collection do
+    member do
       get "review"
       get "followers"
       get "following"
