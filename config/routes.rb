@@ -43,7 +43,6 @@ Rails.application.routes.draw do
       get "followers"
       get "following"
       get "clip"
-      get "fun"
     end
   end
 
