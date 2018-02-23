@@ -31,7 +31,6 @@
           float: left;
         }
         .my-profile__name {
-          background-color: #BCF5A9;
           width: 560px;
           height: 100px;
           margin-left: 20px;
@@ -49,7 +48,6 @@
           }
         }
         .my-profile__edit {
-          background-color: #CEE3F6;
           width: 320px;
           height: 100px;
           float: left;
@@ -79,16 +77,20 @@
       .users-navi {
         font-size: 0;
 
+        & li:hover {
+          background-color: #ffe100;
+        }
+
         & li {
           font-size: 16px;
           display: inline-block;
 
           & a {
             width: 100px;
-            height: 76px;
+            height: 60px;
+            margin-top: 16px;
             display: block;
             color: #333;
-            // line-height: 76px;
             text-align: center;
 
             & i {
@@ -98,22 +100,14 @@
         }
 
         &__review {
-          background-color: #F7BE81;
         }
         &__clip {
-          background-color: #BEF781;
         }
         &__fan {
-          background-color: #A9F5F2;
         }
         &__followers {
-          background-color: #D0A9F5;
         }
         &__following {
-          background-color: #F5A9D0;
-        }
-
-        .navi-box {
         }
       }
     }
