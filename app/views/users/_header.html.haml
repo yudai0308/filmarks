@@ -24,20 +24,20 @@
       %li.users-navi__review
         =link_to review_user_path do
           =fa_icon "pencil"
-          %p 10
+          %p #{current_user.reviews.length}
       %li.users-navi__clip
         =link_to clip_user_path do
           =fa_icon "paperclip", class: "fa-flip-horizontal"
-          %p 10
+          %p #{current_user.clips.length}
       %li.users-navi__fan
-        =link_to do
+        =link_to fan_user_path do
           =fa_icon "user-plus"
-          %p 10
+          %p 0
       %li.users-navi__followers
         =link_to do
           %p Followers
-          %p 10
+          %p #{current_user.followers.length}
       %li.users-navi__following
         =link_to do
           %p Following
-          %p 10
+          %p #{current_user.following.length}
