@@ -25,14 +25,15 @@
                     -if user_action.score == nil
                       .user-review-rate{"data-review-rate": "0"}
                         %span{class: "user-rate user-rate-0"}
-                        %spna{class: "user-review-rate-ave"} -
+                        %span{class: "user-review-rate-ave"} -
                     -else
                       .user-review-rate{"data-review-rate": "#{user_action.score}"}
                         %span{class: "user-rate user-rate-#{user_action.score}"}
-                        %spna{class: "user-review-rate-ave"} #{(user_action.score).to_f / 10}
+                        %span{class: "user-review-rate-ave"} #{(user_action.score).to_f / 10}
                   .review-info
                     .review-info__comment
-                      #{user_action.comment}
+                      %span
+                        = "#{user_action.comment}"
                     .review-info__tags
                       %ul
                         - user_action.tags.each do |tag|

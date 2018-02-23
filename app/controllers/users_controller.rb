@@ -26,6 +26,11 @@ class UsersController < ApplicationController
     @following = current_user.following.page(params[:page]).per(36)
   end
 
+  def fun
+    @casts = current_user.members.page(params[:page]).per(36)
+  end
+
+
   private
   def redirect_to_top
     redirect_to controller: :toppage, action: :index unless user_signed_in?
