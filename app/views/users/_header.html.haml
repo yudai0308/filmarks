@@ -30,14 +30,14 @@
           =fa_icon "paperclip", class: "fa-flip-horizontal"
           %p 10
       %li.users-navi__fan
-        =link_to do
+        =link_to fun_user_path do
           =fa_icon "user-plus"
           %p 10
       %li.users-navi__followers
-        =link_to do
+        =link_to followers_user_path do
           %p Followers
           %p 10
       %li.users-navi__following
-        =link_to do
+        =link_to following_user_path do
           %p Following
           %p 10
